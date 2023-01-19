@@ -1,6 +1,8 @@
 import React from 'react';
 import DataContext from '../App.js';
 import { useNavigate } from 'react-router-dom';
+import logout from '../assets/logout.png';
+import themeswap from '../assets/themeswap.png';
 
 
 function Navbar(props) {
@@ -19,7 +21,8 @@ function Navbar(props) {
             </div>
 
             <div className='navbar-logout'>
-                <div className='navbar-pagebutton' onClick={() => navigate(`/Login`)}>LOG OUT</div>
+                <image src={logout} alt="logout" className='navbar-pagebutton navbar-logoutpic' onClick={() => navigate(`/Login`)}/>
+                <div className='navbar-pagebutton navbar-logout' onClick={() => navigate(`/Login`)}/>
             </div>
         </div>
     );

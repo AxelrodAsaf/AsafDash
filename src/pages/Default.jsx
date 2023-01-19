@@ -4,7 +4,7 @@ import '../styles/App.css';
 function Default(props) {
     return (
         <div>
-            <h1>404: WEBSITE NOT FOUND</h1>
+            <p>We're sorry, we couldn't find the page you were looking for.</p>
         </div>
     );
 }
