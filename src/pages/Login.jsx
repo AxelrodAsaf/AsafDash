@@ -1,64 +1,38 @@
-// import {initializeApp} from 'firebase/app';
-// import 'firebase/compat/auth';
-// import 'firebase/compat/firestore';
-// import { addDoc, collection } from "firebase/compat";
-// import { dataBase } from "./firebase/compat/firebase.jsx";
-// import { NavLink } from "react-router-dom";
 import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import '../styles/App.css';
-
-
-
+import HandleUserData from "../firebase/HandleUserData";
 
 
 function Login(props) {
-    // // const refUsers = collection(dataBase, "Users");
-    // const {navigate} = useContext(DataContext);
+    
+    const navigate = useNavigate();
+    const { getUser } = HandleUserData();
 
-    // const updateUsername = (event) => {
-    //     setUsername(event.target.value);
-    //     // addDoc(refUsers, username);
-    // };
-
-
-    // React States
     const [errorMessages, setErrorMessages] = useState({});
-    const [isSubmitted, setIsSubmitted] = useState(false);
-
-    // User Login info
-    const database = [
-        {
-            username: "a",
-            password: "a"
-        },
-        {
-            username: "b",
-            password: "b"
-        }
-    ];
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const errors = {
-        uname: "invalid username",
-        pass: "invalid password"
+        uname: "Could not find username, maybe it's misspelled?",
+        pass: "Incorrect password, maybe you forgot yours?"
     };
 
     const handleSubmit = (event) => {
-        //Prevent page reload
+        // Prevent page reload
         event.preventDefault();
 
         var { uname, pass } = document.forms[0];
 
         // Find user login info
-        const userData = database.find((user) => user.username === uname.value);
+        const userData = getUser(uname.value);
 
         // Compare user info
         if (userData) {
-            if (userData.password !== pass.value) {
+            if (userData.Password !== pass.value) {
                 // Invalid password
                 setErrorMessages({ name: "pass", message: errors.pass });
             } else {
-                setIsSubmitted(true);
+                setIsLoggedIn(true);
             }
         } else {
             // Username not found
@@ -74,22 +48,23 @@ function Login(props) {
 
     // Login form
     const renderForm = (
-        <div className="form">
+        <div className="login-form">
             <form onSubmit={handleSubmit}>
-                <div className="input-container">
-                    <label>Username </label>
+                <div className="login-input">
+                    <label>Username</label>
                     <input type="text" name="uname" required className="login-form-username input" />
                     {renderErrorMessage("uname")}
                 </div>
-                <div className="input-container">
-                    <label>Password </label>
+                <div className="login-input">
+                    <label>Password</label>
                     <input type="password" name="pass" required className="login-form-password input" />
                     {renderErrorMessage("pass")}
                 </div>
-                <div className="button-container">
+                <div className="login-submitsignup">
                     <input type="submit" className="login-form-submit button" />
                 </div>
             </form>
+            <button type="text" className="login-form-signup button" onClick={() => navigate(`/Signup`)}>Sign up</button>
         </div>
     );
 
@@ -99,7 +74,7 @@ function Login(props) {
             <h1>Welcome to Asaf's Dashboard!</h1>
             <h3>Please sign in to begin...</h3>
 
-            {isSubmitted ? < Navigate to={'/Home'} /> : renderForm}
+            {isLoggedIn ? < Navigate to={'/Home'} /> : renderForm}
         </div>
     );
 }
