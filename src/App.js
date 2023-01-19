@@ -1,25 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import Login from './pages/Login.jsx';
+import Data from './Data';
+import Home from './pages/Home';
+import Default from './pages/Default';
+import { createContext } from 'react';
+import { Routes, Route } from "react-router-dom";
+
+
+export const DataContext = createContext();
 
 function App() {
+  const contextValues = Data();
   return (
+      <DataContext.Provider value={contextValues}>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path={"/"} element={<Login />} />
+        <Route path={"/Home"} element={<Home />} />
+        <Route path="*" element={<Default />} />
+      </Routes>
     </div>
+      </DataContext.Provider>
   );
 }
+
+
 
 export default App;
