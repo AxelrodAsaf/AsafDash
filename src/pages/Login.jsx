@@ -6,7 +6,7 @@
 // import { NavLink } from "react-router-dom";
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import '../App.css';
+import '../styles/App.css';
 
 
 

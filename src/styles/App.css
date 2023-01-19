@@ -1,0 +1,110 @@
+/* @import url('https: //fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap'); */
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  margin: 0;
+  background-color: gray;
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+/* Nav Bar */
+.navbar-main {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 15vw;
+  background-color: lightgray;
+  border-right: 2px darkgray solid;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-direction: column;
+  border-right-style: inset;
+}
+.navbar-buttons {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-evenly;
+}
+.navbar-pagebutton {
+  font-size: large;
+  width: 15vw;
+  text-align: center;
+  border-style: inset;
+  border-radius: .5vw;
+  color: black; 
+  font-weight: bold;
+}
+.navbar-logout {
+  margin-bottom: 5vh;
+}
+.navbar-weather {
+  background-color: burlywood;
+  color: red;
+}
+.navbar-todolist {
+  background-color: burlywood;
+  color: red;
+}
+.navbar-news {
+  background-color: burlywood;
+  color: red;
+}
+.navbar-dailytrackers {
+  background-color: burlywood;
+  color: red;
+}
+.navbar-musicandmovies {
+  background-color: burlywood;
+  color: red;
+}
+.navbar-externallinks {
+  background-color: burlywood;
+  color: red;
+}
+.navbar-myhub {
+  background-color: burlywood;
+  color: red;
+}
+
+
+/* Login */
+.login-page-div {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-form-div {
+  display: flex;
+  flex-direction: column;
+}
+.input {
+  border-radius: 1vw;
+}
+.login-form-submit {
+  border-radius: 1vw;
+}
+
+
+/* Home */
+.home-widgetgrid {
+  margin-left: 15vw;
+  width: 85vw;
+  height: 100vh;
+  background-color: red;
+}
+.home-widget {
+  background-color: white;
+  height: 5vw;
+  width: 5vw;
+  display: flex;
+  margin: 15px;
+}
