@@ -21,10 +21,10 @@ function HandleUserData(props) {
             });
             setAllUsersData(tempAllUserData);
         });
-    }, []);
+    });
 
-    const getUser = (Email) => {
-        return allUsersData.find(element => element.Email.toLowerCase() == Email.toLowerCase());
+    const getUser = (email) => {
+        return allUsersData.find(element => element.email.toLowerCase() === email.toLowerCase());
     };
 
     const updateUser = async (id, fields) => {

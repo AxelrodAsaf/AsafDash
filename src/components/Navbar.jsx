@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logoutpic from '../assets/logout.png';
 import themeswap from '../assets/themeswap.png';
-// import Login from '../pages/Login';
 import Login from './Login';
-import Signup from '../pages/Signup';
 
 
 function Navbar(props) {
-    const currentUser = props.currentUser;
     const setCurrentUser = props.setCurrentUser;
+    const currentUser = props.currentUser;
     const [themeLight, setThemeLight] = useState(true);
     const [openLogin, setOpenLogin] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
 
     function logout() {
@@ -35,8 +34,8 @@ function Navbar(props) {
                 <div className='navbar-pagebutton navbar-myhub' onClick={() => navigate(`/MyHub`)}>myHub</div>
             </div>
 
-            <button className='navbar-loginsignup' onClick={() => setOpenLogin(!openLogin)}>Login/Sign up</button>
-            {openLogin ? <Login /> : <></>}
+            {!isLoggedIn ? <button className='navbar-loginsignup' onClick={() => setOpenLogin(!openLogin)}>Login/Sign up</button> : <></>}
+            {openLogin ? <Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setCurrentUser={setCurrentUser} currentUser={currentUser} openLogin={openLogin} setOpenLogin={setOpenLogin}/> : <></>}
             <div className='navbar-extras'>
                 <img src={themeswap} alt="theme swap" className='navbar-logoutpic' onClick={() => { setThemeLight(!themeLight); console.log(themeLight) }} />
                 <img src={logoutpic} alt="logout" className='navbar-logoutpic' onClick={() => logout()} />

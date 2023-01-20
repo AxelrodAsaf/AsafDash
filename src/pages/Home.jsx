@@ -6,16 +6,12 @@ import '../styles/App.css';
 function Home(props) {
 
     const [themeLight, setThemeLight] = useState(true);
+    var userFirstName = null;
     const [currentUser, setCurrentUser] = useState('');
-    const [clock, setClock] = useState();
-
-    useEffect(() => {
-        setCurrentUser()
-    }, [currentUser])
-
 
 
     // Clock widget:
+    const [clock, setClock] = useState();
     useEffect(() => {
         const timer = setInterval(() => {
             setClock(new Date().toLocaleString());
@@ -32,7 +28,7 @@ function Home(props) {
             <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser}/>
             <div className='home-widgetgrid'>
             {/* <div themeLight={themeLight.toString()} className='home-widgetgrid'> */}
-                <h1>Hello {currentUser?.FirstName}!</h1>
+                <h1>Hello {currentUser? currentUser.FirstName : "guest"}!</h1>
                 <p>Current Date And Time : {clock}</p>
                 {/* <div className='home-widget homewidget1'></div>
                 <div className='home-widget homewidget2'></div>
