@@ -6,6 +6,9 @@ import HandleUserData from "../firebase/HandleUserData";
 
 function Login(props) {
     
+    const currentUser = props.currentUser;
+    const setCurrentUser = props.setCurrentUser;
+
     const navigate = useNavigate();
     const { getUser } = HandleUserData();
 
@@ -13,7 +16,7 @@ function Login(props) {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const errors = {
-        uname: "Could not find username, maybe it's misspelled?",
+        email: "Could not find email, maybe it's misspelled?",
         pass: "Incorrect password, maybe you forgot yours?"
     };
 
@@ -21,10 +24,10 @@ function Login(props) {
         // Prevent page reload
         event.preventDefault();
 
-        var { uname, pass } = document.forms[0];
+        var { email, pass } = document.forms[0];
 
         // Find user login info
-        const userData = getUser(uname.value);
+        const userData = getUser(email.value);
 
         // Compare user info
         if (userData) {
@@ -32,11 +35,11 @@ function Login(props) {
                 // Invalid password
                 setErrorMessages({ name: "pass", message: errors.pass });
             } else {
-                setIsLoggedIn(true);
+                setCurrentUser(userData.Email);
             }
         } else {
-            // Username not found
-            setErrorMessages({ name: "uname", message: errors.uname });
+            // email not found
+            setErrorMessages({ name: "email", message: errors.email });
         }
     };
 
@@ -51,29 +54,24 @@ function Login(props) {
         <div className="login-form">
             <form onSubmit={handleSubmit}>
                 <div className="login-input">
-                    <label>Username</label>
-                    <input type="text" name="uname" required className="login-form-username input" />
-                    {renderErrorMessage("uname")}
+                    <input type="text" name="email" required className="login-form-email input" placeholder='Email'/>
+                    {renderErrorMessage("email")}
                 </div>
                 <div className="login-input">
-                    <label>Password</label>
-                    <input type="password" name="pass" required className="login-form-password input" />
+                    <input type="password" name="pass" required className="login-form-password input" placeholder='Password'/>
                     {renderErrorMessage("pass")}
                 </div>
                 <div className="login-submitsignup">
                     <input type="submit" className="login-form-submit button" />
                 </div>
-            </form>
+            </form><br />
             <button type="text" className="login-form-signup button" onClick={() => navigate(`/Signup`)}>Sign up</button>
         </div>
     );
 
-
     return (
         <div className='all-css login-page-div'>
-            <h1>Welcome to Asaf's Dashboard!</h1>
-            <h3>Please sign in to begin...</h3>
-
+            {/* {!isLoggedIn ? openForm() : <></>} */}
             {isLoggedIn ? < Navigate to={'/Home'} /> : renderForm}
         </div>
     );

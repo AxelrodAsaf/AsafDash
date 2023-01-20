@@ -23,8 +23,8 @@ function HandleUserData(props) {
         });
     }, []);
 
-    const getUser = (Username) => {
-        return allUsersData.find(element => element.Username.toLowerCase() == Username.toLowerCase());
+    const getUser = (Email) => {
+        return allUsersData.find(element => element.Email.toLowerCase() == Email.toLowerCase());
     };
 
     const updateUser = async (id, fields) => {

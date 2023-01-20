@@ -1,13 +1,27 @@
 /* @import url('https: //fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap'); */
-html {
-  background-color: lightgray;
+div[themeLight="true"] {
+    --background: #EAEAEA;
+    --borders: #CECECE;
+    --headers: #B1B1B1;
+    --text: #777777;
 }
+div[themeLight="false"] {
+    --background: #777777;
+    --borders: #B1B1B1;
+    --headers: #CECECE;
+    --text: #EAEAEA;
+}
+
+html {
+  background-color: var(--background);
+}
+
 .App {
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
   margin: 0;
-  background-color: gray;
+  background-color: var(--background);
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -18,14 +32,15 @@ html {
   top: 0;
   height: 100vh;
   width: 15vw;
-  background-color: lightgray;
-  border-right: 2px darkgray solid;
+  background-color: var(--background);
+  border-right: 2px var(--borders) solid;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   flex-direction: column;
   border-right-style: inset;
 }
+
 .navbar-buttons {
   height: 50vh;
   display: flex;
@@ -33,81 +48,73 @@ html {
   align-items: flex-end;
   justify-content: space-evenly;
 }
+
 .navbar-pagebutton {
   font-size: large;
   width: 15vw;
   text-align: center;
-  border-style: inset;
-  border-radius: .5vw;
-  color: black; 
+  /* border-style: inset; */
+  border-right: var(--borders) solid .1vw;
+  border-bottom: var(--borders) solid .1vw;
+  border-bottom-right-radius: 1vw;
+  border-color: var(--borders);
+  /* border-radius: .5vw; */
+  color: var(--text);
   font-weight: bold;
 }
-.navbar-logout {
-  margin-bottom: 5vh;
-  width: 1vw;
-  height: 1vw;
+
+.navbar-extras {
+  margin-bottom: 3vh;
+  width: 3vw;
+  height: 3vw;
 }
+
 .navbar-logoutpic {
-  width: 25px;
-  height: 25px;
-}
-.navbar-weather {
-  background-color: burlywood;
-  color: red;
-}
-.navbar-todolist {
-  background-color: burlywood;
-  color: red;
-}
-.navbar-news {
-  background-color: burlywood;
-  color: red;
-}
-.navbar-dailytrackers {
-  background-color: burlywood;
-  color: red;
-}
-.navbar-musicandmovies {
-  background-color: burlywood;
-  color: red;
-}
-.navbar-externallinks {
-  background-color: burlywood;
-  color: red;
-}
-.navbar-myhub {
-  background-color: burlywood;
-  color: red;
+  width: 2vw;
+  height: 2vw;
+  background-color: var(--background);
+  left: 0;
 }
 
 
 /* Login */
 .login-page-div {
-  width: 100vw;
-  height: 100vh;
+  background-color: lime;
+  width: 25vw;
+  height: 20vh;
+  z-index: 5;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  left: 15vw;
+  bottom: 10vw;
 }
+
 .login-form {
   display: flex;
   flex-direction: column;
 }
+
 .input {
   border-radius: 1vw;
 }
+
 button {
   border-radius: 1vw;
 }
+
 .login-form-submit {
   border-radius: 1vw;
 }
+
 .login-input {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .login-submitsignup {
   display: flex;
   justify-content: center;
@@ -120,12 +127,40 @@ button {
   margin-left: 20vw;
   width: 85vw;
   height: 100vh;
-  background-color: lightgrey;
+  background-color: var(--background);
 }
+
 .home-widget {
-  background-color: white;
+  background-color: red;
   height: 5vw;
   width: 5vw;
   display: flex;
   margin: 15px;
+}
+
+
+/* Signup */
+.signup-page-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* width: 50vw;
+  height: 50vh; */
+}
+
+.signup-form-input {
+  border-radius: 1vw;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-form-submit {
+  border-radius: 1vw;
 }

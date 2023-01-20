@@ -1,14 +1,29 @@
-import React from 'react';
-import DataContext from '../App.js';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import logout from '../assets/logout.png';
+import logoutpic from '../assets/logout.png';
 import themeswap from '../assets/themeswap.png';
+// import Login from '../pages/Login';
+import Login from './Login';
+import Signup from '../pages/Signup';
 
 
 function Navbar(props) {
+    const currentUser = props.currentUser;
+    const setCurrentUser = props.setCurrentUser;
+    const [themeLight, setThemeLight] = useState(true);
+    const [openLogin, setOpenLogin] = useState(false);
     const navigate = useNavigate();
+
+    function logout() {
+        setCurrentUser();
+        setOpenLogin(false);
+        navigate(`/`);
+    }
+
+    
     return (
         <div className='navbar-main'>
+            {/* <div themeLight={themeLight.toString()} className='navbar-main'> */}
             <div className='navbar-buttons'>
                 <div className='navbar-pagebutton navbar-home' onClick={() => navigate(`/Home`)}>Home</div>
                 <div className='navbar-pagebutton navbar-weather' onClick={() => navigate(`/Weather`)}>Weather</div>
@@ -20,9 +35,12 @@ function Navbar(props) {
                 <div className='navbar-pagebutton navbar-myhub' onClick={() => navigate(`/MyHub`)}>myHub</div>
             </div>
 
-            <div className='navbar-logout'>
-                <image src={logout} alt="logout" className='navbar-pagebutton navbar-logoutpic' onClick={() => navigate(`/Login`)}/>
-                <div className='navbar-pagebutton navbar-logout' onClick={() => navigate(`/Login`)}/>
+            <button className='navbar-loginsignup' onClick={() => setOpenLogin(!openLogin)}>Login/Sign up</button>
+            {openLogin ? <Login /> : <></>}
+            <div className='navbar-extras'>
+                <img src={themeswap} alt="theme swap" className='navbar-logoutpic' onClick={() => { setThemeLight(!themeLight); console.log(themeLight) }} />
+                <img src={logoutpic} alt="logout" className='navbar-logoutpic' onClick={() => logout()} />
+                {/* <div className='navbar-pagebutton navbar-logout' onClick={() => navigate(`/Login`)}/> */}
             </div>
         </div>
     );
