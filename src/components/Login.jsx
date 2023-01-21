@@ -7,9 +7,9 @@ function Login(props) {
     const setOpenLogin = props.setOpenLogin;
     const setCurrentUser = props.setCurrentUser;
     const { getUser } = HandleUserData();
-    const [errorMessages, setErrorMessages] = useState({});
+    const [errorMessages, setErrorMessages] = useState();
     const [formToggle, setFormToggle] = useState(true);
-    
+
     // Submit Login
     const loginSubmit = (event) => {
 
@@ -29,26 +29,27 @@ function Login(props) {
             }
             else {
                 // Invalid password
-                setErrorMessages({ name: "password", message: errors.password });
+                setErrorMessages("pass");
             }
-        } 
+        }
         else {
             // Invalid email
-            setErrorMessages({ name: "email", message: errors.email });
+            setErrorMessages("email");
         }
     };
 
     // Defines possible errors while logging in...
     const errors = {
         email: "Could not find email, maybe it's misspelled?",
-        pass: "Incorrect password, maybe you forgot yours?"
+        pass: "Incorrect password, maybe you forgot yours?",
+        matchingPasswords: "'Verify Password' did not match 'Password,' please try again."
     };
 
     // When called with the type, generates the proper error message at login
     const renderErrorMessage = (name) =>
-        name === errorMessages.name && (
-            <div className="error">{errorMessages.message}</div>
-    );
+        name === errorMessages && (
+            <div className="error">{errors[name]}</div>
+        );
 
     // Login form
     const loginForm = (
@@ -60,12 +61,10 @@ function Login(props) {
                 {/* Input of email */}
                 <div className="login-input">
                     <input type="text" name="email" required className="login-form-email input" placeholder='Email' />
-                    {renderErrorMessage("email")}
                 </div>
                 {/* Input of password */}
                 <div className="login-input">
                     <input type="password" name="password" required className="login-form-password input" placeholder='Password' />
-                    {renderErrorMessage("pass")}
                 </div>
                 {/* Submit button */}
                 <div className="login-submit">
@@ -73,6 +72,8 @@ function Login(props) {
                 </div>
             </form>
             {/* Allows the user to switch to a sign-up form */}
+            {renderErrorMessage("email")}
+            {renderErrorMessage("pass")}
             <button onClick={() => setFormToggle(!formToggle)}>SIGN UP</button>
         </div>
     );
@@ -83,13 +84,22 @@ function Login(props) {
         data.preventDefault();
 
         // Redefine the variables locally
-        // const firstName = data.firstName;
-        // const email = data.email;
-        // const password = data.password;
-        // const vpassword = data.vpassword;
+        // const firstName = data.target[0].value;
+        // const email = data.target[1].value;
+        const password = data.target[2].value;
+        const vpassword = data.target[3].value;
 
         // Create a new user saved as an object
         // var tempNewUser = { firstName, email, password, vpassword };
+
+        // Check matching passwords
+        if (password !== vpassword) {
+            return setErrorMessages("matchingPasswords");
+        }
+
+        // Add user data to database
+
+        //
     }
 
     // When called shows the proper form needed by the user
@@ -116,7 +126,7 @@ function Login(props) {
                 </div>
                 {/* Input of email */}
                 <div className="signup-input">
-                    <input type="text" name="email" required className="signup-form-email input" placeholder="Email" />
+                    <input type="email" name="email" required className="signup-form-email input" placeholder="Email" />
                 </div>
                 {/* Input of password */}
                 <div className="signup-input">
@@ -130,6 +140,7 @@ function Login(props) {
                 <div className="signup-submit">
                     <input type="submit" className="signup-form-submit button" />
                 </div>
+                {renderErrorMessage("matchingPasswords")}
             </form>
             {/* Allows the user to switch to a login form */}
             <button onClick={() => setFormToggle(!formToggle)}>LOG IN</button>
