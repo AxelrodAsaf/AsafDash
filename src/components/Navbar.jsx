@@ -13,18 +13,21 @@ function Navbar(props) {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
 
+
+    // When called to logout the user, sets the 'current user' as none, closes login box, 'isloggedin' to false, goes to home page
     function logout() {
         setCurrentUser();
         setOpenLogin(false);
+        setIsLoggedIn(false);
         navigate(`/`);
     }
 
-    
+
     return (
         <div className='navbar-main'>
             {/* <div themeLight={themeLight.toString()} className='navbar-main'> */}
             <div className='navbar-buttons'>
-                <div className='navbar-pagebutton navbar-home' onClick={() => navigate(`/Home`)}>Home</div>
+                <div className='navbar-pagebutton navbar-home' onClick={() => navigate(`/`)}>Home</div>
                 <div className='navbar-pagebutton navbar-weather' onClick={() => navigate(`/Weather`)}>Weather</div>
                 <div className='navbar-pagebutton navbar-todolist' onClick={() => navigate(`/ToDoList`)}>To Do List</div>
                 <div className='navbar-pagebutton navbar-news' onClick={() => navigate(`/News`)}>News</div>
@@ -34,12 +37,19 @@ function Navbar(props) {
                 <div className='navbar-pagebutton navbar-myhub' onClick={() => navigate(`/MyHub`)}>myHub</div>
             </div>
 
-            {!isLoggedIn ? <button className='navbar-loginsignup' onClick={() => setOpenLogin(!openLogin)}>Login/Sign up</button> : <></>}
-            {openLogin ? <Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setCurrentUser={setCurrentUser} currentUser={currentUser} openLogin={openLogin} setOpenLogin={setOpenLogin}/> : <></>}
+            {/* If true, opens the login/signup box. Otherwise, do nothing. */}
+            {openLogin ? <Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setCurrentUser={setCurrentUser} setOpenLogin={setOpenLogin} /> : <></>}
+            
             <div className='navbar-extras'>
+                {/* *****(NOT WORKING YET)***** Show the theme swap icon, swap upon clicking. */}
                 <img src={themeswap} alt="theme swap" className='navbar-logoutpic' onClick={() => { setThemeLight(!themeLight); console.log(themeLight) }} />
-                <img src={logoutpic} alt="logout" className='navbar-logoutpic' onClick={() => logout()} />
-                {/* <div className='navbar-pagebutton navbar-logout' onClick={() => navigate(`/Login`)}/> */}
+
+                {/* If a user is logged in, show a logout button. Otherwise, show a login/signup button. */}
+                {isLoggedIn ?
+                    <img src={logoutpic} alt="logout" className='navbar-logoutpic' onClick={() => logout()} />
+                    :
+                    <button className='navbar-loginsignup' onClick={() => setOpenLogin(!openLogin)}>Login/Sign up</button>
+                }
             </div>
         </div>
     );

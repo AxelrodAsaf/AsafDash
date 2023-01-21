@@ -5,8 +5,6 @@ import '../styles/App.css';
 
 function Home(props) {
 
-    const [themeLight, setThemeLight] = useState(true);
-    var userFirstName = null;
     const [currentUser, setCurrentUser] = useState('');
 
 
@@ -15,7 +13,7 @@ function Home(props) {
     useEffect(() => {
         const timer = setInterval(() => {
             setClock(new Date().toLocaleString());
-        }, 1000);
+        }, 500);
 
         return () => {
             clearInterval(timer);
@@ -26,6 +24,8 @@ function Home(props) {
     return (
         <div>
             <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser}/>
+
+            
             <div className='home-widgetgrid'>
             {/* <div themeLight={themeLight.toString()} className='home-widgetgrid'> */}
                 <h1>Hello {currentUser? currentUser.FirstName : "guest"}!</h1>
