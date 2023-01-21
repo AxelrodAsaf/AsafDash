@@ -21,13 +21,13 @@ function Home(props) {
 
  
     return (
-        <div>
+        <div className='all-css'>
             <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser}/>
 
             
             <div className='home-widgetgrid'>
             {/* <div themeLight={themeLight.toString()} className='home-widgetgrid'> */}
-                <h1>Hello {currentUser? currentUser.FirstName : "guest"}!</h1>
+                <h1>Hello {currentUser? currentUser.firstName : "guest"}!</h1>
                 <p>Current Date And Time : {clock}</p>
                 {/* <div className='home-widget homewidget1'></div>
                 <div className='home-widget homewidget2'></div>

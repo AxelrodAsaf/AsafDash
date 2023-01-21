@@ -54,11 +54,11 @@ function Login(props) {
 
     // Login form
     const loginForm = (
-        <div className="login-form">
+        <div className="login-form-div">
 
             {/* Login title with form */}
             <strong>Log in</strong>
-            <form onSubmit={loginSubmit}>
+            <form onSubmit={loginSubmit} className="login-form">
                 {/* Input of email */}
                 <div className="login-input">
                     <input type="text" name="email" required className="login-form-email input" placeholder='Email' />
@@ -119,7 +119,7 @@ function Login(props) {
         }
     }
 
-    // *****(NOT WORKING YET)***** Signup form
+    // Signup form
     const signupForm = (
         <div className="signup-form">
             {/* Signup title with form */}
@@ -144,13 +144,13 @@ function Login(props) {
                 {/* Submit button */}
                 <div className="signup-submit">
                     <input type="submit" className="signup-form-submit button" />
+                    {/* Allows the user to switch to a login form */}
+                    <button onClick={() => setFormToggle(!formToggle)}>LOG IN</button>
                 </div>
                 {renderErrorMessage("matchingpasswords")}
                 {renderErrorMessage("tryLater")}
                 {renderErrorMessage("accountCreated")}
             </form>
-            {/* Allows the user to switch to a login form */}
-            <button onClick={() => setFormToggle(!formToggle)}>LOG IN</button>
         </div>
     );
 

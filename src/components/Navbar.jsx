@@ -22,7 +22,7 @@ function Navbar(props) {
 
 
     return (
-        <div className='navbar-main'>
+        <div className='all-css navbar-main'>
             {/* <div themeLight={themeLight.toString()} className='navbar-main'> */}
             <div className='navbar-buttons'>
                 <div className='navbar-pagebutton navbar-home' onClick={() => navigate(`/`)}>Home</div>
