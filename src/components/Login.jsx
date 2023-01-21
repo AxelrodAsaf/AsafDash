@@ -22,7 +22,7 @@ function Login(props) {
         // Compare user input to user data saved
         if (userData) {
             // If data saved equals input, defines a user is logged in, defines the logged in user, closes login box.
-            if (userData.Password === password.value) {
+            if (userData.password === password.value) {
                 setCurrentUser(userData);
                 setOpenLogin(false)
             }
@@ -41,7 +41,7 @@ function Login(props) {
     const errors = {
         email: "Could not find email, maybe it's misspelled?",
         pass: "Incorrect password, maybe you forgot yours?",
-        matchingPasswords: "'Verify Password' did not match 'Password,' please try again.",
+        matchingpasswords: "'Verify password' did not match 'password,' please try again.",
         tryLater: "Internal errors, try again later.",
         accountCreated: "Your account has been successfully created! Please login to continue."
     };
@@ -65,7 +65,7 @@ function Login(props) {
                 </div>
                 {/* Input of password */}
                 <div className="login-input">
-                    <input type="password" name="password" required className="login-form-password input" placeholder='Password' />
+                    <input type="password" name="password" required className="login-form-password input" placeholder='password' />
                 </div>
                 {/* Submit button */}
                 <div className="login-submit">
@@ -92,7 +92,7 @@ function Login(props) {
 
         // Check matching passwords
         if (password !== vpassword) {
-            return setErrorMessages("matchingPasswords");
+            return setErrorMessages("matchingpasswords");
         }
 
         // Add user data to database
@@ -135,17 +135,17 @@ function Login(props) {
                 </div>
                 {/* Input of password */}
                 <div className="signup-input">
-                    <input type="text" name="password" required className="signup-form-password input" placeholder="Password" />
+                    <input type="text" name="password" required className="signup-form-password input" placeholder="password" />
                 </div>
                 {/* Input of verify password */}
                 <div className="signup-input">
-                    <input type="text" name="vpassword" required className="signup-form-vpassword input" placeholder="Verify Password" />
+                    <input type="text" name="vpassword" required className="signup-form-vpassword input" placeholder="Verify password" />
                 </div>
                 {/* Submit button */}
                 <div className="signup-submit">
                     <input type="submit" className="signup-form-submit button" />
                 </div>
-                {renderErrorMessage("matchingPasswords")}
+                {renderErrorMessage("matchingpasswords")}
                 {renderErrorMessage("tryLater")}
                 {renderErrorMessage("accountCreated")}
             </form>
