@@ -6,12 +6,10 @@ import Login from './Login';
 
 
 function Navbar(props) {
-    // Need to reference the current user on different pages through this prop.
-    // const currentUser = props.currentUser;
+    const currentUser = props.currentUser;
     const setCurrentUser = props.setCurrentUser;
     const [themeLight, setThemeLight] = useState(true);
     const [openLogin, setOpenLogin] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
 
 
@@ -19,7 +17,6 @@ function Navbar(props) {
     function logout() {
         setCurrentUser();
         setOpenLogin(false);
-        setIsLoggedIn(false);
         navigate(`/`);
     }
 
@@ -39,14 +36,14 @@ function Navbar(props) {
             </div>
 
             {/* If true, opens the login/signup box. Otherwise, do nothing. */}
-            {openLogin ? <Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setCurrentUser={setCurrentUser} setOpenLogin={setOpenLogin} /> : <></>}
+            {openLogin ? <Login setCurrentUser={setCurrentUser} setOpenLogin={setOpenLogin} /> : <></>}
             
             <div className='navbar-extras'>
                 {/* *****(NOT WORKING YET)***** Show the theme swap icon, swap upon clicking. */}
                 <img src={themeswap} alt="theme swap" className='navbar-logoutpic' onClick={() => { setThemeLight(!themeLight); console.log(themeLight) }} />
 
                 {/* If a user is logged in, show a logout button. Otherwise, show a login/signup button. */}
-                {isLoggedIn ?
+                {currentUser ?
                     <img src={logoutpic} alt="logout" className='navbar-logoutpic' onClick={() => logout()} />
                     :
                     <button className='navbar-loginsignup' onClick={() => setOpenLogin(!openLogin)}>Login/Sign up</button>

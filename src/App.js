@@ -38,8 +38,7 @@ export default App;
 
 
 // TDL
-// 1. In Login.jsx - move setOpenLogin to Navbar.jsx
 // 2. Themes
 // 3. Signup form
 // 4. Change login email to "type email"
-
+// 5.

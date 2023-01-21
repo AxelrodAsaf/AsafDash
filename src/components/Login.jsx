@@ -6,8 +6,6 @@ import HandleUserData from "../firebase/HandleUserData";
 function Login(props) {
     const setOpenLogin = props.setOpenLogin;
     const setCurrentUser = props.setCurrentUser;
-    const isLoggedIn = props.isLoggedIn;
-    const setIsLoggedIn = props.setIsLoggedIn;
     const { getUser } = HandleUserData();
     const [errorMessages, setErrorMessages] = useState({});
     const [formToggle, setFormToggle] = useState(true);
@@ -28,7 +26,6 @@ function Login(props) {
             if (userData.Password === password.value) {
                 setCurrentUser(userData);
                 setOpenLogin(false)
-                setIsLoggedIn(true);
             }
             else {
                 // Invalid password
@@ -141,8 +138,8 @@ function Login(props) {
 
     return (
         <div className='all-css login-page-div'>
-            {/* Shows the form of the login/signup when needed  */}
-            {isLoggedIn ? <></> : showForm(formToggle)}
+            {/* Shows the form of the login/signup  */}
+            {showForm(formToggle)}
         </div>
     );
 }
