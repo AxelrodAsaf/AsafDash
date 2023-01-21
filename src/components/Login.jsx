@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import '../styles/App.css';
 import HandleUserData from "../firebase/HandleUserData";
 
-
 function Login(props) {
     const setOpenLogin = props.setOpenLogin;
     const setCurrentUser = props.setCurrentUser;
-    const { getUser } = HandleUserData();
+    const { addUser, getUser } = HandleUserData();
     const [errorMessages, setErrorMessages] = useState();
     const [formToggle, setFormToggle] = useState(true);
 
@@ -42,7 +41,9 @@ function Login(props) {
     const errors = {
         email: "Could not find email, maybe it's misspelled?",
         pass: "Incorrect password, maybe you forgot yours?",
-        matchingPasswords: "'Verify Password' did not match 'Password,' please try again."
+        matchingPasswords: "'Verify Password' did not match 'Password,' please try again.",
+        tryLater: "Internal errors, try again later.",
+        accountCreated: "Your account has been successfully created! Please login to continue."
     };
 
     // When called with the type, generates the proper error message at login
@@ -78,19 +79,16 @@ function Login(props) {
         </div>
     );
 
-    // *****(NOT WORKING YET)***** Submit Sign-up
+    // Submit Sign-up
     const signupSubmit = (data) => {
         // Prevent page reload
         data.preventDefault();
 
         // Redefine the variables locally
-        // const firstName = data.target[0].value;
-        // const email = data.target[1].value;
+        const firstName = data.target[0].value;
+        const email = data.target[1].value;
         const password = data.target[2].value;
         const vpassword = data.target[3].value;
-
-        // Create a new user saved as an object
-        // var tempNewUser = { firstName, email, password, vpassword };
 
         // Check matching passwords
         if (password !== vpassword) {
@@ -98,8 +96,15 @@ function Login(props) {
         }
 
         // Add user data to database
+        try {
+            var tempNewUser = { firstName: firstName, email: email, password: password };
+            addUser(tempNewUser);
+            setErrorMessages("accountCreated");
+        }
+        catch (e) {
+            setErrorMessages("tryLater");
+        }
 
-        //
     }
 
     // When called shows the proper form needed by the user
@@ -141,6 +146,8 @@ function Login(props) {
                     <input type="submit" className="signup-form-submit button" />
                 </div>
                 {renderErrorMessage("matchingPasswords")}
+                {renderErrorMessage("tryLater")}
+                {renderErrorMessage("accountCreated")}
             </form>
             {/* Allows the user to switch to a login form */}
             <button onClick={() => setFormToggle(!formToggle)}>LOG IN</button>
