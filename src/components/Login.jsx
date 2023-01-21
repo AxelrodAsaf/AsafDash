@@ -39,9 +39,9 @@ function Login(props) {
 
     // Defines possible errors while logging in...
     const errors = {
-        email: "Could not find email, maybe it's misspelled?",
-        pass: "Incorrect password, maybe you forgot yours?",
-        matchingpasswords: "'Verify password' did not match 'password,' please try again.",
+        email: "Could not find email. Please try again.",
+        pass: "Incorrect password. Please try again.",
+        matchingpasswords: "Passwords did not match. Please try again.",
         tryLater: "Internal errors, try again later.",
         accountCreated: "Your account has been successfully created! Please login to continue."
     };
@@ -65,17 +65,17 @@ function Login(props) {
                 </div>
                 {/* Input of password */}
                 <div className="login-input">
-                    <input type="password" name="password" required className="login-form-password input" placeholder='password' />
+                    <input type="password" name="password" required className="login-form-password input" placeholder='Password' />
                 </div>
                 {/* Submit button */}
                 <div className="login-submit">
                     <input type="submit" className="login-form-submit button" />
+                    <button className="toggleswap" onClick={() => setFormToggle(!formToggle)}>SIGN UP</button>
                 </div>
             </form>
             {/* Allows the user to switch to a sign-up form */}
             {renderErrorMessage("email")}
             {renderErrorMessage("pass")}
-            <button onClick={() => setFormToggle(!formToggle)}>SIGN UP</button>
         </div>
     );
 
@@ -135,11 +135,11 @@ function Login(props) {
                 </div>
                 {/* Input of password */}
                 <div className="signup-input">
-                    <input type="text" name="password" required className="signup-form-password input" placeholder="password" />
+                    <input type="text" name="password" required className="signup-form-password input" placeholder="Password" />
                 </div>
                 {/* Input of verify password */}
                 <div className="signup-input">
-                    <input type="text" name="vpassword" required className="signup-form-vpassword input" placeholder="Verify password" />
+                    <input type="text" name="vpassword" required className="signup-form-vpassword input" placeholder="Verify Password" />
                 </div>
                 {/* Submit button */}
                 <div className="signup-submit">
