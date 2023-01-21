@@ -35,10 +35,3 @@ function App() {
 
 
 export default App;
-
-
-// TDL
-// 2. Themes
-// 3. Signup form
-// 4. Change login email to "type email"
-// 5.
