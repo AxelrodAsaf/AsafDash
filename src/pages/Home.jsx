@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
-import HandleUserData from '../firebase/HandleUserData';
 import '../styles/App.css';
 
 function Home(props) {

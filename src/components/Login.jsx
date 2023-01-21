@@ -51,7 +51,7 @@ function Login(props) {
     const renderErrorMessage = (name) =>
         name === errorMessages.name && (
             <div className="error">{errorMessages.message}</div>
-        );
+    );
 
     // Login form
     const loginForm = (
@@ -86,13 +86,13 @@ function Login(props) {
         data.preventDefault();
 
         // Redefine the variables locally
-        const firstName = data.firstName;
-        const email = data.email;
-        const password = data.password;
-        const vpassword = data.vpassword;
+        // const firstName = data.firstName;
+        // const email = data.email;
+        // const password = data.password;
+        // const vpassword = data.vpassword;
 
         // Create a new user saved as an object
-        var tempNewUser = { firstName, email, password, vpassword };
+        // var tempNewUser = { firstName, email, password, vpassword };
     }
 
     // When called shows the proper form needed by the user

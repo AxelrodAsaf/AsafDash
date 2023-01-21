@@ -6,8 +6,9 @@ import Login from './Login';
 
 
 function Navbar(props) {
+    // Need to reference the current user on different pages through this prop.
+    // const currentUser = props.currentUser;
     const setCurrentUser = props.setCurrentUser;
-    const currentUser = props.currentUser;
     const [themeLight, setThemeLight] = useState(true);
     const [openLogin, setOpenLogin] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
