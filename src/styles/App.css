@@ -77,6 +77,42 @@ html {
   background-color: var(--background);
   left: 0;
 }
+.navbar-weather{
+  background-color: burlywood;
+  color: red;
+  text-decoration: line-through;
+}
+.navbar-todolist{
+  background-color: burlywood;
+  color: red;
+  text-decoration: line-through;
+}
+.navbar-news{
+  background-color: burlywood;
+  color: red;
+  text-decoration: line-through;
+}
+.navbar-dailytrackers{
+  background-color: burlywood;
+  color: red;
+  text-decoration: line-through;
+}
+.navbar-musicandmovies{
+  background-color: burlywood;
+  color: red;
+  text-decoration: line-through;
+}
+.navbar-externallinks{
+  background-color: burlywood;
+  color: red;
+  text-decoration: line-through;
+}
+.navbar-myhub{
+  background-color: burlywood;
+  color: red;
+  text-decoration: line-through;
+}
+
 
 
 /* Login */
