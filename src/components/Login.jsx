@@ -4,7 +4,6 @@ import HandleUserData from "../firebase/HandleUserData";
 
 function Login(props) {
     const setOpenLogin = props.setOpenLogin;
-    const setCurrentUser = props.setCurrentUser;
     const { addUser, getUser } = HandleUserData();
     const [errorMessages, setErrorMessages] = useState();
     const [formToggle, setFormToggle] = useState(true);
@@ -21,10 +20,10 @@ function Login(props) {
 
         // Compare user input to user data saved
         if (userData) {
-            // If data saved equals input, defines a user is logged in, defines the logged in user, closes login box.
+            // If data saved equals input, saves logged in user to localstorage, closes login box.
             if (userData.password === password.value) {
-                setCurrentUser(userData);
-                setOpenLogin(false)
+                localStorage.setItem('loggedInUser', JSON.stringify(userData));
+                setOpenLogin(false);
             }
             else {
                 // Invalid password
@@ -70,7 +69,7 @@ function Login(props) {
                 {/* Submit button */}
                 <div className="login-submit">
                     <input type="submit" className="login-form-submit button" />
-                    <button className="toggleswap" onClick={() => setFormToggle(!formToggle)}>SIGN UP</button>
+                    <button className="login-form-submit toggle-form" onClick={() => setFormToggle(!formToggle)}>SIGN UP</button>
                 </div>
             </form>
             {/* Allows the user to switch to a sign-up form */}
@@ -121,10 +120,10 @@ function Login(props) {
 
     // Signup form
     const signupForm = (
-        <div className="signup-form">
+        <div className="signup-form-div">
             {/* Signup title with form */}
             <strong>Sign up</strong>
-            <form onSubmit={signupSubmit}>
+            <form className='signup-form' onSubmit={signupSubmit}>
                 {/* Input of first name */}
                 <div className="signup-input">
                     <input type="text" name="firstName" required className="signup-form-firstName input" placeholder="First Name" />
@@ -143,9 +142,9 @@ function Login(props) {
                 </div>
                 {/* Submit button */}
                 <div className="signup-submit">
-                    <input type="submit" className="signup-form-submit button" />
+                    <input type="submit" className="signup-form-submit" />
                     {/* Allows the user to switch to a login form */}
-                    <button onClick={() => setFormToggle(!formToggle)}>LOG IN</button>
+                    <button className="signup-form-submit toggle-form" onClick={() => setFormToggle(!formToggle)}>LOG IN</button>
                 </div>
                 {renderErrorMessage("matchingpasswords")}
                 {renderErrorMessage("tryLater")}

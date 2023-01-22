@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logoutpic from '../assets/logout.png';
+import loginpic from '../assets/login.png';
 import themeswap from '../assets/themeswap.png';
 import Login from './Login';
 
 
 function Navbar(props) {
-    const currentUser = props.currentUser;
-    const setCurrentUser = props.setCurrentUser;
+    var loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
     const [themeLight, setThemeLight] = useState(true);
     const [openLogin, setOpenLogin] = useState(false);
     const navigate = useNavigate();
@@ -15,7 +15,7 @@ function Navbar(props) {
 
     // When called to logout the user, sets the 'current user' as none, closes login box, 'isloggedin' to false, goes to home page
     function logout() {
-        setCurrentUser();
+        localStorage.removeItem('loggedInUser');
         setOpenLogin(false);
         navigate(`/`);
     }
@@ -36,18 +36,18 @@ function Navbar(props) {
             </div>
 
             {/* If true, opens the login/signup box. Otherwise, do nothing. */}
-            {openLogin ? <Login setCurrentUser={setCurrentUser} setOpenLogin={setOpenLogin} /> : <></>}
+            {openLogin ? <Login setOpenLogin={setOpenLogin} /> : <></>}
             
             <div className='navbar-extras'>
-                {/* *****(NOT WORKING YET)***** Show the theme swap icon, swap upon clicking. */}
-                <img src={themeswap} alt="theme swap" className='navbar-logoutpic' onClick={() => { setThemeLight(!themeLight); console.log(themeLight) }} />
-
                 {/* If a user is logged in, show a logout button. Otherwise, show a login/signup button. */}
-                {currentUser ?
+                {loggedInUser ?
                     <img src={logoutpic} alt="logout" className='navbar-logoutpic' onClick={() => logout()} />
                     :
-                    <button className='navbar-loginsignup' onClick={() => setOpenLogin(!openLogin)}>Login/Sign up</button>
+                    <img src={loginpic} alt="login" className='navbar-logoutpic' onClick={() => setOpenLogin(!openLogin)} />
                 }
+
+                {/* *****(NOT WORKING YET)***** Show the theme swap icon, swap upon clicking. */}
+                <img src={themeswap} alt="theme swap" className='navbar-logoutpic' onClick={() => { setThemeLight(!themeLight); console.log(themeLight) }} />
             </div>
         </div>
     );
