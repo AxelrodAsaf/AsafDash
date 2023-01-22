@@ -1,18 +1,19 @@
 /* @import url('https: //fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap'); */
 .all-css {
   --background: #EAEAEA;
+  --widgetBackground: rgba(119, 119, 119, .15);
   --borders: #CECECE;
   --headers: #B1B1B1;
   --text: #777777;
   background-color: var(--background);
 }
-
+/* 
 div[themeLight="false"] {
   --background: #777777;
   --borders: #B1B1B1;
   --headers: #CECECE;
   --text: #EAEAEA;
-}
+} */
 
 html {
   background-color: #EAEAEA;
@@ -58,7 +59,6 @@ html {
   border-right: var(--borders) solid .1vw;
   border-bottom: var(--borders) solid .1vw;
   border-bottom-right-radius: 2vw;
-  border-color: var(--borders);
   color: var(--text);
   font-weight: bold;
 }
@@ -74,7 +74,6 @@ html {
 .navbar-logoutpic {
   width: 2vw;
   height: 2vw;
-  background-color: var(--background);
   left: 0;
 }
 .navbar-weather{
@@ -197,14 +196,61 @@ html {
   width: 85vw;
   height: 100vh;
   background-color: #EAEAEA;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.home-widget {
-  background-color: red;
-  height: 5vw;
-  width: 5vw;
+.home-namewidget {
+  margin: 1vw;
+}
+
+.widget {
+  background-color: var(--widgetBackground);
+  border: var(--headers) 2px solid;
+  border-radius: .5vw;
   display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 15px;
+}
+
+.home-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.home-clock {
+  justify-self: space-around !important;
+  flex-direction: column;
+}
+.home-weather-widget {
+  display: flex;
+  flex-wrap: nowrap;
+  width: auto;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.home-weather p {
+  margin: 1.5vw;
+}
+
+.home-weather-right {
+  direction: rtl;
+}
+
+.testwidget {
+  background-color: var(--widgetBackground);
+  border: var(--headers) 2px solid;
+  border-radius: .5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+  height: 10vw;
+  width: 15vw;
 }
 
 
