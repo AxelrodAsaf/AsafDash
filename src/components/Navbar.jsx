@@ -46,7 +46,7 @@ function Navbar(props) {
             {openLogin ? <Login setOpenLogin={setOpenLogin} /> : <></>}
 
             <div className="navbar-socials">
-                <a class="socialPic" href="https://www.facebook.com/AxelrodAsaf">
+                <a className="socialPic" href="https://www.facebook.com/AxelrodAsaf">
                     <img
                         alt="Social Media Logo"
                         src={facebook}
@@ -54,7 +54,7 @@ function Navbar(props) {
                         height="30vw"
                     />
                 </a>
-                <a class="socialPic" href="https://www.twitter.com/asafaxelrod">
+                <a className="socialPic" href="https://www.twitter.com/asafaxelrod">
                     <img
                         alt="Social Media Logo"
                         src={twitter}
@@ -63,7 +63,7 @@ function Navbar(props) {
                     />
                 </a>
                 <a
-                    class="socialPic"
+                    className="socialPic"
                     href="https://www.linkedin.com/in/asaf-axelrod-9353b1ba/"
                 >
                     <img
@@ -74,7 +74,7 @@ function Navbar(props) {
                     />
                 </a>
                 <a
-                    class="socialPic"
+                    className="socialPic"
                     href="https://github.com/AxelrodAsaf"
                 >
                     <img
@@ -84,7 +84,7 @@ function Navbar(props) {
                         height="30vw"
                     />
                 </a>
-                <a class="socialPic" href="https://www.instagram.com/asafaxelrod/">
+                <a className="socialPic" href="https://www.instagram.com/asafaxelrod/">
                     <img
                         alt="Social Media Logo"
                         src={instagram}
