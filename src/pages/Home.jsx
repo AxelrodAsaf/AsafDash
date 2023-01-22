@@ -24,7 +24,6 @@ function Home(props) {
         const timer = setInterval(() => {
             setClock(new Date().toLocaleString());
         }, 500);
-
         return () => {
             clearInterval(timer);
         };
@@ -38,6 +37,7 @@ function Home(props) {
     const weatherAPIkey2 = "6367cfbb689a28190bcd5a74e0ea3b8a";
     function getWeatherData() {
         // Send to API
+        console.log(`Weather API request sent at ${clock}`);
         const weatherAPIurl = `https://api.openweathermap.org/data/2.5/weather?lat=${locLati}&lon=${locLong}&appid=${weatherAPIkey2}`
         axios.get(weatherAPIurl).then((response) => {
             setWeatherData(response.data);
@@ -80,7 +80,6 @@ function Home(props) {
             }
         };
         axios.request(options).then(function (response) {
-            console.log(response.data);
             setConvCurrency(response.data)
         }).catch(function (error) {
             console.error(error);
@@ -98,7 +97,6 @@ function Home(props) {
             }
         };
         axios.request(options).then(function (response) {
-            console.log(response.data);
             setConvCurrency2(response.data)
         }).catch(function (error) {
             console.error(error);
