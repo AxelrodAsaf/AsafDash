@@ -86,7 +86,7 @@ html {
   color: red;
   text-decoration: line-through;
 }
-.navbar-news{
+.navbar-calendar {
   background-color: burlywood;
   color: red;
   text-decoration: line-through;
@@ -106,10 +106,29 @@ html {
   color: red;
   text-decoration: line-through;
 }
+
 .navbar-myhub{
   background-color: burlywood;
   color: red;
   text-decoration: line-through;
+}
+
+.navbar-socials {
+  background-color: var(--background);
+  border-top: 2px solid var(--borders);
+  border-left: 2px solid var(--borders);
+  border-bottom: 2px solid var(--borders);
+  border-bottom-left-radius: 2vw;
+  border-top-left-radius: 2vw;
+  height: 15vw;
+  width: 5vw;
+  position: fixed;
+  right: 0;
+  bottom: 10vw;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
 }
 
 
@@ -328,4 +347,55 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* Calendar */
+.calendar-page-div {
+  margin-left: 20vw;
+  width: 85vw;
+  height: 100vh;
+  background-color: #EAEAEA;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.calendar-grid {
+  display: flex;
+  width: 50vw;
+  gap: 20px;
+}
+
+/* News */
+.news-page-div {
+    margin-left: 20vw;
+    width: 85vw;
+    height: 100vh;
+    background-color: #EAEAEA;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    align-items: center;
+}
+
+.news-widget {
+  background-color: lime;
+  border: var(--headers) 2px solid;
+  border-radius: .5vw;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  margin: 15px;
+  height: 10vw;
+  width: 15vw;
+}
+
+.news-left {
+  display: flex;
+  flex-direction: row;
+}
+.news-right {
+  display: flex;
+  flex-direction: row;
 }

@@ -4,6 +4,12 @@ import logoutpic from '../assets/logout.png';
 import loginpic from '../assets/login.png';
 import themeswap from '../assets/themeswap.png';
 import Login from './Login';
+import instagram from '../assets/insta.png';
+import facebook from '../assets/facebook.png';
+import twitter from '../assets/twitter.png';
+import github from '../assets/github.png';
+import linkedin from '../assets/linkedin.png';
+
 
 
 function Navbar(props) {
@@ -26,9 +32,10 @@ function Navbar(props) {
             {/* <div themeLight={themeLight.toString()} className='navbar-main'> */}
             <div className='navbar-buttons'>
                 <div className='navbar-pagebutton navbar-home' onClick={() => navigate(`/`)}>Home</div>
+                <div className='navbar-pagebutton navbar-news' onClick={() => navigate(`/News`)}>News</div>
+                <div className='navbar-pagebutton navbar-calendar' onClick={() => navigate(`/Calendar`)}>Calendar</div>
                 <div className='navbar-pagebutton navbar-weather' onClick={() => navigate(`/Weather`)}>Weather</div>
                 <div className='navbar-pagebutton navbar-todolist' onClick={() => navigate(`/ToDoList`)}>To Do List</div>
-                <div className='navbar-pagebutton navbar-news' onClick={() => navigate(`/News`)}>News</div>
                 <div className='navbar-pagebutton navbar-dailytrackers' onClick={() => navigate(`/DailyTrackers`)}>Daily Trackers</div>
                 <div className='navbar-pagebutton navbar-musicandmovies' onClick={() => navigate(`/MusicAndMovies`)}>Music and Movies</div>
                 <div className='navbar-pagebutton navbar-externallinks' onClick={() => navigate(`/ExternalLinks`)}>External Links</div>
@@ -37,7 +44,56 @@ function Navbar(props) {
 
             {/* If true, opens the login/signup box. Otherwise, do nothing. */}
             {openLogin ? <Login setOpenLogin={setOpenLogin} /> : <></>}
-            
+
+            <div className="navbar-socials">
+                <a class="socialPic" href="https://www.facebook.com/AxelrodAsaf">
+                    <img
+                        alt="Social Media Logo"
+                        src={facebook}
+                        width="30vw"
+                        height="30vw"
+                    />
+                </a>
+                <a class="socialPic" href="https://www.twitter.com/asafaxelrod">
+                    <img
+                        alt="Social Media Logo"
+                        src={twitter}
+                        width="30vw"
+                        height="30vw"
+                    />
+                </a>
+                <a
+                    class="socialPic"
+                    href="https://www.linkedin.com/in/asaf-axelrod-9353b1ba/"
+                >
+                    <img
+                        alt="Social Media Logo"
+                        src={linkedin}
+                        width="30vw"
+                        height="30vw"
+                    />
+                </a>
+                <a
+                    class="socialPic"
+                    href="https://github.com/AxelrodAsaf"
+                >
+                    <img
+                        alt="Social Media Logo"
+                        src={github}
+                        width="30vw"
+                        height="30vw"
+                    />
+                </a>
+                <a class="socialPic" href="https://www.instagram.com/asafaxelrod/">
+                    <img
+                        alt="Social Media Logo"
+                        src={instagram}
+                        width="30vw"
+                        height="30vw"
+                    />
+                </a>
+            </div>
+
             <div className='navbar-extras'>
                 {/* If a user is logged in, show a logout button. Otherwise, show a login/signup button. */}
                 {loggedInUser ?

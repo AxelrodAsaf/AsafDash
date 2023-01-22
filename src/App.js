@@ -11,6 +11,7 @@ import DailyTrackers from './pages/DailyTrackers.jsx';
 import MusicAndMovies from './pages/MusicAndMovies.jsx';
 import ExternalLinks from './pages/ExternalLinks.jsx';
 import MyHub from './pages/MyHub.jsx';
+import CalendarWidget from './pages/CalendarWidget';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
       <div className='app-main'>
         <Routes>
           <Route path={"/"} element={<Home />} />
+          <Route path={"/Calendar"} element={<CalendarWidget />} />
           <Route path={"/Weather"} element={<Weather />} />
           <Route path={"/ToDoList"} element={<ToDoList />} />
           <Route path={"/News"} element={<News />} />
