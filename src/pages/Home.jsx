@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import axios from "axios";
 import '../styles/App.css';
 import { async } from '@firebase/util';
+import CurrencyConverter from 'react-currency-conv/dist/currencyConverter';
 
 function Home(props) {
     const [weatherData, setWeatherData] = useState({});
@@ -11,6 +12,8 @@ function Home(props) {
     const [localHumidity, setLocalHumidity] = useState('');
     const [localFeelsLike, setLocalFeelsLike] = useState('');
     const [localWeatherType, setLocalWeatherType] = useState('');
+    const [convCurrency, setConvCurrency] = useState('');
+    const [convCurrency2, setConvCurrency2] = useState('');
     var loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
     const [temp, setTemp] = useState(true)
 
@@ -64,6 +67,51 @@ function Home(props) {
     },[localWeatherType])
 
 
+    // Currency converter widget:
+        // USD to ILS
+    useEffect(() => {
+        const options = {
+            method: 'GET',
+            url: 'https://currency-converter-by-api-ninjas.p.rapidapi.com/v1/convertcurrency',
+            params: { have: 'USD', want: 'ILS', amount: '1' },
+            headers: {
+                'X-RapidAPI-Key': '403e5d243dmsh3c412b6a6d053d7p199ec7jsn140646d96bb9',
+                'X-RapidAPI-Host': 'currency-converter-by-api-ninjas.p.rapidapi.com'
+            }
+        };
+        axios.request(options).then(function (response) {
+            console.log(response.data);
+            setConvCurrency(response.data)
+        }).catch(function (error) {
+            console.error(error);
+        });
+    }, []);
+        // ILS to USD
+    useEffect(() => {
+        const options = {
+            method: 'GET',
+            url: 'https://currency-converter-by-api-ninjas.p.rapidapi.com/v1/convertcurrency',
+            params: { have: 'ILS', want: 'USD', amount: '1' },
+            headers: {
+                'X-RapidAPI-Key': '403e5d243dmsh3c412b6a6d053d7p199ec7jsn140646d96bb9',
+                'X-RapidAPI-Host': 'currency-converter-by-api-ninjas.p.rapidapi.com'
+            }
+        };
+        axios.request(options).then(function (response) {
+            console.log(response.data);
+            setConvCurrency2(response.data)
+        }).catch(function (error) {
+            console.error(error);
+        });
+    }, []);
+
+
+
+
+
+
+
+
     return (
         <div className='all-css'>
             <Navbar />
@@ -96,6 +144,29 @@ function Home(props) {
                             <p><strong>{localTemp ? localTemp : <></>}°C   /   {Math.round((localTemp * (9 / 5)) + 32)}°F</strong></p>
                             <p><strong>{localFeelsLike ? localFeelsLike : <></>}°C   /   {Math.round((localFeelsLike * (9 / 5)) + 32)}°F</strong></p>
                             <p><strong>{localHumidity? localHumidity : <></>}%</strong></p>
+                        </div>
+                    </div>
+                    <div className="home-currency widget">
+                        <div className="home-currency-left">
+                            <div className="home-currency-left-sub">
+                                <strong>{convCurrency.new_currency}-</strong>
+                                <strong>{convCurrency.new_amount}</strong>
+                            </div>
+                            <div className="home-currency-left-sub">
+                                <p>{convCurrency.old_currency}-</p>
+                                <p>{convCurrency.old_amount}</p>
+                            </div>
+                        </div>
+                        <div className="home-currency-vl"/>
+                        <div className="home-currency-right">
+                            <div className="home-currency-right-sub">
+                                <strong>{convCurrency2.new_currency}-</strong>
+                                <strong>{convCurrency2.new_amount}</strong>
+                            </div>
+                            <div className="home-currency-right-sub">
+                                <p>{convCurrency2.old_currency}-</p>
+                                <p>{convCurrency2.old_amount}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
