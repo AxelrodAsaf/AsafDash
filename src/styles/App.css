@@ -7,6 +7,7 @@
   --text: #777777;
   background-color: var(--background);
 }
+
 /* 
 div[themeLight="false"] {
   --background: #777777;
@@ -17,6 +18,7 @@ div[themeLight="false"] {
 
 html {
   background-color: #EAEAEA;
+  overflow-x: hidden;
 }
 
 .App {
@@ -76,38 +78,38 @@ html {
   height: 2vw;
   left: 0;
 }
-.navbar-weather{
-  background-color: burlywood;
-  color: red;
-  text-decoration: line-through;
-}
-.navbar-todolist{
-  background-color: burlywood;
-  color: red;
-  text-decoration: line-through;
-}
-.navbar-calendar {
-  background-color: burlywood;
-  color: red;
-  text-decoration: line-through;
-}
-.navbar-dailytrackers{
-  background-color: burlywood;
-  color: red;
-  text-decoration: line-through;
-}
-.navbar-musicandmovies{
-  background-color: burlywood;
-  color: red;
-  text-decoration: line-through;
-}
-.navbar-externallinks{
+
+.navbar-todolist {
   background-color: burlywood;
   color: red;
   text-decoration: line-through;
 }
 
-.navbar-myhub{
+.navbar-calendar {
+  background-color: burlywood;
+  color: red;
+  text-decoration: line-through;
+}
+
+.navbar-dailytrackers {
+  background-color: burlywood;
+  color: red;
+  text-decoration: line-through;
+}
+
+.navbar-musicandmovies {
+  background-color: burlywood;
+  color: red;
+  text-decoration: line-through;
+}
+
+.navbar-externallinks {
+  background-color: burlywood;
+  color: red;
+  text-decoration: line-through;
+}
+
+.navbar-myhub {
   background-color: burlywood;
   color: red;
   text-decoration: line-through;
@@ -240,10 +242,12 @@ html {
   flex-direction: column;
   justify-content: space-evenly;
 }
+
 .home-clock {
   justify-self: space-around !important;
   flex-direction: column;
 }
+
 .home-weather-widget {
   display: flex;
   flex-wrap: nowrap;
@@ -275,7 +279,7 @@ html {
   align-items: center;
 }
 
-.home-currency-left-sub{
+.home-currency-left-sub {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -288,11 +292,12 @@ html {
   align-items: center;
 }
 
-.home-currency-right-sub{
+.home-currency-right-sub {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
+
 .home-currency-vl {
   border-left: 2px var(--borders) solid;
   height: 3vw;
@@ -323,10 +328,10 @@ html {
 }
 
 .signup-form {
-    display: flex;
-    height: 12vw;
-    flex-direction: column;
-    justify-content: space-between;
+  display: flex;
+  height: 12vw;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .signup-form-input {
@@ -369,33 +374,76 @@ html {
 
 /* News */
 .news-page-div {
-    margin-left: 20vw;
-    width: 85vw;
-    height: 100vh;
-    background-color: #EAEAEA;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: space-around; */
-    align-items: center;
+  margin-left: 15vw;
+  width: 85vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 15vw;
+}
+
+.news-widgets {
+  display: flex;
+  flex-direction: row;
+  width: 85vw;
 }
 
 .news-widget {
-  background-color: lime;
-  border: var(--headers) 2px solid;
+  background-color: rgba(119, 119, 119, .15);
+  border: #CECECE 2px solid;
   border-radius: .5vw;
   /* display: flex;
   justify-content: center;
   align-items: center; */
   margin: 15px;
-  height: 10vw;
-  width: 15vw;
+  height: 20vw;
+  width: 40vw;
+  overflow-y: scroll;
 }
 
 .news-left {
+  width: 50vw;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
+
 .news-right {
+  width: 50vw;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+}
+
+.news-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40vw;
+}
+
+.news-subject {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: underline;
+}
+
+.news-margins{
+  margin-bottom: 3vw;
+}
+
+.news-image {
+  width: 5vw;
+  margin-right: 1vw;
+}
+
+.news-title {
+  width: 25vw;
+}
+
+.news-description {
+  width: 30vw;
+}
+
+.news-hr {
+  width: 30vw;
 }

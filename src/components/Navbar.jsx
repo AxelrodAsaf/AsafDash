@@ -19,7 +19,9 @@ function Navbar(props) {
     const navigate = useNavigate();
 
 
-    // When called to logout the user, sets the 'current user' as none, closes login box, 'isloggedin' to false, goes to home page
+    // When called to logout the user:
+    // sets the 'current user' as none, closes login box,
+    // 'isloggedin' to false, goes to home page.
     function logout() {
         localStorage.removeItem('loggedInUser');
         setOpenLogin(false);
