@@ -2,20 +2,21 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import axios from "axios";
 import '../styles/App.css';
-import { async } from '@firebase/util';
-import CurrencyConverter from 'react-currency-conv/dist/currencyConverter';
+import Login from '../components/Login';
+import NewsSection from '../components/NewsSection';
 
 function Home(props) {
-    const [weatherData, setWeatherData] = useState({});
+    const themeLight = props.themeLight;
+    const setThemeLight = props.setThemeLight;
     const [localName, setLocalName] = useState('');
     const [localTemp, setLocalTemp] = useState('');
     const [localHumidity, setLocalHumidity] = useState('');
     const [localFeelsLike, setLocalFeelsLike] = useState('');
     const [localWeatherType, setLocalWeatherType] = useState('');
+    const [temp, setTemp] = useState(true);
     const [convCurrency, setConvCurrency] = useState('');
     const [convCurrency2, setConvCurrency2] = useState('');
     var loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
-    const [temp, setTemp] = useState(true)
 
 
     // Clock widget:
@@ -34,13 +35,12 @@ function Home(props) {
     const [locLati, setLocLati] = useState();
     const [locLong, setLocLong] = useState();
     const weatherAPIkey1 = "387655d2c9cf811e47eca2bb05be0434";
-    const weatherAPIkey2 = "6367cfbb689a28190bcd5a74e0ea3b8a";
+    // const weatherAPIkey2 = "6367cfbb689a28190bcd5a74e0ea3b8a";
     function getWeatherData() {
         // Send to API
         console.log(`Weather API request sent at ${clock}`);
-        const weatherAPIurl = `https://api.openweathermap.org/data/2.5/weather?lat=${locLati}&lon=${locLong}&appid=${weatherAPIkey2}`
+        const weatherAPIurl = `https://api.openweathermap.org/data/2.5/weather?lat=${locLati}&lon=${locLong}&appid=${weatherAPIkey1}`
         axios.get(weatherAPIurl).then((response) => {
-            setWeatherData(response.data);
             setLocalName(response.data.name);
             setLocalFeelsLike(Math.round(response.data.main.feels_like - 273.15));
             setLocalHumidity(response.data.main.humidity);
@@ -61,9 +61,11 @@ function Home(props) {
         if (locLati) {
             getWeatherData();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [locLati,locLong])
     useEffect(()=>{
         setTemp(!temp)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[localWeatherType])
 
 
@@ -112,7 +114,7 @@ function Home(props) {
 
     return (
         <div className='all-css'>
-            <Navbar />
+            {loggedInUser? <Navbar themeLight={themeLight} setThemeLight={setThemeLight}/> : <Login/>}
 
 
             <div className={`home-widgetgrid`}>
@@ -169,7 +171,7 @@ function Home(props) {
                     </div>
                 </div>
                 <div className="home-right">
-                    <div className='testwidget'></div>
+                    <NewsSection searchInput={"Trending"} />
                     <div className='testwidget'></div>
                     <div className='testwidget'></div>
                     <div className='testwidget'></div>

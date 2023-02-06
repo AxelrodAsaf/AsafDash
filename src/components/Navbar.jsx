@@ -14,7 +14,8 @@ import linkedin from '../assets/linkedin.png';
 
 function Navbar(props) {
     var loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
-    const [themeLight, setThemeLight] = useState(true);
+    const themeLight = props.themeLight;
+    const setThemeLight = props.setThemeLight;
     const [openLogin, setOpenLogin] = useState(false);
     const navigate = useNavigate();
 
@@ -35,8 +36,8 @@ function Navbar(props) {
             <div className='navbar-buttons'>
                 <div className='navbar-pagebutton navbar-home' onClick={() => navigate(`/`)}>Home</div>
                 <div className='navbar-pagebutton navbar-news' onClick={() => navigate(`/News`)}>News</div>
-                <div className='navbar-pagebutton navbar-calendar' onClick={() => navigate(`/Calendar`)}>Calendar</div>
                 <div className='navbar-pagebutton navbar-weather' onClick={() => navigate(`/Weather`)}>Weather</div>
+                <div className='navbar-pagebutton navbar-calendar' onClick={() => navigate(`/Calendar`)}>Calendar</div>
                 <div className='navbar-pagebutton navbar-todolist' onClick={() => navigate(`/ToDoList`)}>To Do List</div>
                 <div className='navbar-pagebutton navbar-dailytrackers' onClick={() => navigate(`/DailyTrackers`)}>Daily Trackers</div>
                 <div className='navbar-pagebutton navbar-musicandmovies' onClick={() => navigate(`/MusicAndMovies`)}>Music and Movies</div>
@@ -104,7 +105,7 @@ function Navbar(props) {
                     <img src={loginpic} alt="login" className='navbar-logoutpic' onClick={() => setOpenLogin(!openLogin)} />
                 }
 
-                {/* *****(NOT WORKING YET)***** Show the theme swap icon, swap upon clicking. */}
+                {/* Show the theme swap icon, swap upon clicking. */}
                 <img src={themeswap} alt="theme swap" className='navbar-logoutpic' onClick={() => { setThemeLight(!themeLight); console.log(themeLight) }} />
             </div>
         </div>

@@ -1,7 +1,7 @@
 import './styles/App.css';
 import Default from './pages/Default';
 import { Routes, Route } from "react-router-dom";
-import React from 'react';
+import React, { useState } from 'react';
 
 import Home from './pages/Home.jsx';
 import Weather from './pages/Weather.jsx';
@@ -15,19 +15,21 @@ import CalendarWidget from './pages/CalendarWidget';
 
 
 function App() {
+  const [themeLight, setThemeLight] = useState(true);
+
 
   return (
-      <div className='app-main'>
+      <div className={`app-main theme${themeLight}`}>
         <Routes>
-          <Route path={"/"} element={<Home />} />
-          <Route path={"/Calendar"} element={<CalendarWidget />} />
-          <Route path={"/Weather"} element={<Weather />} />
-          <Route path={"/ToDoList"} element={<ToDoList />} />
-          <Route path={"/News"} element={<News />} />
-          <Route path={"/DailyTrackers"} element={<DailyTrackers />} />
-          <Route path={"/MusicAndMovies"} element={<MusicAndMovies />} />
-          <Route path={"/ExternalLinks"} element={<ExternalLinks />} />
-          <Route path={"/MyHub"} element={<MyHub />} />
+          <Route path={"/"} element={<Home themeLight={themeLight} setThemeLight={setThemeLight}/>} />
+          <Route path={"/Calendar"} element={<CalendarWidget themeLight={themeLight} setThemeLight={setThemeLight}/>} />
+          <Route path={"/Weather"} element={<Weather themeLight={themeLight} setThemeLight={setThemeLight}/>} />
+          <Route path={"/ToDoList"} element={<ToDoList themeLight={themeLight} setThemeLight={setThemeLight}/>} />
+          <Route path={"/News"} element={<News themeLight={themeLight} setThemeLight={setThemeLight}/>} />
+          <Route path={"/DailyTrackers"} element={<DailyTrackers themeLight={themeLight} setThemeLight={setThemeLight}/>} />
+          <Route path={"/MusicAndMovies"} element={<MusicAndMovies themeLight={themeLight} setThemeLight={setThemeLight}/>} />
+          <Route path={"/ExternalLinks"} element={<ExternalLinks themeLight={themeLight} setThemeLight={setThemeLight}/>} />
+          <Route path={"/MyHub"} element={<MyHub themeLight={themeLight} setThemeLight={setThemeLight}/>} />
           <Route path="*" element={<Default />} />
         </Routes>
       </div>
