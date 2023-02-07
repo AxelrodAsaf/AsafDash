@@ -8,8 +8,15 @@
     + Encryption of password (and sending the encrypted password to the database)
     + Clean code and commit
 
-    - How to catch Axios Uncaught Exceptions that don't get caught in Client/Login:102
+    + How to catch Axios Uncaught Exceptions that don't get caught in Client/Login:102
+    - Catch all Axios errors
     - Server/authController:18
+
+// Login of a user
+    -
+    -
+    -
+    -
 
 // Google Calendar API
     // Add upcoming events from calendar to home screen

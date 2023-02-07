@@ -37,14 +37,15 @@ function Login(props) {
     //     }
     // };
 
-    
+
     // Defines possible errors while logging in...
     const errors = {
-        email: "Could not find email. Please try again.",
-        pass: "Incorrect password. Please try again.",
+        email: "Could not find a user with that email. Please try again.",
+        pass: "Incorrect password entered. Please try again.",
         matchingpasswords: "Passwords did not match. Please try again.",
-        tryLater: "Internal errors, try again later.",
-        accountCreated: "Your account has been successfully created! Please login to continue."
+        tryLater: "Unknown error signing up, please try again.",
+        accountCreated: "Your account has been successfully created! Please login to continue.",
+        emailDuplicate: "The email entered is already being used. Please log in or use a different email."
     };
 
     // When called with the type, generates the proper error message at login
@@ -100,10 +101,22 @@ function Login(props) {
         // Add user data to database
         try {
             // Send newUser to server to add to database
-            axios.post('http://localhost:8000/signup', newUser);
-            setErrorMessages("accountCreated");
+            axios.post('http://localhost:8000/signup', newUser)
+            .then(() => {
+                setErrorMessages("accountCreated");
+            })
+            .catch((error) => {
+                console.error(error);
+                if (error.response.status === 409) {
+                    setErrorMessages("emailDuplicate");
+                }
+                else {
+                    setErrorMessages("tryLater");
+                }
+            })
+            
         }
-        catch (e) {
+        catch (error) {
             setErrorMessages("tryLater");
         }
     }
@@ -151,6 +164,7 @@ function Login(props) {
                 {renderErrorMessage("matchingpasswords")}
                 {renderErrorMessage("tryLater")}
                 {renderErrorMessage("accountCreated")}
+                {renderErrorMessage("emailDuplicate")}
             </form>
         </div>
     );
