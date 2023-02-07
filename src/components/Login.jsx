@@ -1,41 +1,43 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import '../styles/App.css';
-import HandleUserData from "../firebase/HandleUserData";
 
 function Login(props) {
-    const setOpenLogin = props.setOpenLogin;
-    const { addUser, getUser } = HandleUserData();
+    // const setOpenLogin = props.setOpenLogin;
     const [errorMessages, setErrorMessages] = useState();
     const [formToggle, setFormToggle] = useState(true);
 
-    // Submit Login
-    const loginSubmit = (event) => {
 
-        // Prevent page reload
-        event.preventDefault();
-        var { email, password } = document.forms[0];
+    // // Submit Login
+    // const loginSubmit = (event) => {
+    //     const email = event.target[1].value;
+    //     const password = event.target[2].value;
 
-        // Find user login info
-        const userData = getUser(email.value);
+    //     // Prevent page reload
+    //     event.preventDefault();
 
-        // Compare user input to user data saved
-        if (userData) {
-            // If data saved equals input, saves logged in user to localstorage, closes login box.
-            if (userData.password === password.value) {
-                localStorage.setItem('loggedInUser', JSON.stringify(userData));
-                setOpenLogin(false);
-            }
-            else {
-                // Invalid password
-                setErrorMessages("pass");
-            }
-        }
-        else {
-            // Invalid email
-            setErrorMessages("email");
-        }
-    };
+    //     // Find user login info
 
+
+    //     // Compare user input to user data saved
+    //     if (userData) {
+    //         // If data saved equals input, saves logged in user to localstorage, closes login box.
+    //         if (userData.password === password.value) {
+    //             localStorage.setItem('loggedInUser', JSON.stringify(userData));
+    //             setOpenLogin(false);
+    //         }
+    //         else {
+    //             // Invalid password
+    //             setErrorMessages("pass");
+    //         }
+    //     }
+    //     else {
+    //         // Invalid email
+    //         setErrorMessages("email");
+    //     }
+    // };
+
+    
     // Defines possible errors while logging in...
     const errors = {
         email: "Could not find email. Please try again.",
@@ -57,7 +59,8 @@ function Login(props) {
 
             {/* Login title with form */}
             <strong>Log in</strong>
-            <form onSubmit={loginSubmit} className="login-form">
+            {/* <form onSubmit={loginSubmit} className="login-form"> */}
+            <form className="login-form">
                 {/* Input of email */}
                 <div className="login-input">
                     <input type="text" name="email" required className="login-form-email input" placeholder='Email' />
@@ -72,7 +75,6 @@ function Login(props) {
                     <button className="login-form-submit toggle-form" onClick={() => setFormToggle(!formToggle)}>SIGN UP</button>
                 </div>
             </form>
-            {/* Allows the user to switch to a sign-up form */}
             {renderErrorMessage("email")}
             {renderErrorMessage("pass")}
         </div>
@@ -88,6 +90,7 @@ function Login(props) {
         const email = data.target[1].value;
         const password = data.target[2].value;
         const vpassword = data.target[3].value;
+        const newUser = {firstName, email, password, vpassword};
 
         // Check matching passwords
         if (password !== vpassword) {
@@ -96,17 +99,16 @@ function Login(props) {
 
         // Add user data to database
         try {
-            var tempNewUser = { firstName: firstName, email: email, password: password };
-            addUser(tempNewUser);
+            // Send newUser to server to add to database
+            axios.post('http://localhost:8000/signup', newUser);
             setErrorMessages("accountCreated");
         }
         catch (e) {
             setErrorMessages("tryLater");
         }
-
     }
 
-    // When called shows the proper form needed by the user
+    // Shows the proper form needed by the user when called
     function showForm(formToggle) {
         // (true is defined as login)
         if (formToggle === true) {
