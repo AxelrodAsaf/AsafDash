@@ -1,11 +1,21 @@
 
-// Add social media links (to nav bar)
-// Dark/light themes
+// Add a user to the database
+    + On submit signup form, take the data and save as an object
+    + Take newUser object and send to server
+    + Connect server to Mongodb
+    + Add the newUser to database
+    + Check to make sure that the user's email is unique (no existing users with that email)
+    + Encryption of password (and sending the encrypted password to the database)
+    + Clean code and commit
+
+    - How to catch Axios Uncaught Exceptions that don't get caught in Client/Login:102
+    - Server/authController:18
+
 // Google Calendar API
     // Add upcoming events from calendar to home screen
+
 // Home screen widgets
-    // Local weather
-    // Top 3 news articles
     // Top 3 to do list items
     // Top 5 songs Israel/USA
-// Change login email to "type email"
+
+// Change login form email to "type email"
