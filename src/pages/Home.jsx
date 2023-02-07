@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import axios from "axios";
 import '../styles/App.css';
-import Login from '../components/Login';
+// import Login from '../components/Login';
 import NewsSection from '../components/NewsSection';
 
 function Home(props) {
@@ -38,7 +38,7 @@ function Home(props) {
     // const weatherAPIkey2 = "6367cfbb689a28190bcd5a74e0ea3b8a";
     function getWeatherData() {
         // Send to API
-        console.log(`Weather API request sent at ${clock}`);
+        // console.log(`Weather API request sent at ${clock}`);
         const weatherAPIurl = `https://api.openweathermap.org/data/2.5/weather?lat=${locLati}&lon=${locLong}&appid=${weatherAPIkey1}`
         axios.get(weatherAPIurl).then((response) => {
             setLocalName(response.data.name);
@@ -114,8 +114,8 @@ function Home(props) {
 
     return (
         <div className='all-css'>
-            {loggedInUser? <Navbar themeLight={themeLight} setThemeLight={setThemeLight}/> : <Login/>}
-
+            {/* {loggedInUser? <Navbar themeLight={themeLight} setThemeLight={setThemeLight}/> : <Login/>} */}
+            <Navbar themeLight={themeLight} setThemeLight={setThemeLight} />
 
             <div className={`home-widgetgrid`}>
                 <div className="home-left">

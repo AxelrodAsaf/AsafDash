@@ -54,11 +54,11 @@ function NewsSection(props) {
                     `${displayDate}` +
                     "&sortBy=popularity&apiKey=" +
                     `${keyId}`;
-                console.log(`Sent request for ${userSearch} with key ${keyId}`);
-                console.log(`Sent request for ${userSearch} with url: ${searchUrl}`);
+                // console.log(`Sent request for ${userSearch} with key ${keyId}`);
+                // console.log(`Sent request for ${userSearch} with url: ${searchUrl}`);
                 const res = await axios.get(searchUrl)
                 const { data } = res;
-                console.log(data);
+                // console.log(data);
                 setArticles(data.articles);
 
             } catch (error) {

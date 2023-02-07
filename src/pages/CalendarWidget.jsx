@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Calendar from 'react-calendar';
-import Login from '../components/Login';
+// import Login from '../components/Login';
 
 
 function CalendarWidget(props) {
     const themeLight = props.themeLight;
     const setThemeLight = props.setThemeLight;
-    var loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    // var loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
 
     // Array to store month string values
     const allMonthValues = [
@@ -47,7 +47,8 @@ function CalendarWidget(props) {
 
     return (
         <div className="app">
-            {loggedInUser ? <Navbar themeLight={themeLight} setThemeLight={setThemeLight} /> : <Login />}
+            {/* {loggedInUser? <Navbar themeLight={themeLight} setThemeLight={setThemeLight}/> : <Login/>} */}
+            <Navbar themeLight={themeLight} setThemeLight={setThemeLight} />
             <div className="calendar-page-div">
                 <h2 className="calander-details">{calendarText}</h2>
                 <div className="calendar-grid">

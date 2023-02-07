@@ -55,7 +55,9 @@ function Weather(props) {
 
     return (
         <div>
-            {loggedInUser ? <Navbar themeLight={themeLight} setThemeLight={setThemeLight} /> : <Login />}
+            {/* {loggedInUser? <Navbar themeLight={themeLight} setThemeLight={setThemeLight}/> : <Login/>} */}
+            <Navbar themeLight={themeLight} setThemeLight={setThemeLight} />
+            
             <h1>Weather</h1>
 
             <div className="home-weather widget">
