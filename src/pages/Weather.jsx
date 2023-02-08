@@ -1,12 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
-import Login from '../components/Login';
+// import Login from '../components/Login';
 
 function Weather(props) {
     const themeLight = props.themeLight;
     const setThemeLight = props.setThemeLight;
-    var loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    // var loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
     const [localName, setLocalName] = useState('');
     const [localTemp, setLocalTemp] = useState('');
     const [localHumidity, setLocalHumidity] = useState('');

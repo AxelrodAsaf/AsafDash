@@ -9,12 +9,36 @@
     + Clean code and commit
 
     + How to catch Axios Uncaught Exceptions that don't get caught in Client/Login:102
-    - Catch all Axios errors
-    - Server/authController:18
+    + Catch all Axios errors
+    + Server/authController:18
+
+// .ENV (only on server)
+    + Create an .env file
+    + Add the .env to .gitignore
+    + Move the keys from their original files to the .env
+        + Weather API key
+        + Currency converter USD to NIS
+            + URL
+            + API KEY
+            + API HOST
+        + Currency converter NIS to USD
+            + URL
+            + API KEY
+            + API HOST
+        + News API keys
+        + Mongodb url (on server side)
 
 // Login of a user
-    -
-    -
+    - Receive inputs from the user (frontend)
+    - Send the inputs to the server (frontend -> backend)
+    - Check the database for the given email (backend)
+    - Check to see if the password entered matches the encrypted password
+    - Deal with errors of incorrect password, unknown email, etc.
+    - Tokens after signing in - JWT
+    - Update 'Logged in' statuses where needed (localStorage)
+
+// News
+    - Make a TDL-style subject list in myHub for news topics
     -
     -
 

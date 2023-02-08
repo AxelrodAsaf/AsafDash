@@ -32,14 +32,14 @@ function Home(props) {
 
 
     // Weather widget:
-    const [locLati, setLocLati] = useState();
+    const [locLat, setLocLat] = useState();
     const [locLong, setLocLong] = useState();
-    const weatherAPIkey1 = "387655d2c9cf811e47eca2bb05be0434";
-    // const weatherAPIkey2 = "6367cfbb689a28190bcd5a74e0ea3b8a";
+    const weatherAPIkey1 = process.env.REACT_APP_WEATHER_APIKEY1;
+    // const weatherAPIkey2 = process.env.REACT_APP_WEATHER_APIKEY2;
     function getWeatherData() {
         // Send to API
         // console.log(`Weather API request sent at ${clock}`);
-        const weatherAPIurl = `https://api.openweathermap.org/data/2.5/weather?lat=${locLati}&lon=${locLong}&appid=${weatherAPIkey1}`
+        const weatherAPIurl = `https://api.openweathermap.org/data/2.5/weather?lat=${locLat}&lon=${locLong}&appid=${weatherAPIkey1}`
         axios.get(weatherAPIurl).then((response) => {
             setLocalName(response.data.name);
             setLocalFeelsLike(Math.round(response.data.main.feels_like - 273.15));
@@ -52,33 +52,37 @@ function Home(props) {
         // Get the location
         navigator.geolocation.getCurrentPosition(function (position) {
             // Get lat
-            setLocLati(position.coords.latitude);
+            setLocLat(position.coords.latitude);
             // Get long
             setLocLong(position.coords.longitude);
         });
     }, []);
     useEffect(() => {
-        if (locLati) {
+        if (locLat) {
             getWeatherData();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [locLati,locLong])
-    useEffect(()=>{
+    }, [locLat, locLong])
+    useEffect(() => {
         setTemp(!temp)
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[localWeatherType])
+    }, [localWeatherType])
 
 
     // Currency converter widget:
-        // USD to ILS
+    // USD to ILS
     useEffect(() => {
+        const tempAPIURL = process.env.REACT_APP_CURRENCY_APIURL;
+        const tempAPIKEY = process.env.REACT_APP_CURRENCY_APIKEY;
+        const tempAPIHOST = process.env.REACT_APP_CURRENCY_APIHOST;
+
         const options = {
             method: 'GET',
-            url: 'https://currency-converter-by-api-ninjas.p.rapidapi.com/v1/convertcurrency',
+            url: tempAPIURL,
             params: { have: 'USD', want: 'ILS', amount: '1' },
             headers: {
-                'X-RapidAPI-Key': '403e5d243dmsh3c412b6a6d053d7p199ec7jsn140646d96bb9',
-                'X-RapidAPI-Host': 'currency-converter-by-api-ninjas.p.rapidapi.com'
+                'X-RapidAPI-Key': tempAPIKEY,
+                'X-RapidAPI-Host': tempAPIHOST
             }
         };
         axios.request(options).then(function (response) {
@@ -87,15 +91,19 @@ function Home(props) {
             console.error(error);
         });
     }, []);
-        // ILS to USD
+    // ILS to USD
     useEffect(() => {
+        const tempAPIURL = process.env.REACT_APP_CURRENCY_APIURL;
+        const tempAPIKEY = process.env.REACT_APP_CURRENCY_APIKEY;
+        const tempAPIHOST = process.env.REACT_APP_CURRENCY_APIHOST;
+        
         const options = {
             method: 'GET',
-            url: 'https://currency-converter-by-api-ninjas.p.rapidapi.com/v1/convertcurrency',
+            url: tempAPIURL,
             params: { have: 'ILS', want: 'USD', amount: '1' },
             headers: {
-                'X-RapidAPI-Key': '403e5d243dmsh3c412b6a6d053d7p199ec7jsn140646d96bb9',
-                'X-RapidAPI-Host': 'currency-converter-by-api-ninjas.p.rapidapi.com'
+                'X-RapidAPI-Key': tempAPIKEY,
+                'X-RapidAPI-Host': tempAPIHOST
             }
         };
         axios.request(options).then(function (response) {
@@ -137,13 +145,13 @@ function Home(props) {
                             <p>Humidity:</p>
                         </div>
                         <div className="home-weather-right">
-                            {/* <p><strong>{locLati ? locLati : <></>}</strong></p>
+                            {/* <p><strong>{locLat ? locLat : <></>}</strong></p>
                             <p><strong>{locLong? locLong : <></>}</strong></p> */}
-                            <p><strong>{localName? localName : <></>}</strong></p>
-                            <p><strong>{localWeatherType? localWeatherType : <></>}</strong></p>
+                            <p><strong>{localName ? localName : <></>}</strong></p>
+                            <p><strong>{localWeatherType ? localWeatherType : <></>}</strong></p>
                             <p><strong>{localTemp ? localTemp : <></>}°C   /   {Math.round((localTemp * (9 / 5)) + 32)}°F</strong></p>
                             <p><strong>{localFeelsLike ? localFeelsLike : <></>}°C   /   {Math.round((localFeelsLike * (9 / 5)) + 32)}°F</strong></p>
-                            <p><strong>{localHumidity? localHumidity : <></>}%</strong></p>
+                            <p><strong>{localHumidity ? localHumidity : <></>}%</strong></p>
                         </div>
                     </div>
                     <div className="home-currency widget">
@@ -157,7 +165,7 @@ function Home(props) {
                                 <p>{convCurrency.old_amount}</p>
                             </div>
                         </div>
-                        <div className="home-currency-vl"/>
+                        <div className="home-currency-vl" />
                         <div className="home-currency-right">
                             <div className="home-currency-right-sub">
                                 <strong>{convCurrency2.new_currency}-</strong>

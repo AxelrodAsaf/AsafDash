@@ -7,10 +7,10 @@ function NewsSection(props) {
 
 
     const [articles, setArticles] = useState([]);
-    const keyOne = "6b4371ea45744fdf87de113942f6b4f3"; // AxelrodAsaf@gmail.com
-    const keyTwo = "034d8076f89846f0825e0597f0b86436"; // AsafAxelrod@hotmail.com
-    const keyThree = "0632572e209741d1ab2c411be921a1fc"; // Aajunk3113@hotmail.com
-    const keyFour = "2023604cc05c4d5089f789c3e203cf04"; // AsafAxelrod@gmail.com
+    const keyOne = process.env.REACT_APP_NEWS_KEY_ONE;
+    const keyTwo = process.env.REACT_APP_NEWS_KEY_TWO;
+    const keyThree = process.env.REACT_APP_NEWS_KEY_THREE;
+    const keyFour = process.env.REACT_APP_NEWS_KEY_FOUR;
     const [keyId, setKeyId] = useState(keyOne); // Set the default key here
     const saveTitle = props.saveTitle;
     const saveUrl = props.saveUrl;
@@ -72,7 +72,7 @@ function NewsSection(props) {
 
         };
         getArticles();
-    }, [displayDate, keyId, userSearch]);
+    }, [displayDate, keyId, userSearch, keyOne, keyTwo, keyThree, keyFour]);
 
 
 

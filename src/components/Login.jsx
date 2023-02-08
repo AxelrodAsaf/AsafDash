@@ -145,7 +145,7 @@ function Login(props) {
                 </div>
                 {/* Input of email */}
                 <div className="signup-input">
-                    <input type="email" name="email" required className="signup-form-email input" placeholder="Email" />
+                    <input type="text" name="email" required className="signup-form-email input" placeholder="Email" />
                 </div>
                 {/* Input of password */}
                 <div className="signup-input">
