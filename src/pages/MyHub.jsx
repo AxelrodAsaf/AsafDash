@@ -5,10 +5,10 @@ import Navbar from '../components/Navbar';
 function MyHub(props) {
     const themeLight = props.themeLight;
     const setThemeLight = props.setThemeLight;
-    // var loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    // var userLoggedIn = JSON.parse(localStorage.getItem('userLoggedIn'));
     return (
         <div>
-            {/* {loggedInUser? <Navbar themeLight={themeLight} setThemeLight={setThemeLight}/> : <Login/>} */}
+            {/* {userLoggedIn? <Navbar themeLight={themeLight} setThemeLight={setThemeLight}/> : <Login/>} */}
             <Navbar themeLight={themeLight} setThemeLight={setThemeLight} />
             <h1>MyHub</h1>
 

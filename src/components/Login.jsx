@@ -3,40 +3,21 @@ import axios from 'axios';
 import '../styles/App.css';
 
 function Login(props) {
-    // const setOpenLogin = props.setOpenLogin;
+    const setOpenLogin = props.setOpenLogin;
     const [errorMessages, setErrorMessages] = useState();
     const [formToggle, setFormToggle] = useState(true);
 
-
-    // // Submit Login
-    // const loginSubmit = (event) => {
-    //     const email = event.target[1].value;
-    //     const password = event.target[2].value;
-
-    //     // Prevent page reload
-    //     event.preventDefault();
-
-    //     // Find user login info
-
-
-    //     // Compare user input to user data saved
-    //     if (userData) {
-    //         // If data saved equals input, saves logged in user to localstorage, closes login box.
-    //         if (userData.password === password.value) {
-    //             localStorage.setItem('loggedInUser', JSON.stringify(userData));
-    //             setOpenLogin(false);
-    //         }
-    //         else {
-    //             // Invalid password
-    //             setErrorMessages("pass");
-    //         }
-    //     }
-    //     else {
-    //         // Invalid email
-    //         setErrorMessages("email");
-    //     }
-    // };
-
+    // Shows the proper form needed by the user when called
+    function showForm(formToggle) {
+        // (true is defined as login)
+        if (formToggle === true) {
+            return (loginForm)
+        }
+        // (false is defined as signup)
+        else {
+            return (signupForm)
+        }
+    }
 
     // Defines possible errors while logging in...
     const errors = {
@@ -49,28 +30,58 @@ function Login(props) {
     };
 
     // When called with the type, generates the proper error message at login
-    const renderErrorMessage = (name) =>
+    const renderErrorMessage = (name) => {
         name === errorMessages && (
             <div className="error">{errors[name]}</div>
         );
+    }
+
+    // Submit Login
+    const loginSubmit = (event) => {
+        // Prevent page reload
+        event.preventDefault();
+
+        const lowerLoginEmail = loginEmail.toLowerCase();
+        // Define an object with the form data to send to the server
+        const sendServerLogin = { lowerLoginEmail, loginPass };
+
+        // Send the information to the server to check if login is valid
+        try {
+            axios.post('http://localhost:8000/login', sendServerLogin)
+                .then((res) => {
+                    // Save the token to local storage
+                    localStorage.setItem('Dashboard-user-token', res.data.token);
+                    // Save the user email to local storage
+                    localStorage.setItem('userLoggedIn', res.data.email);
+                    // Save the user name to local storage
+                    localStorage.setItem('Dashboard-user-firstName', res.data.firstName);
+                    // Close the login form
+                    setOpenLogin(false);
+                })
+                .catch((error) => {
+                    console.error(error);
+                })
+        }
+
+        catch (error) {
+            setErrorMessages("tryLater");
+        }
+    }
 
     // Login form
+    const [loginEmail, setLoginEmail] = useState("");
+    const [loginPass, setLoginPass] = useState("");
+
     const loginForm = (
         <div className="login-form-div">
-
-            {/* Login title with form */}
             <strong>Log in</strong>
-            {/* <form onSubmit={loginSubmit} className="login-form"> */}
-            <form className="login-form">
-                {/* Input of email */}
+            <form onSubmit={loginSubmit} className="login-form">
                 <div className="login-input">
-                    <input type="text" name="email" required className="login-form-email input" placeholder='Email' />
+                    <input onChange={(e) => setLoginEmail(e.target.value)} id='loginForm-email' type="text" name="email" required className="login-form-email input" placeholder='Email' />
                 </div>
-                {/* Input of password */}
                 <div className="login-input">
-                    <input type="password" name="password" required className="login-form-password input" placeholder='Password' />
+                    <input onChange={(e) => setLoginPass(e.target.value)} id='loginForm-password' type="password" name="password" required className="login-form-password input" placeholder='Password' />
                 </div>
-                {/* Submit button */}
                 <div className="login-submit">
                     <input type="submit" className="login-form-submit button" />
                     <button className="login-form-submit toggle-form" onClick={() => setFormToggle(!formToggle)}>SIGN UP</button>
@@ -81,7 +92,7 @@ function Login(props) {
         </div>
     );
 
-    // Submit Sign-up
+    // Submit Signup
     const signupSubmit = (data) => {
         // Prevent page reload
         data.preventDefault();
@@ -89,9 +100,10 @@ function Login(props) {
         // Redefine the variables locally
         const firstName = data.target[0].value;
         const email = data.target[1].value;
+        const lowerEmail = email.toLowerCase();
         const password = data.target[2].value;
         const vpassword = data.target[3].value;
-        const newUser = {firstName, email, password, vpassword};
+        const newUser = { firstName, lowerEmail, password, vpassword };
 
         // Check matching passwords
         if (password !== vpassword) {
@@ -102,34 +114,22 @@ function Login(props) {
         try {
             // Send newUser to server to add to database
             axios.post('http://localhost:8000/signup', newUser)
-            .then(() => {
-                setErrorMessages("accountCreated");
-            })
-            .catch((error) => {
-                console.error(error);
-                if (error.response.status === 409) {
-                    setErrorMessages("emailDuplicate");
-                }
-                else {
-                    setErrorMessages("tryLater");
-                }
-            })
-            
+                .then(() => {
+                    setErrorMessages("accountCreated");
+                })
+                .catch((error) => {
+                    console.error(error);
+                    if (error.response.status === 409) {
+                        setErrorMessages("emailDuplicate");
+                    }
+                    else {
+                        setErrorMessages("tryLater");
+                    }
+                })
+
         }
         catch (error) {
             setErrorMessages("tryLater");
-        }
-    }
-
-    // Shows the proper form needed by the user when called
-    function showForm(formToggle) {
-        // (true is defined as login)
-        if (formToggle === true) {
-            return (loginForm)
-        }
-        // (false is defined as signup)
-        else {
-            return (signupForm)
         }
     }
 
@@ -171,10 +171,10 @@ function Login(props) {
 
     return (
         <div className='all-css login-page-div'>
-            {/* Shows the form of the login/signup  */}
             {showForm(formToggle)}
         </div>
     );
 }
+
 
 export default Login;

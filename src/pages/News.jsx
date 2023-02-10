@@ -6,28 +6,27 @@ import NewsSection from '../components/NewsSection';
 function News(props) {
     const themeLight = props.themeLight;
     const setThemeLight = props.setThemeLight;
-    // var loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    // var userLoggedIn = JSON.parse(localStorage.getItem('userLoggedIn'));
 
 
     return (
         <div className='news-main'>
-            {/* {loggedInUser? <Navbar themeLight={themeLight} setThemeLight={setThemeLight}/> : <Login/>} */}
+            {/* {userLoggedIn? <Navbar themeLight={themeLight} setThemeLight={setThemeLight}/> : <Login/>} */}
             <Navbar themeLight={themeLight} setThemeLight={setThemeLight} />
 
             <div className="news-page-div">
                 <h1>News</h1>
                 <div className="news-widgets">
                     <div className="news-left">
-                        <NewsSection searchInput={"Seattle"}/>
-                        <NewsSection searchInput={"Seahawks"}/>
-                        <NewsSection searchInput={"World News"}/>
+                        <NewsSection searchInput={"Seattle"} />
+                        <NewsSection searchInput={"Seahawks"} />
+                        <NewsSection searchInput={"World News"} />
                     </div>
                     <div className="news-right">
-                        <NewsSection searchInput={"Israel"}/>
-                        <NewsSection searchInput={"Finance"}/>
-                        <NewsSection searchInput={"Trending"}/>
+                        <NewsSection searchInput={"Israel"} />
+                        <NewsSection searchInput={"Finance"} />
+                        <NewsSection searchInput={"Trending"} />
                     </div>
-
                 </div>
             </div>
         </div>

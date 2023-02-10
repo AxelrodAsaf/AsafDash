@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar';
 function Weather(props) {
     const themeLight = props.themeLight;
     const setThemeLight = props.setThemeLight;
-    // var loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    // var userLoggedIn = JSON.parse(localStorage.getItem('userLoggedIn'));
     const [localName, setLocalName] = useState('');
     const [localTemp, setLocalTemp] = useState('');
     const [localHumidity, setLocalHumidity] = useState('');
@@ -55,9 +55,9 @@ function Weather(props) {
 
     return (
         <div>
-            {/* {loggedInUser? <Navbar themeLight={themeLight} setThemeLight={setThemeLight}/> : <Login/>} */}
+            {/* {userLoggedIn? <Navbar themeLight={themeLight} setThemeLight={setThemeLight}/> : <Login/>} */}
             <Navbar themeLight={themeLight} setThemeLight={setThemeLight} />
-            
+
             <h1>Weather</h1>
 
             <div className="home-weather widget">
@@ -80,8 +80,6 @@ function Weather(props) {
                     <p><strong>{localHumidity ? localHumidity : <></>}%</strong></p>
                 </div>
             </div>
-
-
         </div>
     );
 }

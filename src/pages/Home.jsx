@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import axios from "axios";
 import '../styles/App.css';
-// import Login from '../components/Login';
 import NewsSection from '../components/NewsSection';
 
 function Home(props) {
     const themeLight = props.themeLight;
     const setThemeLight = props.setThemeLight;
+    const logout = props.logout;
     const [localName, setLocalName] = useState('');
     const [localTemp, setLocalTemp] = useState('');
     const [localHumidity, setLocalHumidity] = useState('');
@@ -16,7 +16,10 @@ function Home(props) {
     const [temp, setTemp] = useState(true);
     const [convCurrency, setConvCurrency] = useState('');
     const [convCurrency2, setConvCurrency2] = useState('');
-    var loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    var loggedInUser = localStorage.getItem('userLoggedIn');
+
+    // Define the variable userFirstName as the local storage value of Dashboard-user-firstName
+    const userFirstName = localStorage.getItem('Dashboard-user-firstName');
 
 
     // Clock widget:
@@ -113,10 +116,29 @@ function Home(props) {
         });
     }, []);
 
-
-
-
-
+    function sendToken() {
+        console.log(`Token sent at ${clock}`);
+        // Send the server a request with the token
+            // Get the token from the local storage
+            const token = localStorage.getItem('Dashboard-user-token');
+            // Send a get request to the server with the token with headers
+            const options = {
+                method: 'GET',
+                url: 'http://localhost:8000/token',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            };
+            axios.request(options)
+            .then((res) => {
+                console.log(res.data);
+            })
+            .catch((err) => {
+                console.error(err);
+                // Log out the user when the token is invalid
+                // logout();
+            });
+    }
 
 
 
@@ -128,7 +150,10 @@ function Home(props) {
             <div className={`home-widgetgrid`}>
                 <div className="home-left">
                     <div className="widget">
-                        <h1 className='home-namewidget'>Hey {loggedInUser ? loggedInUser.firstName : "friend"}!</h1>
+                        {/* If there's a user signed in, print their first name that is saved in local storage */}
+                        <h1 className='home-namewidget'>Hey {loggedInUser ? userFirstName : "friend"}!</h1>
+
+                        
                     </div>
                     <div className="widget home-clock">
                         <p>Current Date and Time: </p>
@@ -180,6 +205,7 @@ function Home(props) {
                 </div>
                 <div className="home-right">
                     <NewsSection searchInput={"Trending"} />
+                    <button onClick={() => sendToken()}>SEND TOKEN TO SERVER!</button>
                     <div className='testwidget'></div>
                     <div className='testwidget'></div>
                     <div className='testwidget'></div>

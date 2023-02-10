@@ -13,7 +13,7 @@ import linkedin from '../assets/linkedin.png';
 
 
 function Navbar(props) {
-    var loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    var loggedInUser = localStorage.getItem('userLoggedIn');
     const themeLight = props.themeLight;
     const setThemeLight = props.setThemeLight;
     const [openLogin, setOpenLogin] = useState(false);
@@ -24,7 +24,9 @@ function Navbar(props) {
     // sets the 'current user' as none, closes login box,
     // 'isloggedin' to false, goes to home page.
     function logout() {
-        localStorage.removeItem('loggedInUser');
+        localStorage.removeItem('userLoggedIn');
+        localStorage.removeItem('Dashboard-user-token');
+        localStorage.removeItem('Dashboard-user-firstName');
         setOpenLogin(false);
         navigate(`/`);
     }

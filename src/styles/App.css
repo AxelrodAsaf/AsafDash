@@ -14,7 +14,6 @@
   color: var(--maintext);
 }
 
-
 .themefalse {
   --background: #777777;
   --borders: #B1B1B1;
@@ -217,6 +216,7 @@ html {
 }
 
 
+
 /* Home */
 .home-widgetgrid {
   margin-left: 20vw;
@@ -322,6 +322,7 @@ html {
 }
 
 
+
 /* Signup */
 .signup-form-div {
   height: 30vw;
@@ -360,6 +361,8 @@ html {
   align-items: center;
 }
 
+
+
 /* Calendar */
 .calendar-page-div {
   margin-left: 20vw;
@@ -377,6 +380,8 @@ html {
   width: 50vw;
   gap: 20px;
 }
+
+
 
 /* News */
 .news-main {
@@ -446,7 +451,8 @@ html {
 }
 
 .news-title {
-  width: 25vw;
+  width: 30vw;
+  font-size: medium;
 }
 
 .news-subject{
@@ -455,6 +461,7 @@ html {
 
 .news-description {
   width: 30vw;
+  font-size: small;
 }
 
 .news-hr {
