@@ -2,13 +2,12 @@
     + On submit signup form, take the data and save as an object
     + Take newUser object and send to server
     + Connect server to Mongodb
-    + Add the newUser to database
     + Check to make sure that the user's email is unique (no existing users with that email)
     + Encryption of password (and sending the encrypted password to the database)
+    + Add the newUser to database
+    + Check why there isn't an error while trying to signup a used email
     + Clean code and commit
-    + How to catch Axios Uncaught Exceptions that don't get caught in Client/Login:102
     + Catch all Axios errors
-    + Server/authController:18
 
 // .ENV
     + Create an .env file
@@ -31,11 +30,18 @@
     + Send the inputs to the server (frontend -> backend)
     + Check the database for the given email (backend)
     + Check to see if the password entered matches the encrypted password
-    + Token after signing in - JWT
+    + Send the client the token after signing in
+    + Save the token to local storage
     + Deal with errors of incorrect password, unknown email, etc.
     + Update 'Logged in' statuses where needed (localStorage)
-    + Log out function - delete from localStorage and wherever needed (server?)
+    + Log out function - delete from localStorage and wherever needed
     + Move the secret key for JWT to the .env file
+    + Client sends the token to the server
+    + Server verifies the token and returns success or failure
+    - Verify the token on every request from the client on the server
+        - On success, set the email on the request and call next function
+        - On failure, call next function without personal data
+    - 
 
 // Weather
     - Make widget style boxes

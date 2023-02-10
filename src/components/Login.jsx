@@ -30,11 +30,10 @@ function Login(props) {
     };
 
     // When called with the type, generates the proper error message at login
-    const renderErrorMessage = (name) => {
+    const renderErrorMessage = (name) =>
         name === errorMessages && (
             <div className="error">{errors[name]}</div>
         );
-    }
 
     // Submit Login
     const loginSubmit = (event) => {
@@ -60,9 +59,16 @@ function Login(props) {
                 })
                 .catch((error) => {
                     console.error(error);
+                    if (error.response.status === 400){
+                        setErrorMessages("email");
+                    } else if (error.response.status === 401){
+                        setErrorMessages("pass");
+                    }
+                    else {
+                        setErrorMessages("tryLater");
+                    }
                 })
         }
-
         catch (error) {
             setErrorMessages("tryLater");
         }
@@ -89,6 +95,7 @@ function Login(props) {
             </form>
             {renderErrorMessage("email")}
             {renderErrorMessage("pass")}
+            {renderErrorMessage("tryLater")}
         </div>
     );
 
