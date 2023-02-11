@@ -7,7 +7,7 @@ import NewsSection from '../components/NewsSection';
 function Home(props) {
     const themeLight = props.themeLight;
     const setThemeLight = props.setThemeLight;
-    const logout = props.logout;
+    // const logout = props.logout;
     const [localName, setLocalName] = useState('');
     const [localTemp, setLocalTemp] = useState('');
     const [localHumidity, setLocalHumidity] = useState('');

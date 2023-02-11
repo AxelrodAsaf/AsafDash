@@ -38,10 +38,13 @@
     + Move the secret key for JWT to the .env file
     + Client sends the token to the server
     + Server verifies the token and returns success or failure
-    - Verify the token on every request from the client on the server
-        - On success, set the email on the request and call next function
-        - On failure, call next function without personal data
-    - 
+    + Verify the token on every request from the client on the server
+        + On success, set the email on the request and call next function
+        + On failure, call next function without personal data
+
+// myHub
+    - Create a todolist style component for "news" topics
+    - Create a todolist style component for "weather" topics
 
 // Weather
     - Make widget style boxes
