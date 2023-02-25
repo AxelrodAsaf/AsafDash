@@ -44,7 +44,9 @@ function Navbar(props) {
                 <div className='navbar-pagebutton navbar-dailytrackers' onClick={() => navigate(`/DailyTrackers`)}>Daily Trackers</div>
                 <div className='navbar-pagebutton navbar-musicandmovies' onClick={() => navigate(`/MusicAndMovies`)}>Music and Movies</div>
                 <div className='navbar-pagebutton navbar-externallinks' onClick={() => navigate(`/ExternalLinks`)}>External Links</div>
+                { loggedInUser ?
                 <div className='navbar-pagebutton navbar-myhub' onClick={() => navigate(`/MyHub`)}>myHub</div>
+                : null }
             </div>
 
             {/* If true, opens the login/signup box. Otherwise, do nothing. */}
@@ -99,6 +101,7 @@ function Navbar(props) {
                 </a>
             </div>
 
+            <h4>{loggedInUser ? loggedInUser : null}</h4>
             <div className='navbar-extras'>
                 {/* If a user is logged in, show a logout button. Otherwise, show a login/signup button. */}
                 {loggedInUser ?
