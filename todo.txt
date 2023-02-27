@@ -42,24 +42,64 @@
         + On success, set the email on the request and call next function
         + On failure, call next function without personal data
 
-// myHub
-    - Create a todolist style component for "news" topics
-    - Create a todolist style component for "weather" topics
+// Move getInfo and updateInfo to Controller (separate file)
 
-// Weather
-    - Make widget style boxes
-    - 
+// myHub
+    - News
+        -----Use Postman to test these functions-----
+        + (backend) Find out how to save an array in a user's document in the database
+        + (backend) Add to the user schema the news topics array (with default values)
+        + (backend) Fetch the data from the database to send to the client for displaying - using an app.get function
+            + Get the user email from the token
+                + If no user, send default values to the client
+                + If user, find in database
+                    + If user not found in database, send an error
+                    + If a user is found in the database send the news topics to the client
+        === (backend) Take the data from the request body and not the headers from the client ===
+        + (backend) Write a function to update the topics array + using an app.put
+            + If no user, send an error
+                + If user, update news topics in database
+        + (backend) Clean and commit
+        ----------------------------------------------------------------
+        + (frontend) If there is a user signed in, send the server the token - use axios.get('/news')
+        + (frontend) Fetch the list of news topics from the server - use axios.get
+            + Sending the token to the backend
+            + Receive the news topics data
+        + (frontend) Display news topics onscreen in a list
+        + (frontend) Add an input box and +/-/update buttons to the frontend
+        + (frontend) Using the update/save button, send the data to the server - use axios.put/axios.post function
+            + Send the token to the backend
+            + Send the updated news topics array to the backend
+        + (frontend) CSS
+        + (frontend) Clean and commit
 
 // News
-    - Make a TDL-style subject list in myHub for news topics
-    -
-    -
+    + Get the array of news topics from the server - use axios.get
+    + Send the data to the NewsSection component to display the news topics properly
+    + Display the data how it's supposed to be displayed
+
+// Weather
+    + Make widget style boxes
+    + Get the list of weather cities to display
+    + Map through the cities and display in a widget
+    + CSS
 
 // Calendar
-    // Add upcoming events from calendar to home screen
+    - Add upcoming events from calendar to home screen
 
 // Home
-    // Top 3 to do list items
-    // Top 5 songs Israel/USA
+    - Top 3 to do list items
+    - Top 5 songs Israel/USA
 
 // Change login and submit forms email to "type email"
+
+
+
+REACT_APP_NEWS_KEY_ONE   = 6b4371ea45744fdf87de113942f6b4f3
+  # AxelrodAsaf@gmail.com
+REACT_APP_NEWS_KEY_TWO   = 034d8076f89846f0825e0597f0b86436
+  # AsafAxelrod@hotmail.com
+REACT_APP_NEWS_KEY_THREE = 0632572e209741d1ab2c411be921a1fc
+  # Aajunk3113@hotmail.com
+REACT_APP_NEWS_KEY_FOUR  = 2023604cc05c4d5089f789c3e203cf04
+  # AsafAxelrod@gmail.com
