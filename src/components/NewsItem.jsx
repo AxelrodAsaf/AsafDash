@@ -19,7 +19,7 @@ const NewsItem = (props) => {
                         src={urlToImage}/>
                 </a>
                 <div className={`news-texts`}>
-                    <a href={url} target="_blank" rel="noreferrer">
+                    <a href={url} target="_blank" rel="noreferrer" style={{ color: "var(--maintext)"}}>
                         <h3
                             className={`news-title `}>
                             {title}

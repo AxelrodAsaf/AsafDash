@@ -24,7 +24,7 @@ function NewsSection(props) {
 
         if (month.length < 2) month = "0" + month;
         if (day.length < 2) day = "0" + day;
-
+        day = day - 1;
         return [year, month, day].join("-");
     }
     const displayDate = formatDate(objDate);
