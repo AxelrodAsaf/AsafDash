@@ -20,7 +20,7 @@ function MyHub(props) {
     useEffect(() => {
         async function getUserInfo() {
             try {
-                const response = await axios.get('http://localhost:8000/getInfo/news', {
+                const response = await axios.get('https://asafdashserver.onrender.com/getInfo/news', {
                     headers: { Authorization: userToken ? userToken : undefined }
                 });
                 // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -72,7 +72,7 @@ function MyHub(props) {
         const weatherList = lists[1];
         const externallinksList = lists[2];
         try {
-            await axios.put('http://localhost:8000/updateInfo', {
+            await axios.put('https://asafdashserver.onrender.com/updateInfo', {
                 data: {
                     news: newsList,
                     weather: weatherList,
@@ -101,13 +101,13 @@ function MyHub(props) {
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
-                    }}>
+                }}>
                     <h1>myHub</h1>
-                        <p style={{ textAlign: "center" }}>
-                    <strong style={{ textDecoration: "underline"}}>CLICK ON THE LIST YOU WANT TO UPDATE<br /></ strong>
-                            PRESS - TO REMOVE AN ITEM<br />
-                            TYPE AND PRESS + TO ADD AN ITEM<br />
-                            PRESS "UPDATE" TO SAVE A LIST</p>
+                    <p style={{ textAlign: "center" }}>
+                        <strong style={{ textDecoration: "underline" }}>CLICK ON THE LIST YOU WANT TO UPDATE<br /></ strong>
+                        PRESS - TO REMOVE AN ITEM<br />
+                        TYPE AND PRESS + TO ADD AN ITEM<br />
+                        PRESS "UPDATE" TO SAVE A LIST</p>
                 </div>
                 <h4 className="tabs">
                     <div style={{
@@ -127,7 +127,7 @@ function MyHub(props) {
                             </h3>
                         ))}
                     </div>
-                <hr style={{color: "black", width: "100%"}} />
+                    <hr style={{ color: "black", width: "100%" }} />
                 </h4>
                 <div className="items">
                     {lists[activeTab].map((item, index) => (
@@ -142,11 +142,11 @@ function MyHub(props) {
                             <button onClick={() => handleRemoveItem(index)}>X</button>
                         </div>
                     ))}
-                    <input value={input}  placeholder='Add...' onChange={(e) => setInput(e.target.value)} />
+                    <input value={input} placeholder='Add...' onChange={(e) => setInput(e.target.value)} />
                     <button onClick={() => handleAddItem()}>+</button>
                 </div>
-                    <br />
-                    <button onClick={() => handleUpdateDatabase()} style={{textDecoration:"bold"}}>UPDATE</button>
+                <br />
+                <button onClick={() => handleUpdateDatabase()} style={{ textDecoration: "bold" }}>UPDATE</button>
             </div>
         </div>
     );

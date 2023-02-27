@@ -21,7 +21,7 @@ function News(props) {
     useEffect(() => {
         async function getUserInfo() {
             try {
-                const response = await axios.get('http://localhost:8000/getInfo/news', {
+                const response = await axios.get('https://asafdashserver.onrender.com/getInfo/news', {
                     headers: { Authorization: userToken }
                 });
                 setDisplayData(response.data.topicData);

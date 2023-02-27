@@ -46,7 +46,7 @@ function Login(props) {
 
         // Send the information to the server to check if login is valid
         try {
-            axios.post('http://localhost:8000/login', sendServerLogin)
+            axios.post('https://asafdashserver.onrender.com/login', sendServerLogin)
                 .then((res) => {
                     // Save the token to local storage
                     localStorage.setItem('Dashboard-user-token', res.data.token);
@@ -120,7 +120,7 @@ function Login(props) {
         // Add user data to database
         try {
             // Send newUser to server to add to database
-            axios.post('http://localhost:8000/signup', newUser)
+            axios.post('https://asafdashserver.onrender.com/signup', newUser)
                 .then(() => {
                     setErrorMessages("accountCreated");
                 })

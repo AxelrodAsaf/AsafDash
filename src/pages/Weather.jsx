@@ -11,7 +11,7 @@ function Weather(props) {
 
     useEffect(() => {
         async function getData() {
-            const response = await axios.get('http://localhost:8000/getInfo/weather', {
+            const response = await axios.get('https://asafdashserver.onrender.com/getInfo/weather', {
                 headers: { Authorization: userToken ? userToken : undefined }
             });
             setWeatherCities(response.data.topicData);
@@ -21,7 +21,7 @@ function Weather(props) {
 
     return (
         <div className='weather-main'>
-            <Navbar themeLight={themeLight} setThemeLight={setThemeLight}/>
+            <Navbar themeLight={themeLight} setThemeLight={setThemeLight} />
             <h1 className='weather-h1'>Weather</h1>
             <div className='weather-component-div'>
                 {weatherCities.map(city => (
