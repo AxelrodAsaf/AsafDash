@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import logoutpic from '../assets/logout.png';
-import loginpic from '../assets/login.png';
-import themeswap from '../assets/themeswap.png';
 import Login from './Login';
-import instagram from '../assets/insta.png';
-import facebook from '../assets/facebook.png';
-import twitter from '../assets/twitter.png';
-import github from '../assets/github.png';
-import linkedin from '../assets/linkedin.png';
+import lightLogoutPic from '../assets/logout.png';
+import lightLoginPic from '../assets/login.png';
+import lightThemeSwap from '../assets/themeswap.png';
+import lightInstagram from '../assets/insta.png';
+import lightFacebook from '../assets/facebook.png';
+import lightTwitter from '../assets/twitter.png';
+import lightGithub from '../assets/github.png';
+import lightLinkedin from '../assets/linkedin.png';
+import darkLogoutPic from '../assets/darkModeLogos/logout.png';
+import darkLoginPic from '../assets/darkModeLogos/login.png';
+import darkThemeSwap from '../assets/darkModeLogos/themeswap.png';
+import darkInstagram from '../assets/darkModeLogos/insta.png';
+import darkFacebook from '../assets/darkModeLogos/facebook.png';
+import darkTwitter from '../assets/darkModeLogos/twitter.png';
+import darkGithub from '../assets/darkModeLogos/github.png';
+import darkLinkedin from '../assets/darkModeLogos/linkedin.png';
 
 
 
@@ -16,6 +24,14 @@ function Navbar(props) {
     var loggedInUser = localStorage.getItem('userLoggedIn');
     const themeLight = props.themeLight;
     const setThemeLight = props.setThemeLight;
+    const [logoutPic, setLogoutPic] = useState(lightLogoutPic);
+    const [loginPic, setLoginPic] = useState(lightLoginPic);
+    const [themeswap, setThemeswap] = useState(lightThemeSwap);
+    const [instagram, setInstagram] = useState(lightInstagram);
+    const [facebook, setFacebook] = useState(lightFacebook);
+    const [twitter, setTwitter] = useState(lightTwitter);
+    const [github, setGithub] = useState(lightGithub);
+    const [linkedin, setLinkedin] = useState(lightLinkedin);
     const [openLogin, setOpenLogin] = useState(false);
     const navigate = useNavigate();
 
@@ -31,6 +47,31 @@ function Navbar(props) {
         navigate(`/`);
     }
 
+    // Every time the theme is changed between light and dark, change icon colors
+    useEffect(() => {
+        if (themeLight) {
+            setLogoutPic(lightLogoutPic);
+            setLoginPic(lightLoginPic);
+            setThemeswap(lightThemeSwap);
+            setInstagram(lightInstagram);
+            setFacebook(lightFacebook);
+            setTwitter(lightTwitter);
+            setGithub(lightGithub);
+            setLinkedin(lightLinkedin);
+        }
+        else {
+            setLogoutPic(darkLogoutPic);
+            setLoginPic(darkLoginPic);
+            setThemeswap(darkThemeSwap);
+            setInstagram(darkInstagram);
+            setFacebook(darkFacebook);
+            setTwitter(darkTwitter);
+            setGithub(darkGithub);
+            setLinkedin(darkLinkedin);
+        }
+    }, [themeLight])
+
+
 
     return (
         <div className='all-css navbar-main'>
@@ -39,10 +80,10 @@ function Navbar(props) {
                 <div className='navbar-pagebutton navbar-home' onClick={() => navigate(`/`)}>Home</div>
                 <div className='navbar-pagebutton navbar-news' onClick={() => navigate(`/News`)}>News</div>
                 <div className='navbar-pagebutton navbar-weather' onClick={() => navigate(`/Weather`)}>Weather</div>
-                <div className='navbar-pagebutton navbar-calendar' onClick={() => navigate(`/Calendar`)}>Calendar</div>
-                <div className='navbar-pagebutton navbar-todolist' onClick={() => navigate(`/ToDoList`)}>To Do List</div>
-                <div className='navbar-pagebutton navbar-dailytrackers' onClick={() => navigate(`/DailyTrackers`)}>Daily Trackers</div>
-                <div className='navbar-pagebutton navbar-musicandmovies' onClick={() => navigate(`/MusicAndMovies`)}>Music and Movies</div>
+                {/* <div className='navbar-pagebutton navbar-calendar' onClick={() => navigate(`/Calendar`)}>Calendar</div> */}
+                {/* <div className='navbar-pagebutton navbar-todolist' onClick={() => navigate(`/ToDoList`)}>To Do List</div> */}
+                {/* <div className='navbar-pagebutton navbar-dailytrackers' onClick={() => navigate(`/DailyTrackers`)}>Daily Trackers</div> */}
+                {/* <div className='navbar-pagebutton navbar-musicandmovies' onClick={() => navigate(`/MusicAndMovies`)}>Music and Movies</div> */}
                 <div className='navbar-pagebutton navbar-externallinks' onClick={() => navigate(`/ExternalLinks`)}>External Links</div>
                 { loggedInUser ?
                 <div className='navbar-pagebutton navbar-myhub' onClick={() => navigate(`/MyHub`)}>myHub</div>
@@ -101,13 +142,13 @@ function Navbar(props) {
                 </a>
             </div>
 
-            <h4>{loggedInUser ? loggedInUser : null}</h4>
+            <h4 style={{height: "auto", width: "15vw", display: "flex", alignItems: "center", justifyContent: "center"}}>{loggedInUser ? `${loggedInUser} is currently logged in.` : null}</h4>
             <div className='navbar-extras'>
                 {/* If a user is logged in, show a logout button. Otherwise, show a login/signup button. */}
                 {loggedInUser ?
-                    <img src={logoutpic} alt="logout" className='navbar-logoutpic' onClick={() => logout()} />
+                    <img src={logoutPic} alt="logout" className='navbar-logoutpic' onClick={() => logout()} />
                     :
-                    <img src={loginpic} alt="login" className='navbar-logoutpic' onClick={() => setOpenLogin(!openLogin)} />
+                    <img src={loginPic} alt="login" className='navbar-logoutpic' onClick={() => setOpenLogin(!openLogin)} />
                 }
 
                 {/* Show the theme swap icon, swap upon clicking. */}
