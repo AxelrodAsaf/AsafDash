@@ -23,6 +23,7 @@ function MyHub(props) {
                 const response = await axios.get('http://localhost:8000/getInfo/news', {
                     headers: { Authorization: userToken ? userToken : undefined }
                 });
+                // eslint-disable-next-line react-hooks/exhaustive-deps
                 userObject = response.data.user;
                 console.log(`The data received from the server: ${userObject}`);
                 setLists([
@@ -88,50 +89,64 @@ function MyHub(props) {
         } catch (error) {
             console.error(error);
         }
+        setInput('');
     };
 
 
     return (
         <div>
             <Navbar themeLight={themeLight} setThemeLight={setThemeLight} />
-            <div className="news-page-div">
+            <div className="myhub-main">
+                <div style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    }}>
+                    <h1>myHub</h1>
+                        <p style={{ textAlign: "center" }}>
+                    <strong style={{ textDecoration: "underline"}}>CLICK ON THE LIST YOU WANT TO UPDATE<br /></ strong>
+                            PRESS - TO REMOVE AN ITEM<br />
+                            TYPE AND PRESS + TO ADD AN ITEM<br />
+                            PRESS "UPDATE" TO SAVE A LIST</p>
+                </div>
                 <h4 className="tabs">
                     <div style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "center",
-                        alignItems: "center",
+                        width: "100%",
                     }}>
                         {lists.map((list, index) => (
                             <h3 style={{
                                 display: "flex",
                                 flexDirection: "row",
                                 justifyContent: "center",
-                                alignItems: "center"
+                                alignItems: "center",
+                                textDecoration: activeTab === index ? "underline" : "none",
                             }}
                                 key={index} className={activeTab === index ? 'active' : ''} onClick={() => handleTabClick(index)}>
                                 {editableTopics[index].toUpperCase()}
+                                <br />
                             </h3>
                         ))}
                     </div>
+                <hr style={{color: "black", width: "100%"}} />
                 </h4>
                 <div className="items">
                     {lists[activeTab].map((item, index) => (
                         <div key={index} className="item"
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            justifyContent: "space-between",
-                        }}
+                            style={{
+                                display: "flex",
+                                flexDirection: "row",
+                                justifyContent: "space-between",
+                            }}
                         >
                             <span>{item}</span>
                             <button onClick={() => handleRemoveItem(index)}>X</button>
                         </div>
                     ))}
-                <input placeholder='Add...' onChange={(e) => setInput(e.target.value)} />
-                <button onClick={() => handleAddItem()}>+</button>
-                <button onClick={() => handleUpdateDatabase()}>SAVE CHANGES</button>
+                    <input value={input}  placeholder='Add...' onChange={(e) => setInput(e.target.value)} />
+                    <button onClick={() => handleAddItem()}>+</button>
                 </div>
+                    <br />
+                    <button onClick={() => handleUpdateDatabase()} style={{textDecoration:"bold"}}>UPDATE</button>
             </div>
         </div>
     );

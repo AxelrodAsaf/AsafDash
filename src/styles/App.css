@@ -1,25 +1,26 @@
 /* @import url('https: //fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap'); */
-.themetrue {
-  --background: #EAEAEA;
-  --widgetBackground: rgba(119, 119, 119, .15);
-  --headers: #CECECE;
-  --borders: #B1B1B1;
-  --maintext: #222222;
-  --secondarytext: #777777;
-  background-color: var(--background);
-}
-
 .all-css {
   background-color: var(--background);
   color: var(--maintext);
+  overflow: hidden;
+}
+
+.themetrue {
+  --background: ##FAE2C2;
+  --widgetBackground: rgba(119, 119, 119, .15);
+  --headers: #848282;
+  --borders: #D7C9C2;
+  --maintext: #2A343B;
+  --secondarytext: #5A5E64;
+  background-color: var(--background);
 }
 
 .themefalse {
-  --background: #777777;
-  --borders: #B1B1B1;
-  --headers: #CECECE;
-  --maintext: #DDDDDD;
-  --secondarytext: #EAEAEA;
+  --background: #2A343B;
+  --borders: #5A5E64;
+  --headers: #848282;
+  --secondarytext: #D7C9C2;
+  --maintext: #FAE2C2;
 }
 
 html {
@@ -110,12 +111,6 @@ html {
 }
 
 .navbar-externallinks {
-  background-color: burlywood;
-  color: red;
-  text-decoration: line-through;
-}
-
-.navbar-myhub {
   background-color: burlywood;
   color: red;
   text-decoration: line-through;
@@ -237,7 +232,9 @@ html {
   background-color: var(--widgetBackground);
   border: var(--borders) 2px solid;
   border-radius: .5vw;
+  width: 300px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   margin: 15px;
@@ -273,8 +270,8 @@ html {
 .home-currency {
   height: 3vw;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
@@ -402,6 +399,7 @@ html {
 .news-widgets {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   width: 85vw;
 }
 
@@ -441,7 +439,7 @@ html {
   text-decoration: underline;
 }
 
-.news-margins{
+.news-margins {
   margin-bottom: 3vw;
 }
 
@@ -455,7 +453,7 @@ html {
   font-size: medium;
 }
 
-.news-subject{
+.news-subject {
   color: var(--maintext);
 }
 
@@ -466,4 +464,74 @@ html {
 
 .news-hr {
   width: 30vw;
+}
+
+
+/* Weather */
+.weather-main {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--background);
+  border-color: var(--borders);
+  color: var(--maintext);
+}
+
+.weather-h1 {
+  margin-left: 15vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather-component-div {
+  margin-left: 15vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.weather p {
+  margin: 1.5vw;
+}
+
+.weather-right {
+  direction: rtl;
+}
+
+.weather-widget {
+  background-color: var(--widgetBackground);
+  border: var(--borders) 2px solid;
+  border-radius: .5vw;
+  width: 17vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+}
+
+/* myHub */
+.myhub-main {
+  background-color: var(--background);
+  border-color: var(--borders);
+  color: var(--maintext);
+  margin-left: 15vw;
+  width: 85vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 15vw;
+  height: 100vh;
+}
+
+/* External Links */
+.external-main {
+  background-color: burlywood;
+  color: red;
+  text-decoration: line-through;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  margin-left: 15vw;
 }
