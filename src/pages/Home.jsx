@@ -17,6 +17,7 @@ function Home(props) {
     const [convCurrency, setConvCurrency] = useState('');
     const [convCurrency2, setConvCurrency2] = useState('');
     var loggedInUser = localStorage.getItem('userLoggedIn');
+    const equals = ' = ';
 
     // Define the variable userFirstName as the local storage value of Dashboard-user-firstName
     const userFirstName = localStorage.getItem('Dashboard-user-firstName');
@@ -116,44 +117,16 @@ function Home(props) {
         });
     }, []);
 
-    function sendToken() {
-        console.log(`Token sent at ${clock}`);
-        // Send the server a request with the token
-            // Get the token from the local storage
-            const token = localStorage.getItem('Dashboard-user-token');
-            // Send a get request to the server with the token with headers
-            const options = {
-                method: 'GET',
-                url: 'http://localhost:8000/token',
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            };
-            axios.request(options)
-            .then((res) => {
-                console.log(res.data);
-            })
-            .catch((err) => {
-                console.error(err);
-                // Log out the user when the token is invalid
-                // logout();
-            });
-    }
-
-
-
     return (
         <div className='all-css'>
             {/* {loggedInUser? <Navbar themeLight={themeLight} setThemeLight={setThemeLight}/> : <Login/>} */}
             <Navbar themeLight={themeLight} setThemeLight={setThemeLight} />
 
-            <div className={`home-widgetgrid`}>
+            <div className="home-widgetgrid">
                 <div className="home-left">
                     <div className="widget">
                         {/* If there's a user signed in, print their first name that is saved in local storage */}
                         <h1 className='home-namewidget'>Hey {loggedInUser ? userFirstName : "friend"}!</h1>
-
-                        
                     </div>
                     <div className="widget home-clock">
                         <p>Current Date and Time: </p>
@@ -161,8 +134,6 @@ function Home(props) {
                     </div>
                     <div className="home-weather widget">
                         <div className="home-weather-left">
-                            {/* <p>Latitude:</p>
-                            <p>Longitude:</p> */}
                             <p>City Name:</p>
                             <p>Conditions:</p>
                             <p>Temp:</p>
@@ -170,8 +141,6 @@ function Home(props) {
                             <p>Humidity:</p>
                         </div>
                         <div className="home-weather-right">
-                            {/* <p><strong>{locLat ? locLat : <></>}</strong></p>
-                            <p><strong>{locLong? locLong : <></>}</strong></p> */}
                             <p><strong>{localName ? localName : <></>}</strong></p>
                             <p><strong>{localWeatherType ? localWeatherType : <></>}</strong></p>
                             <p><strong>{localTemp ? localTemp : <></>}°C   /   {Math.round((localTemp * (9 / 5)) + 32)}°F</strong></p>
@@ -182,30 +151,33 @@ function Home(props) {
                     <div className="home-currency widget">
                         <div className="home-currency-left">
                             <div className="home-currency-left-sub">
-                                <strong>{convCurrency.new_currency}-</strong>
                                 <strong>{convCurrency.new_amount}</strong>
+                                <strong>{convCurrency.new_currency}</strong>
                             </div>
+                                <strong>{equals}</strong>
                             <div className="home-currency-left-sub">
-                                <p>{convCurrency.old_currency}-</p>
                                 <p>{convCurrency.old_amount}</p>
+                                <p>{convCurrency.old_currency}</p>
                             </div>
                         </div>
                         <div className="home-currency-vl" />
                         <div className="home-currency-right">
                             <div className="home-currency-right-sub">
-                                <strong>{convCurrency2.new_currency}-</strong>
                                 <strong>{convCurrency2.new_amount}</strong>
+                                <strong>{convCurrency2.new_currency}</strong>
                             </div>
+                                <strong>{equals}</strong>
                             <div className="home-currency-right-sub">
-                                <p>{convCurrency2.old_currency}-</p>
                                 <p>{convCurrency2.old_amount}</p>
+                                <p>{convCurrency2.old_currency}</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="home-right">
-                    <NewsSection searchInput={"Trending"} />
-                    <button onClick={() => sendToken()}>SEND TOKEN TO SERVER!</button>
+                    <div style={{marginTop: "10vw"}}>
+                        <NewsSection searchInput={"News"}/>
+                    </div>
                     <div className='testwidget'></div>
                     <div className='testwidget'></div>
                     <div className='testwidget'></div>
