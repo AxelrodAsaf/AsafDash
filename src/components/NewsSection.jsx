@@ -9,6 +9,7 @@ function NewsSection(props) {
     const keyTwo = process.env.REACT_APP_NEWS_KEY_TWO;
     const keyThree = process.env.REACT_APP_NEWS_KEY_THREE;
     const keyFour = process.env.REACT_APP_NEWS_KEY_FOUR;
+    const [newsAPITries, setNewsAPITries] = 0;
     const [keyId, setKeyId] = useState(keyTwo); // Set the default key here
     const saveTitle = props.saveTitle;
     const saveUrl = props.saveUrl;
@@ -29,16 +30,21 @@ function NewsSection(props) {
 
     useEffect(() => {
         const keySwap = () => {
-            if (keyId === keyOne) {
-                setKeyId(keyTwo);
-            } else if (keyId === keyTwo) {
-                setKeyId(keyThree);
-            } else if (keyId === keyThree) {
-                setKeyId(keyFour);
-            } else if (keyId === keyFour) {
-                setKeyId(keyOne);
-            } else {
-                console.log("ERROR CALCULATING KEY");
+            if (newsAPITries < 4) {
+                if (keyId === keyOne) {
+                    setKeyId(keyTwo);
+                } else if (keyId === keyTwo) {
+                    setKeyId(keyThree);
+                } else if (keyId === keyThree) {
+                    setKeyId(keyFour);
+                } else if (keyId === keyFour) {
+                    setKeyId(keyOne);
+                } else {
+                    console.log("ERROR CALCULATING KEY");
+                }
+            }
+            else {
+                return console.error(`Error with newsAPITries -  key failure or limit reached.`);
             }
         };
 
@@ -63,9 +69,14 @@ function NewsSection(props) {
                 setArticles(data.articles);
 
             } catch (error) {
+                console.log(`NewsAPI error: ${error}`);
                 if (userSearch === "") {
-                } else {
+                }
+                else if ((newsAPITries.length < 3) && (error.response.status === 426)) {
+                    setNewsAPITries(newsAPITries + 1);
                     keySwap();
+                }
+                else {
                     console.error(error);
                     // document.getElementById("errorMessage").style.display = "block";
                 }
