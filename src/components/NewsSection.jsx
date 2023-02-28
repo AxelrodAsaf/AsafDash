@@ -50,6 +50,7 @@ function NewsSection(props) {
 
         const getArticles = async () => {
             try {
+                console.log(`newsAPITries: ${newsAPITries}`);
                 // document.getElementById("errorMessage").style.display = "none";
                 const searchUrl =
                     "https://newsapi.org/v2/everything?q=" +
@@ -75,7 +76,6 @@ function NewsSection(props) {
                     return;
                 } else if (newsAPITries < 3) {
                     setNewsAPITries(newsAPITries + 1);
-                    console.log(newsAPITries);
                     keySwap();
                 } else if ( error.response?.status === 426) {
                     console.error(`Error with search attempts. Response says too many requests.`);
