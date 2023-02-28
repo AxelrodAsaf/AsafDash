@@ -4,8 +4,6 @@ import NewsItem from './NewsItem';
 import '../styles/App.css';
 
 function NewsSection(props) {
-
-
     const [articles, setArticles] = useState([]);
     const keyOne = process.env.REACT_APP_NEWS_KEY_ONE;
     const keyTwo = process.env.REACT_APP_NEWS_KEY_TWO;
@@ -54,8 +52,11 @@ function NewsSection(props) {
                     `${displayDate}` +
                     "&sortBy=popularity&apiKey=" +
                     `${keyId}`;
-                // console.log(`Sent request for ${userSearch} with key ${keyId}`);
-                // console.log(`Sent request for ${userSearch} with url: ${searchUrl}`);
+                console.log(`Sent request for ${userSearch} \n
+                with userSearch: ${userSearch} \n
+                with displayDate: ${displayDate} \n
+                with key ${keyId} \n
+                to url ${searchUrl}`);
                 const res = await axios.get(searchUrl)
                 const { data } = res;
                 // console.log(data);
