@@ -70,18 +70,21 @@ function NewsSection(props) {
 
             } catch (error) {
                 console.log(`NewsAPI error: ${error}`);
-                if (userSearch === "") {
-                }
-                else if ((newsAPITries.length < 3) && (error.response.status === 426)) {
+                if (!userSearch) {
+                    console.error(`Error with userSearch: ${userSearch}. Seems empty.`);
+                    return;
+                } else if (newsAPITries < 3) {
                     setNewsAPITries(newsAPITries + 1);
                     console.log(newsAPITries);
                     keySwap();
-                }
-                else {
+                } else if ( error.response?.status === 426) {
+                    console.error(`Error with search attempts. Response says too many requests.`);
+                } else {
                     console.error(error);
                     // document.getElementById("errorMessage").style.display = "block";
                 }
             }
+
 
         };
         getArticles();
