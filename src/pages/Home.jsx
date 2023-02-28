@@ -80,41 +80,51 @@ function Home(props) {
         const tempAPIKEY = process.env.REACT_APP_CURRENCY_APIKEY;
         const tempAPIHOST = process.env.REACT_APP_CURRENCY_APIHOST;
 
-        const options = {
-            method: 'GET',
-            url: tempAPIURL,
-            params: { have: 'USD', want: 'ILS', amount: '1' },
-            headers: {
-                'X-RapidAPI-Key': tempAPIKEY,
-                'X-RapidAPI-Host': tempAPIHOST
+        const fetchData = async () => {
+            const options = {
+                method: 'GET',
+                url: tempAPIURL,
+                params: { have: 'USD', want: 'ILS', amount: '1' },
+                headers: {
+                    'X-RapidAPI-Key': tempAPIKEY,
+                    'X-RapidAPI-Host': tempAPIHOST
+                }
+            };
+            try {
+                const response = await axios.request(options);
+                setConvCurrency(response.data);
+            } catch (error) {
+                console.error(error);
             }
         };
-        axios.request(options).then(function (response) {
-            setConvCurrency(response.data)
-        }).catch(function (error) {
-            console.error(error);
-        });
+
+        fetchData();
     }, []);
+
     // ILS to USD
     useEffect(() => {
         const tempAPIURL = process.env.REACT_APP_CURRENCY_APIURL;
         const tempAPIKEY = process.env.REACT_APP_CURRENCY_APIKEY;
         const tempAPIHOST = process.env.REACT_APP_CURRENCY_APIHOST;
-        
-        const options = {
-            method: 'GET',
-            url: tempAPIURL,
-            params: { have: 'ILS', want: 'USD', amount: '1' },
-            headers: {
-                'X-RapidAPI-Key': tempAPIKEY,
-                'X-RapidAPI-Host': tempAPIHOST
+
+        const fetchData = async () => {
+            const options = {
+                method: 'GET',
+                url: tempAPIURL,
+                params: { have: 'ILS', want: 'USD', amount: '1' },
+                headers: {
+                    'X-RapidAPI-Key': tempAPIKEY,
+                    'X-RapidAPI-Host': tempAPIHOST
+                }
+            };
+            try {
+                const response = await axios.request(options);
+                setConvCurrency2(response.data);
+            } catch (error) {
+                console.error(error);
             }
-        };
-        axios.request(options).then(function (response) {
-            setConvCurrency2(response.data)
-        }).catch(function (error) {
-            console.error(error);
-        });
+        }
+        fetchData();
     }, []);
 
     return (
@@ -154,7 +164,7 @@ function Home(props) {
                                 <strong>{convCurrency.new_amount}</strong>
                                 <strong>{convCurrency.new_currency}</strong>
                             </div>
-                                <strong>{equals}</strong>
+                            <strong>{equals}</strong>
                             <div className="home-currency-left-sub">
                                 <p>{convCurrency.old_amount}</p>
                                 <p>{convCurrency.old_currency}</p>
@@ -166,7 +176,7 @@ function Home(props) {
                                 <strong>{convCurrency2.new_amount}</strong>
                                 <strong>{convCurrency2.new_currency}</strong>
                             </div>
-                                <strong>{equals}</strong>
+                            <strong>{equals}</strong>
                             <div className="home-currency-right-sub">
                                 <p>{convCurrency2.old_amount}</p>
                                 <p>{convCurrency2.old_currency}</p>
@@ -175,8 +185,8 @@ function Home(props) {
                     </div>
                 </div>
                 <div className="home-right">
-                    <div style={{marginTop: "10vw"}}>
-                        <NewsSection searchInput={"News"}/>
+                    <div style={{ marginTop: "10vw" }}>
+                        <NewsSection searchInput={"News"} />
                     </div>
                     <div className='testwidget'></div>
                     <div className='testwidget'></div>
