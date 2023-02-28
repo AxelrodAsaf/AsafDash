@@ -17,6 +17,9 @@ function Home(props) {
     const [convCurrency, setConvCurrency] = useState('');
     const [convCurrency2, setConvCurrency2] = useState('');
     var loggedInUser = localStorage.getItem('userLoggedIn');
+    const currencyAPIURL = process.env.REACT_APP_CURRENCY_APIURL;
+    const currencyAPIKEY = process.env.REACT_APP_CURRENCY_APIKEY;
+    const currencyAPIHOST = process.env.REACT_APP_CURRENCY_APIHOST;
     const equals = ' = ';
 
     // Define the variable userFirstName as the local storage value of Dashboard-user-firstName
@@ -73,21 +76,16 @@ function Home(props) {
     }, [localWeatherType])
 
 
-    // Currency converter widget:
-    // USD to ILS
+    // Currency widget:
     useEffect(() => {
-        const tempAPIURL = process.env.REACT_APP_CURRENCY_APIURL;
-        const tempAPIKEY = process.env.REACT_APP_CURRENCY_APIKEY;
-        const tempAPIHOST = process.env.REACT_APP_CURRENCY_APIHOST;
-
-        const fetchData = async () => {
+        async function fetchCurrencyData(have, want, setConvCurrency) {
             const options = {
                 method: 'GET',
-                url: tempAPIURL,
-                params: { have: 'USD', want: 'ILS', amount: '1' },
+                url: currencyAPIURL,
+                params: { have, want, amount: '1' },
                 headers: {
-                    'X-RapidAPI-Key': tempAPIKEY,
-                    'X-RapidAPI-Host': tempAPIHOST
+                    'X-RapidAPI-Key': currencyAPIKEY,
+                    'X-RapidAPI-Host': currencyAPIHOST
                 }
             };
             try {
@@ -96,36 +94,11 @@ function Home(props) {
             } catch (error) {
                 console.error(error);
             }
-        };
-
-        fetchData();
-    }, []);
-
-    // ILS to USD
-    useEffect(() => {
-        const tempAPIURL = process.env.REACT_APP_CURRENCY_APIURL;
-        const tempAPIKEY = process.env.REACT_APP_CURRENCY_APIKEY;
-        const tempAPIHOST = process.env.REACT_APP_CURRENCY_APIHOST;
-
-        const fetchData = async () => {
-            const options = {
-                method: 'GET',
-                url: tempAPIURL,
-                params: { have: 'ILS', want: 'USD', amount: '1' },
-                headers: {
-                    'X-RapidAPI-Key': tempAPIKEY,
-                    'X-RapidAPI-Host': tempAPIHOST
-                }
-            };
-            try {
-                const response = await axios.request(options);
-                setConvCurrency2(response.data);
-            } catch (error) {
-                console.error(error);
-            }
         }
-        fetchData();
-    }, []);
+        fetchCurrencyData('USD', 'ILS', setConvCurrency);
+        fetchCurrencyData('ILS', 'USD', setConvCurrency2);
+    }, [currencyAPIHOST, currencyAPIKEY, currencyAPIURL]);
+
 
     return (
         <div className='all-css'>
