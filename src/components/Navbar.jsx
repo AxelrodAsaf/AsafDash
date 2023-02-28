@@ -84,10 +84,11 @@ function Navbar(props) {
                 {/* <div className='navbar-pagebutton navbar-todolist' onClick={() => navigate(`/ToDoList`)}>To Do List</div> */}
                 {/* <div className='navbar-pagebutton navbar-dailytrackers' onClick={() => navigate(`/DailyTrackers`)}>Daily Trackers</div> */}
                 {/* <div className='navbar-pagebutton navbar-musicandmovies' onClick={() => navigate(`/MusicAndMovies`)}>Music and Movies</div> */}
-                <div className='navbar-pagebutton navbar-externallinks' onClick={() => navigate(`/ExternalLinks`)}>External Links</div>
+                {/* <div className='navbar-pagebutton navbar-externallinks' onClick={() => navigate(`/ExternalLinks`)}>External Links</div> */}
                 { loggedInUser ?
                 <div className='navbar-pagebutton navbar-myhub' onClick={() => navigate(`/MyHub`)}>myHub</div>
                 : null }
+                <div className='navbar-pagebutton navbar-weather' style={{backgroundColor: "darkgray", color: "red"}}>More to come soon...</div>
             </div>
 
             {/* If true, opens the login/signup box. Otherwise, do nothing. */}
