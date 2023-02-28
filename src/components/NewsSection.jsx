@@ -84,7 +84,7 @@ function NewsSection(props) {
 
         };
         getArticles();
-    }, [displayDate, keyId, userSearch, keyOne, keyTwo, keyThree, keyFour]);
+    }, [displayDate, keyId, userSearch, keyOne, keyTwo, keyThree, keyFour, newsAPITries]);
 
 
 
