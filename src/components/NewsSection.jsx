@@ -9,8 +9,8 @@ function NewsSection(props) {
     const keyTwo = process.env.REACT_APP_NEWS_KEY_TWO;
     const keyThree = process.env.REACT_APP_NEWS_KEY_THREE;
     const keyFour = process.env.REACT_APP_NEWS_KEY_FOUR;
-    const [newsAPITries, setNewsAPITries] = 0;
     const [keyId, setKeyId] = useState(keyTwo); // Set the default key here
+    const [newsAPITries, setNewsAPITries] = useState(0);
     const saveTitle = props.saveTitle;
     const saveUrl = props.saveUrl;
     const userSearch = props.searchInput;

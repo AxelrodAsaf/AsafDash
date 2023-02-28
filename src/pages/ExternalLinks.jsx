@@ -1,21 +1,40 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 // import Login from '../components/Login';
 import Navbar from '../components/Navbar';
 
 function ExternalLinks(props) {
     const themeLight = props.themeLight;
     const setThemeLight = props.setThemeLight;
-    // var userLoggedIn = JSON.parse(localStorage.getItem('userLoggedIn'));
+    const [externalLinks, setExternalLinks] = useState([]);
+    const userToken = localStorage.getItem('Dashboard-user-token');
+
+    useEffect(() => {
+        async function getData() {
+            const response = await axios.get('https://asafdashserver.onrender.com/getInfo/externallinks', {
+                headers: { Authorization: userToken ? userToken : undefined }
+            });
+            setExternalLinks(response.data.topicData);
+        }
+        getData();
+    }, [userToken]);
 
     return (
         <div>
-            {/* {userLoggedIn? <Navbar themeLight={themeLight} setThemeLight={setThemeLight}/> : <Login/>} */}
             <Navbar themeLight={themeLight} setThemeLight={setThemeLight} />
-            <h1>ExternalLinks</h1>
+            <div className='external-main'>
+                <h1>External Links</h1>
 
+                {externalLinks.map(website => (
+                    <div>
+                        <a href={website}>
+                            <h2>{website}</h2>
+                        </a>
+                        <br />
+                    </div>
+                ))}
 
-
-
+            </div>
         </div>
     );
 }
