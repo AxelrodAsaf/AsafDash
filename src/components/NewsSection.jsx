@@ -74,6 +74,7 @@ function NewsSection(props) {
                 }
                 else if ((newsAPITries.length < 3) && (error.response.status === 426)) {
                     setNewsAPITries(newsAPITries + 1);
+                    console.log(newsAPITries);
                     keySwap();
                 }
                 else {
