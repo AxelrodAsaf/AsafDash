@@ -3,12 +3,13 @@ import axios from 'axios';
 import '../styles/App.css';
 
 function Login(props) {
+    const themeLight = props.themeLight;
     const setOpenLogin = props.setOpenLogin;
     const [errorMessages, setErrorMessages] = useState();
     const [formToggle, setFormToggle] = useState(true);
 
     // Shows the proper form needed by the user when called
-    function showForm(formToggle) {
+    function formType(formToggle) {
         // (true is defined as login)
         if (formToggle === true) {
             return (loginForm)
@@ -89,8 +90,8 @@ function Login(props) {
                     <input onChange={(e) => setLoginPass(e.target.value)} id='loginForm-password' type="password" name="password" required className="login-form-password input" placeholder='Password' />
                 </div>
                 <div className="login-submit">
-                    <input type="submit" className="login-form-submit button" />
-                    <button className="login-form-submit toggle-form" onClick={() => setFormToggle(!formToggle)}>SIGN UP</button>
+                    <input type="submit" className="login-form-submit-button" />
+                    <button className="login-form-submit-button toggle-form" onClick={() => setFormToggle(!formToggle)}>SIGN UP</button>
                 </div>
             </form>
             {renderErrorMessage("email")}
@@ -177,8 +178,9 @@ function Login(props) {
     );
 
     return (
-        <div className='all-css login-page-div'>
-            {showForm(formToggle)}
+        <div className='all-css login-page-div' style={themeLight? {backgroundColor: "white"}:{}}>
+            {formType(formToggle)}
+            <button className='all-css signup-form-submit' style={{marginBottom:'1vh', height: '4vh'}} onClick={() => setOpenLogin(false)}>CLOSE</button>
         </div>
     );
 }
