@@ -10,7 +10,7 @@ const NewsItem = (props) => {
 
     // Section defines what the news card looks like structurally
     return (
-        <div className={`news-app`}>
+        <div className={`news-app`} >
             <div className={`news-item `}>
                 <a href={url} target="_blank" rel="noreferrer">
                     <img

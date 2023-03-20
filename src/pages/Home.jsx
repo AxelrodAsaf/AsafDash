@@ -158,12 +158,9 @@ function Home(props) {
                     </div>
                 </div>
                 <div className="home-right">
-                    <div style={{ marginTop: "10vw" }}>
+                    <div style={{ marginTop: "10vw", height: "100vh" }}>
                         <NewsSection searchInput={"News"} />
                     </div>
-                    <div className='testwidget'></div>
-                    <div className='testwidget'></div>
-                    <div className='testwidget'></div>
                 </div>
             </div>
         </div>

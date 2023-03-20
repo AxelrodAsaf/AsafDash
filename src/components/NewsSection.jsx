@@ -97,7 +97,8 @@ function NewsSection(props) {
     return (
         <div className='news-margins'>
             <h3 className='news-subject'>{userSearch}</h3>
-            <div className='news-widget'>
+            {/* <div className='news-widget'> */}
+            <div {...(userSearch === 'News')? {className: "home-news-widget"} : {className: 'news-widget'}} >
                 {articles?.map((article, index) =>
                     <NewsItem
                         key={index}
