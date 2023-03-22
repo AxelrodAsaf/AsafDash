@@ -93,7 +93,7 @@ function Navbar(props) {
             {/* If true, opens the login/signup box. Otherwise, do nothing. */}
             {openLogin ? <Login themeLight={themeLight} setOpenLogin={setOpenLogin} /> : <></>}
 
-            <div className="navbar-socials">
+            <div className="navbar-socials" style={themeLight ? { backgroundColor: "white" } : {}}>
                 <a className="socialPic" href="https://www.facebook.com/AxelrodAsaf">
                     <img
                         alt="Social Media Logo"
