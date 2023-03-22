@@ -57,6 +57,7 @@ function Login(props) {
                     localStorage.setItem('Dashboard-user-firstName', res.data.firstName);
                     // Close the login form
                     setOpenLogin(false);
+                    window.location.reload();
                 })
                 .catch((error) => {
                     console.error(error);
