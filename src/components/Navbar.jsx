@@ -76,18 +76,18 @@ function Navbar(props) {
     return (
         <div className='all-css navbar-main'>
             <div className='navbar-buttons'>
-                <div className='navbar-pagebutton navbar-home' onClick={() => navigate(`/`)}>Home</div>
-                <div className='navbar-pagebutton navbar-news' onClick={() => navigate(`/News`)}>News</div>
-                <div className='navbar-pagebutton navbar-weather' onClick={() => navigate(`/Weather`)}>Weather</div>
+                <div className='navbar-pagebutton navbar-home cursorPointer' onClick={() => navigate(`/`)}>Home</div>
+                <div className='navbar-pagebutton navbar-news cursorPointer' onClick={() => navigate(`/News`)}>News</div>
+                <div className='navbar-pagebutton navbar-weather cursorPointer' onClick={() => navigate(`/Weather`)}>Weather</div>
                 {/* <div className='navbar-pagebutton navbar-externallinks' onClick={() => navigate(`/ExternalLinks`)}>External Links</div> */}
                 {/* <div className='navbar-pagebutton navbar-calendar' onClick={() => navigate(`/Calendar`)}>Calendar</div> */}
                 {/* <div className='navbar-pagebutton navbar-todolist' onClick={() => navigate(`/ToDoList`)}>To Do List</div> */}
                 {/* <div className='navbar-pagebutton navbar-dailytrackers' onClick={() => navigate(`/DailyTrackers`)}>Daily Trackers</div> */}
                 {/* <div className='navbar-pagebutton navbar-musicandmovies' onClick={() => navigate(`/MusicAndMovies`)}>Music and Movies</div> */}
                 { loggedInUser ?
-                <div className='navbar-pagebutton navbar-myhub' onClick={() => navigate(`/MyHub`)}>myHub</div>
+                    <div className='navbar-pagebutton navbar-myhub cursorPointer' onClick={() => navigate(`/MyHub`)}>myHub</div>
                 : null }
-                <div className='navbar-pagebutton navbar-weather' style={{backgroundColor: "gray", color: "red"}}>More to come soon...</div>
+                <div className='navbar-pagebutton navbar-weather' style={{backgroundColor: "lightgray", color: "red", cursor: "not-allowed" }}>More to come soon...</div>
             </div>
 
             {/* If true, opens the login/signup box. Otherwise, do nothing. */}
@@ -146,13 +146,13 @@ function Navbar(props) {
             <div className='navbar-extras' style={openLogin? {marginBottom:'30vh'} : {}}>
                 {/* If a user is logged in, show a logout button. Otherwise, show a login/signup button. */}
                 {loggedInUser ?
-                    <img src={logoutPic} alt="logout" className='navbar-logoutpic' onClick={() => logout()} />
+                    <img src={logoutPic} alt="logout" className='navbar-logoutpic cursorPointer' onClick={() => logout()} />
                     :
-                    <img src={loginPic} alt="login" className='navbar-logoutpic' onClick={() => setOpenLogin(!openLogin)} />
+                    <img src={loginPic} alt="login" className='navbar-logoutpic cursorPointer' onClick={() => setOpenLogin(!openLogin)} />
                 }
 
                 {/* Show the theme swap icon, swap upon clicking. */}
-                <img src={themeswap} alt="theme swap" className='navbar-logoutpic' onClick={() => { setThemeLight(!themeLight); console.log(themeLight) }} />
+                <img src={themeswap} alt="theme swap" className='navbar-logoutpic cursorPointer' onClick={() => { setThemeLight(!themeLight); console.log(themeLight) }} />
             </div>
         </div>
     );

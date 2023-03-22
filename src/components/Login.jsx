@@ -91,7 +91,7 @@ function Login(props) {
                     <input onChange={(e) => setLoginPass(e.target.value)} id='loginForm-password' type="password" name="password" required className="login-form-password input" placeholder='Password' />
                 </div>
                 <div className="login-submit">
-                    <input type="submit" className="login-form-submit-button" />
+                    <button onClick={() => loginSubmit} className="login-form-submit-button cursorPointer">SUBMIT</button>
                     <button className="login-form-submit-button toggle-form" onClick={() => setFormToggle(!formToggle)}>SIGN UP</button>
                 </div>
             </form>

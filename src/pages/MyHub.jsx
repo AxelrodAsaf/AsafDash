@@ -115,6 +115,7 @@ function MyHub(props) {
                     }}>
                         {lists.map((list, index) => (
                             <h3 style={{
+                                cursor: "pointer",
                                 display: "flex",
                                 flexDirection: "row",
                                 justifyContent: "center",
