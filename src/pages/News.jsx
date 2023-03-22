@@ -25,7 +25,6 @@ function News(props) {
                     headers: { Authorization: userToken }
                 });
                 setDisplayData(response.data.topicData);
-                console.log(`The data received from the server: ${response.data.topicData}`);
             } catch (error) {
                 console.error(error);
             }

@@ -14,7 +14,7 @@ function MyHub(props) {
     const editableTopics = [
         "news",
         "weather",
-        "externallinks"
+        // "externallinks"
     ]
 
     useEffect(() => {
@@ -29,7 +29,7 @@ function MyHub(props) {
                 setLists([
                     userObject.news,
                     userObject.weather,
-                    userObject.externallinks
+                    // userObject.externallinks
                 ]);
             } catch (error) {
                 console.error(error);
@@ -44,7 +44,7 @@ function MyHub(props) {
     const [lists, setLists] = useState([
         ['Item 1 for news', 'Item 2 for news', 'Item 3 for news'],
         ['Item 1 for weather', 'Item 2 for weather', 'Item 3 for weather'],
-        ['Item 1 for externallinks', 'Item 2 for externallinks', 'Item 3 for externallinks'],
+        // ['Item 1 for externallinks', 'Item 2 for externallinks', 'Item 3 for externallinks'],
     ]);
 
     // When a different tab is selected, update the active tab
@@ -70,13 +70,13 @@ function MyHub(props) {
     const handleUpdateDatabase = async () => {
         const newsList = lists[0];
         const weatherList = lists[1];
-        const externallinksList = lists[2];
+        // const externallinksList = lists[2];
         try {
             await axios.put('https://asafdashserver.onrender.com/updateInfo', {
                 data: {
                     news: newsList,
                     weather: weatherList,
-                    externallinks: externallinksList
+                    // externallinks: externallinksList
                 }
             }, {
                 headers: {
