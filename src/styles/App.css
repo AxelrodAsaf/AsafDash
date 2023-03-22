@@ -445,8 +445,8 @@ html {
   border-radius: .5vw;
   background-color: var(--widgetBackground);
   margin: 15px;
-  height: 40vw;
-  width: 40vw;
+  height: 45vw;
+  width: 50vw;
   overflow-y: scroll;
 }
 
