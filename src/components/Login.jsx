@@ -79,20 +79,18 @@ function Login(props) {
     // Login form
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPass, setLoginPass] = useState("");
-
     const loginForm = (
         <div className="login-form-div">
             <strong>Log in</strong>
             <form onSubmit={loginSubmit} className="login-form">
                 <div className="login-input">
-                    <input onChange={(e) => setLoginEmail(e.target.value)} id='loginForm-email' type="text" name="email" required className="login-form-email input" placeholder='Email' />
+                    <input value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} id='loginForm-email' type="text" name="email" required className="login-form-email input" placeholder='Email' />
                 </div>
                 <div className="login-input">
-                    <input onChange={(e) => setLoginPass(e.target.value)} id='loginForm-password' type="password" name="password" required className="login-form-password input" placeholder='Password' />
+                    <input value={loginPass} onChange={(e) => setLoginPass(e.target.value)} id='loginForm-password' type="password" name="password" required className="login-form-password input" placeholder='Password' />
                 </div>
                 <div className="login-submit">
                     <button onClick={() => loginSubmit} className="login-form-submit-button cursorPointer">SUBMIT</button>
-                    <button className="login-form-submit-button toggle-form" onClick={() => setFormToggle(!formToggle)}>SIGN UP</button>
                 </div>
             </form>
             {renderErrorMessage("email")}
@@ -107,11 +105,11 @@ function Login(props) {
         data.preventDefault();
 
         // Redefine the variables locally
-        const firstName = data.target[0].value;
-        const email = data.target[1].value;
+        const firstName = signupFirstName;
+        const email = signupEmail;
         const lowerEmail = email.toLowerCase();
-        const password = data.target[2].value;
-        const vpassword = data.target[3].value;
+        const password = signupPass;
+        const vpassword = signupVPass;
         const newUser = { firstName, lowerEmail, password, vpassword };
 
         // Check matching passwords
@@ -143,6 +141,10 @@ function Login(props) {
     }
 
     // Signup form
+    const [signupFirstName, setSignupFirstName] = useState("");
+    const [signupEmail, setSignupEmail] = useState("");
+    const [signupPass, setSignupPass] = useState("");
+    const [signupVPass, setSignupVPass] = useState("");
     const signupForm = (
         <div className="signup-form-div">
             {/* Signup title with form */}
@@ -150,25 +152,24 @@ function Login(props) {
             <form className='signup-form' onSubmit={signupSubmit}>
                 {/* Input of first name */}
                 <div className="signup-input">
-                    <input type="text" name="firstName" required className="signup-form-firstName input" placeholder="First Name" />
+                    <input value={signupFirstName} onChange={(e) => setSignupFirstName(e.target.value)} id='signupForm-firstName' type="text" name="firstName" required className="signup-form-firstName input" placeholder="First Name" />
                 </div>
                 {/* Input of email */}
                 <div className="signup-input">
-                    <input type="text" name="email" required className="signup-form-email input" placeholder="Email" />
+                    <input value={signupEmail} onChange={(e) => setSignupEmail(e.target.value)} id='signupForm-email' type="text" name="email" required className="signup-form-email input" placeholder="Email" />
                 </div>
                 {/* Input of password */}
                 <div className="signup-input">
-                    <input type="text" name="password" required className="signup-form-password input" placeholder="Password" />
+                    <input value={signupPass} onChange={(e) => setSignupPass(e.target.value)} id='signupForm-password' type="password" name="password" required className="signup-form-password input" placeholder="Password" />
                 </div>
                 {/* Input of verify password */}
                 <div className="signup-input">
-                    <input type="text" name="vpassword" required className="signup-form-vpassword input" placeholder="Verify Password" />
+                    <input value={signupVPass} onChange={(e) => setSignupVPass(e.target.value)} id='signupForm-vpassword' type="password" name="vpassword" required className="signup-form-vpassword input" placeholder="Verify Password" />
                 </div>
                 {/* Submit button */}
                 <div className="signup-submit">
-                    <input type="submit" className="signup-form-submit" />
+                    <button onClick={() => signupSubmit} className="signup-form-submit cursorPointer">SUBMIT</button>
                     {/* Allows the user to switch to a login form */}
-                    <button className="signup-form-submit toggle-form" onClick={() => setFormToggle(!formToggle)}>LOG IN</button>
                 </div>
                 {renderErrorMessage("matchingpasswords")}
                 {renderErrorMessage("tryLater")}
@@ -178,10 +179,23 @@ function Login(props) {
         </div>
     );
 
+    function changeFormType() {
+        setLoginEmail("");
+        setLoginPass("");
+        setSignupEmail("");
+        setSignupFirstName("");
+        setSignupPass("");
+        setSignupVPass("");
+        setFormToggle(!formToggle)
+    }
+
     return (
         <div className='all-css login-page-div' style={themeLight? {backgroundColor: "white"}:{}}>
             {formType(formToggle)}
-            <button className='all-css signup-form-submit' style={{marginBottom:'1vh', height: '4vh'}} onClick={() => setOpenLogin(false)}>CLOSE</button>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+            <button className='all-css signup-form-submit' style={{marginBottom: '1vh', height: '4vh' }} onClick={() => changeFormType()}>{formToggle ? "SIGN UP" : "LOG IN" }</button>
+            <button className='all-css signup-form-submit' style={{marginBottom: '1vh', height: '4vh' }} onClick={() => setOpenLogin(false)}>CLOSE</button>
+            </div>
         </div>
     );
 }
