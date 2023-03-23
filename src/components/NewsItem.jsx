@@ -1,5 +1,6 @@
 import React from "react";
 import '../styles/App.css';
+import '../styles/News.css';
 
 const NewsItem = (props) => {
     // Define given props...

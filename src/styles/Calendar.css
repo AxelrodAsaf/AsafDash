@@ -1,0 +1,16 @@
+.calendar-page-div {
+  margin-left: 20vw;
+  width: 85vw;
+  height: 100vh;
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.calendar-grid {
+  display: flex;
+  width: 50vw;
+  gap: 20px;
+}

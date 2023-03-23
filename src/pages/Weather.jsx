@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import WeatherItem from '../components/WeatherItem';
+import '../styles/App.css';
+import '../styles/Weather.css';
 
 function Weather(props) {
     const themeLight = props.themeLight;

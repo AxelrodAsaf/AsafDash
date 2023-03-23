@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import NewsItem from './NewsItem';
 import '../styles/App.css';
+import '../styles/News.css';
+
 
 function NewsSection(props) {
     const [articles, setArticles] = useState([]);

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import '../styles/Navbar.css'
 import { useNavigate } from 'react-router-dom';
 import Login from './Login';
 import lightLogoutPic from '../assets/logout.png';
@@ -74,8 +75,8 @@ function Navbar(props) {
 
 
     return (
-        <div className='all-css navbar-main'>
-            <div className='navbar-buttons'>
+        <div className='all-css navbar-main' style={themeLight ? { backgroundColor: "white" } : {}}>
+            <div className='navbar-buttons' style={themeLight ? { backgroundColor: "white" } : {}}>
                 <div className='navbar-pagebutton navbar-home cursorPointer' onClick={() => navigate(`/`)}>Home</div>
                 <div className='navbar-pagebutton navbar-news cursorPointer' onClick={() => navigate(`/News`)}>News</div>
                 <div className='navbar-pagebutton navbar-weather cursorPointer' onClick={() => navigate(`/Weather`)}>Weather</div>
@@ -87,7 +88,6 @@ function Navbar(props) {
                 { loggedInUser ?
                     <div className='navbar-pagebutton navbar-myhub cursorPointer' onClick={() => navigate(`/MyHub`)}>myHub</div>
                 : null }
-                <div className='navbar-pagebutton navbar-weather' style={{backgroundColor: "lightgray", color: "red", cursor: "not-allowed" }}>More to come soon...</div>
             </div>
 
             {/* If true, opens the login/signup box. Otherwise, do nothing. */}
@@ -142,8 +142,8 @@ function Navbar(props) {
                 </a>
             </div>
 
-            <h4 style={{height: "auto", width: "15vw", display: "flex", alignItems: "center", justifyContent: "center"}}>{loggedInUser ? `${loggedInUser} is currently logged in.` : null}</h4>
-            <div className='navbar-extras' style={openLogin? {marginBottom:'30vh'} : {}}>
+            <h4 className='navbar-loggedInUser' style={loggedInUser ? { textAlign: "center" } : { display: "none" }}>{loggedInUser ? `${loggedInUser} \n is currently logged in.` : null}</h4>
+            <div className='navbar-extras' style={openLogin ? { marginBottom: '30vh' } : themeLight? {backgroundColor: "white"} : null}>
                 {/* If a user is logged in, show a logout button. Otherwise, show a login/signup button. */}
                 {loggedInUser ?
                     <img src={logoutPic} alt="logout" className='navbar-logoutpic cursorPointer' onClick={() => logout()} />

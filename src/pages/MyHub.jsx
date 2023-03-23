@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
+import '../styles/MyHub.css';
 
 function MyHub(props) {
     const themeLight = props.themeLight;
@@ -105,7 +106,7 @@ function MyHub(props) {
                     <h1>myHub</h1>
                     <p style={{ textAlign: "center" }}>
                         <strong style={{ textDecoration: "underline" }}>CLICK ON THE LIST YOU WANT TO UPDATE<br /></ strong>
-                        PRESS - TO REMOVE AN ITEM<br />
+                        PRESS X TO REMOVE AN ITEM<br />
                         TYPE AND PRESS + TO ADD AN ITEM<br />
                         PRESS "UPDATE" TO SAVE A LIST</p>
                 </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Calendar from 'react-calendar';
-// import Login from '../components/Login';
+import '../styles/Calendar.css';
 
 
 function CalendarWidget(props) {

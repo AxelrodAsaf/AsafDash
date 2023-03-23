@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import axios from "axios";
 import '../styles/App.css';
+import '../styles/Home.css';
 import NewsSection from '../components/NewsSection';
 
 function Home(props) {
@@ -158,7 +159,7 @@ function Home(props) {
                     </div>
                 </div>
                 <div className="home-right">
-                    <div style={{ marginTop: "10vw", height: "100vh" }}>
+                    <div className='home-news'>
                         <NewsSection searchInput={"News"} />
                     </div>
                 </div>

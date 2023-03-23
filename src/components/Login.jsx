@@ -8,6 +8,16 @@ function Login(props) {
     const [errorMessages, setErrorMessages] = useState();
     const [formToggle, setFormToggle] = useState(true);
 
+
+    function clearForms() {
+        setLoginEmail("");
+        setLoginPass("");
+        setSignupEmail("");
+        setSignupFirstName("");
+        setSignupPass("");
+        setSignupVPass("");
+    }
+
     // Shows the proper form needed by the user when called
     function formType(formToggle) {
         // (true is defined as login)
@@ -33,7 +43,7 @@ function Login(props) {
     // When called with the type, generates the proper error message at login
     const renderErrorMessage = (name) =>
         name === errorMessages && (
-            <div className="error">{errors[name]}</div>
+            <div className="error" style={{ textAlign: "center" }}>{errors[name]}</div>
         );
 
     // Submit Login
@@ -49,6 +59,7 @@ function Login(props) {
         try {
             axios.post('https://asafdashserver.onrender.com/login', sendServerLogin)
                 .then((res) => {
+                    clearForms();
                     // Save the token to local storage
                     localStorage.setItem('Dashboard-user-token', res.data.token);
                     // Save the user email to local storage
@@ -61,9 +72,9 @@ function Login(props) {
                 })
                 .catch((error) => {
                     console.error(error);
-                    if (error.response.status === 400){
+                    if (error.response.status === 400) {
                         setErrorMessages("email");
-                    } else if (error.response.status === 401){
+                    } else if (error.response.status === 401) {
                         setErrorMessages("pass");
                     }
                     else {
@@ -122,6 +133,7 @@ function Login(props) {
             // Send newUser to server to add to database
             axios.post('https://asafdashserver.onrender.com/signup', newUser)
                 .then(() => {
+                    clearForms();
                     setErrorMessages("accountCreated");
                 })
                 .catch((error) => {
@@ -180,21 +192,16 @@ function Login(props) {
     );
 
     function changeFormType() {
-        setLoginEmail("");
-        setLoginPass("");
-        setSignupEmail("");
-        setSignupFirstName("");
-        setSignupPass("");
-        setSignupVPass("");
+        clearForms()
         setFormToggle(!formToggle)
     }
 
     return (
-        <div className='all-css login-page-div' style={themeLight? {backgroundColor: "white"}:{}}>
+        <div className='all-css login-page-div' style={themeLight ? { backgroundColor: "white" } : {}}>
             {formType(formToggle)}
             <div style={{ display: "flex", flexDirection: "row" }}>
-            <button className='all-css signup-form-submit' style={{marginBottom: '1vh', height: '4vh' }} onClick={() => changeFormType()}>{formToggle ? "SIGN UP" : "LOG IN" }</button>
-            <button className='all-css signup-form-submit' style={{marginBottom: '1vh', height: '4vh' }} onClick={() => setOpenLogin(false)}>CLOSE</button>
+                <button className='all-css signup-form-submit' style={{ marginBottom: '1vh', height: '4vh' }} onClick={() => changeFormType()}>{formToggle ? "SIGN UP" : "LOG IN"}</button>
+                <button className='all-css signup-form-submit' style={{ marginBottom: '1vh', height: '4vh' }} onClick={() => setOpenLogin(false)}>CLOSE</button>
             </div>
         </div>
     );

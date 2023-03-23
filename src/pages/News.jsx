@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import NewsSection from '../components/NewsSection';
 import axios from 'axios';
-// import Login from '../components/Login';
+import '../styles/App.css';
+import '../styles/News.css';
 
 function News(props) {
     const themeLight = props.themeLight;

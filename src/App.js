@@ -12,6 +12,7 @@ import MusicAndMovies from './pages/MusicAndMovies.jsx';
 import ExternalLinks from './pages/ExternalLinks.jsx';
 import MyHub from './pages/MyHub.jsx';
 import CalendarWidget from './pages/CalendarWidget';
+import './styles/App.css';
 
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
 
 
   return (
-      <div className={`app-main theme${themeLight}`}>
+      <div className={`app-main theme${themeLight}`} style={{width: "100%", height: "100%"}}>
         <Routes>
           <Route path={"/"} element={<Home themeLight={themeLight} setThemeLight={setThemeLight}/>} />
           <Route path={"/Calendar"} element={<CalendarWidget themeLight={themeLight} setThemeLight={setThemeLight}/>} />

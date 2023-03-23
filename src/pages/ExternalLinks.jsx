@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-// import Login from '../components/Login';
 import Navbar from '../components/Navbar';
+import '../styles/ExternalLinks.css';
 
 function ExternalLinks(props) {
     const themeLight = props.themeLight;
