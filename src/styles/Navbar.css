@@ -79,7 +79,6 @@
 }
 
 .login-page-div {
-
   color: var(--maintext);
   border-top: 2px solid var(--borders);
   border-top-right-radius: 2vw;
@@ -117,17 +116,13 @@
 .input {
   border: none;
   border-left: var(--borders) 1px solid;
-  border-bottom-left-radius: .5vw;
   border-bottom: var(--borders) 1px solid;
-
 }
 
 .login-form-submit-button {
   border: none;
   border-left: var(--borders) 1px solid;
-  border-bottom-left-radius: .5vw;
   border-bottom: var(--borders) 1px solid;
-
   color: var(--maintext);
 }
 
@@ -175,7 +170,6 @@
 }
 
 .signup-form-input {
-  border-radius: 1vw;
   justify-content: center;
   align-items: center;
 }
@@ -183,9 +177,7 @@
 .signup-form-submit {
   border: none;
   border-left: var(--borders) 1px solid;
-  border-bottom-left-radius: .5vw;
   border-bottom: var(--borders) 1px solid;
-
   color: var(--maintext);
 }
 

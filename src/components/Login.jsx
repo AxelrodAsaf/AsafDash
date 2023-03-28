@@ -101,7 +101,7 @@ function Login(props) {
                     <input value={loginPass} onChange={(e) => setLoginPass(e.target.value)} id='loginForm-password' type="password" name="password" required className="login-form-password input" placeholder='Password' />
                 </div>
                 <div className="login-submit">
-                    <button onClick={() => loginSubmit} className="login-form-submit-button cursorPointer">SUBMIT</button>
+                    <button onClick={() => loginSubmit} >SUBMIT</button>
                 </div>
             </form>
             {renderErrorMessage("email")}
@@ -180,8 +180,7 @@ function Login(props) {
                 </div>
                 {/* Submit button */}
                 <div className="signup-submit">
-                    <button onClick={() => signupSubmit} className="signup-form-submit cursorPointer">SUBMIT</button>
-                    {/* Allows the user to switch to a login form */}
+                    <button onClick={() => signupSubmit} >SUBMIT</button>
                 </div>
                 {renderErrorMessage("matchingpasswords")}
                 {renderErrorMessage("tryLater")}
@@ -200,8 +199,8 @@ function Login(props) {
         <div className='all-css login-page-div' style={themeLight ? { backgroundColor: "white" } : {}}>
             {formType(formToggle)}
             <div style={{ display: "flex", flexDirection: "row" }}>
-                <button className='all-css signup-form-submit' style={{ marginBottom: '1vh', height: '4vh' }} onClick={() => changeFormType()}>{formToggle ? "SIGN UP" : "LOG IN"}</button>
-                <button className='all-css signup-form-submit' style={{ marginBottom: '1vh', height: '4vh' }} onClick={() => setOpenLogin(false)}>CLOSE</button>
+                <button style={{ marginBottom: '1vh', height: '4vh' }} onClick={() => changeFormType()}>{formToggle ? "SIGN UP" : "LOG IN"}</button>
+                <button style={{ marginBottom: '1vh', height: '4vh' }} onClick={() => setOpenLogin(false)}>CLOSE</button>
             </div>
         </div>
     );

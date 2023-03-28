@@ -2,6 +2,11 @@
   cursor: pointer;
 }
 
+button,
+input {
+  background: var(--borders)
+}
+
 button {
   cursor: pointer;
 }
