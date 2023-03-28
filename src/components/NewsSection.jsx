@@ -35,7 +35,7 @@ function NewsSection(props) {
 
     return (
         <div className='news-margins' style={{ overflowX: "hidden" }} >
-            <h3 className='news-subject'>{userSearch}</h3>
+            <h3 style={{...(userSearch=== 'News')? {display: "none"} : {}}} className='news-subject'>{userSearch}</h3>
             <div  style={{ overflowX: "hidden" }} {...(userSearch === 'News') ? { className: "home-news-widget" } : { className: 'news-widget' }} >
                 {articles?.map((article, index) =>
                     <NewsItem

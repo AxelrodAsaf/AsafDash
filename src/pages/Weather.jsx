@@ -24,11 +24,13 @@ function Weather(props) {
     return (
         <div className='weather-main'>
             <Navbar themeLight={themeLight} setThemeLight={setThemeLight} />
-            <h1 className='weather-h1'>Weather</h1>
-            <div className='weather-component-div'>
-                {weatherCities.map(city => (
-                    <WeatherItem key={city} city={city} />
-                ))}
+            <div className='weather-container'>
+                <h1 className='weather-h1'>Weather</h1>
+                <div className='weather-component-div'>
+                    {weatherCities.map(city => (
+                        <WeatherItem key={city} city={city} />
+                    ))}
+                </div>
             </div>
         </div>
     );

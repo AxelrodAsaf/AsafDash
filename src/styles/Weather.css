@@ -1,8 +1,8 @@
 .weather-main {
   width: 100%;
   height: 100vh;
-  overflow: hidden;
-  background-color: var(--background);
+  overflow-x: hidden;
+  background: var(--background);
   border-color: var(--borders);
   color: var(--maintext);
 }
@@ -11,6 +11,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-left: 15vw;
 }
 
 .weather-component-div {
@@ -30,14 +31,18 @@
 
 .weather-widget {
   background: var(--widgetBackground);
-  border: var(--borders) 2px solid;
-  border-radius: .5vw;
   width: 17vw;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   margin: 15px;
+}
+
+.weather-containter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (max-width: 768px) {
@@ -47,7 +52,7 @@
     width: 100%;
     height: auto;
     padding-bottom: 7vh;
-    background-color: var(--background);
+
     border-color: var(--borders);
     color: var(--maintext);
   }

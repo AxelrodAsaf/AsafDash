@@ -95,16 +95,16 @@ function MyHub(props) {
 
 
     return (
-        <div>
+        <div className='myhub-main'>
             <Navbar themeLight={themeLight} setThemeLight={setThemeLight} />
-            <div className="myhub-main">
+            <div className="myhub-submain">
                 <div style={{
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
                 }}>
                     <h1>myHub</h1>
-                    <p style={{ textAlign: "center" }}>
+                    <p style={{ textAlign: "center", background: "var(--widgetBackground)", padding: "10px" }}>
                         <strong style={{ textDecoration: "underline" }}>CLICK ON THE LIST YOU WANT TO UPDATE<br /></ strong>
                         PRESS X TO REMOVE AN ITEM<br />
                         TYPE AND PRESS + TO ADD AN ITEM<br />
@@ -113,6 +113,11 @@ function MyHub(props) {
                 <h4 className="tabs">
                     <div style={{
                         width: "100%",
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "space-around",
+                        alignItems: "center",
+                        gap: "1vw"
                     }}>
                         {lists.map((list, index) => (
                             <h3 style={{
@@ -121,6 +126,8 @@ function MyHub(props) {
                                 flexDirection: "row",
                                 justifyContent: "center",
                                 alignItems: "center",
+                                background: "var(--widgetBackground)",
+                                padding: "10px",
                                 textDecoration: activeTab === index ? "underline" : "none",
                             }}
                                 key={index} className={activeTab === index ? 'active' : ''} onClick={() => handleTabClick(index)}>
@@ -131,13 +138,13 @@ function MyHub(props) {
                     </div>
                     <hr style={{ color: "black", width: "100%" }} />
                 </h4>
-                <div className="items">
+                <div className="items" style={{ background: "var(--widgetBackground)", padding: "1vw" }}>
                     {lists[activeTab].map((item, index) => (
                         <div key={index} className="item"
                             style={{
                                 display: "flex",
                                 flexDirection: "row",
-                                justifyContent: "space-between",
+                                justifyContent: "space-between"
                             }}
                         >
                             <span>{item}</span>

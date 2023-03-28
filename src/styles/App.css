@@ -7,7 +7,7 @@ button {
 }
 
 .themetrue {
-  --background: linear-gradient(lightblue, skyblue);
+  --background: linear-gradient(skyblue, teal);
   --widgetBackground: rgba(255, 255, 255, .75);
   --headers: #848282;
   --borders: #FFFFFF;
@@ -17,10 +17,11 @@ button {
 }
 
 .themefalse {
-  --background: #2A343B;
+  --background: linear-gradient(gray, #330033);
+  --widgetBackground: rgba(255, 255, 255, .15);
   --borders: #5A5E64;
   --headers: #848282;
-  --secondarytext: #D7C9C2;
+  --secondarytext: #FAE2C2;
   --maintext: #FAE2C2;
   background: (#2A343B);
 }
@@ -32,17 +33,27 @@ button {
   overflow-y: hidden;
 }
 
-html {
+body {
   background: var(--background);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
   overflow-x: hidden;
 }
 
+html {
+  background: black;
+  overscroll-behavior: auto;
+}
+
 .App {
-  width: 100vw;
-  height: 100vh;
-  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior-y: none;
   margin: 0;
-  background: var(--background);
   font-family: 'Open Sans', sans-serif;
 }
 

@@ -1,5 +1,8 @@
 .myhub-main {
-  background-color: var(--background);
+  background: var(--background);
+}
+
+.myhub-submain {
   border-color: var(--borders);
   color: var(--maintext);
   margin-left: 15vw;

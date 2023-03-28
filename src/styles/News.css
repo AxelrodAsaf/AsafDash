@@ -1,16 +1,16 @@
 .news-main {
-  background-color: var(--background);
+  background: var(--background);
   border-color: var(--borders);
   color: var(--maintext);
 }
 
 .news-page-div {
-  margin-left: 15vw;
-  width: 85vw;
+  padding-left: 16vw;
+  padding-right: 1vw;
+  width: 84vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 15vw;
 }
 
 .news-widgets {
@@ -21,8 +21,6 @@
 }
 
 .news-widget {
-  border: var(--borders) 2px solid;
-  border-radius: .5vw;
   background-color: var(--widgetBackground);
   margin: 15px;
   height: 20vw;
@@ -31,32 +29,29 @@
 }
 
 .home-news-widget {
-  border: var(--borders) 2px solid;
-  border-radius: 1.5vw;
   background-color: var(--widgetBackground);
   margin: 15px;
   height: 45vw;
   width: 50vw;
-  overflow-y: scroll;
 }
 
 .news-left {
-  width: 50vw;
   display: flex;
   flex-direction: column;
 }
 
 .news-right {
-  width: 50vw;
   display: flex;
   flex-direction: column;
 }
 
 .news-item {
+  padding: 1vw;
+  padding-left: 2vw;
+  padding-right: 2vw;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
-  width: 40vw;
 }
 
 .news-subject {
@@ -76,7 +71,7 @@
 }
 
 .news-title {
-  width: 30vw;
+  /* width: 30vw; */
   font-size: medium;
 }
 
@@ -85,7 +80,6 @@
 }
 
 .news-description {
-  width: 30vw;
   font-size: small;
 }
 
@@ -98,7 +92,7 @@
   .news-main {
     padding-top: 7vh;
     padding-bottom: 7vh;
-    background-color: var(--background);
+
     border-color: var(--borders);
     color: var(--maintext);
   }
