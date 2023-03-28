@@ -9,6 +9,7 @@
   align-items: flex-end;
   flex-direction: column;
   border-right-style: inset;
+  background: var(--background) !important;
 }
 
 .navbar-buttons {
@@ -78,6 +79,7 @@
   border-top: 2px solid var(--borders);
   border-left: 2px solid var(--borders);
   border-bottom: 2px solid var(--borders);
+  background: var(--background);
   border-bottom-left-radius: 2vw;
   border-top-left-radius: 2vw;
   height: 15vw;
@@ -226,7 +228,7 @@
     top: 0;
     height: 5vh;
     width: 100vw;
-    background-color: var(--background) !important;
+    background: var(--background) !important;
     border-bottom: 2px var(--borders) solid;
     display: flex;
     justify-content: space-around;

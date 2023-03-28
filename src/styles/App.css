@@ -1,10 +1,3 @@
-.all-css {
-  background-color: var(--background);
-  color: var(--maintext);
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
-
 .cursorPointer {
   cursor: pointer;
 }
@@ -14,13 +7,13 @@ button {
 }
 
 .themetrue {
-  --background: ##FAE2C2;
-  --widgetBackground: rgba(119, 119, 119, .15);
+  --background: linear-gradient(lightblue, skyblue);
+  --widgetBackground: rgba(255, 255, 255, .75);
   --headers: #848282;
-  --borders: #D7C9C2;
-  --maintext: #2A343B;
-  --secondarytext: #5A5E64;
-  background-color: var(--background);
+  --borders: #FFFFFF;
+  --maintext: black;
+  --secondarytext: #333333;
+  background: var(--background);
 }
 
 .themefalse {
@@ -29,11 +22,18 @@ button {
   --headers: #848282;
   --secondarytext: #D7C9C2;
   --maintext: #FAE2C2;
-  background-color: (#2A343B);
+  background: (#2A343B);
+}
+
+.all-css {
+  background: var(--background);
+  color: var(--maintext);
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 html {
-  background-color: var(--background);
+  background: var(--background);
   overflow-x: hidden;
 }
 
@@ -42,7 +42,7 @@ html {
   height: 100vh;
   overflow-x: hidden;
   margin: 0;
-  background-color: var(--background);
+  background: var(--background);
   font-family: 'Open Sans', sans-serif;
 }
 

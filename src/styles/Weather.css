@@ -29,7 +29,7 @@
 }
 
 .weather-widget {
-  background-color: var(--widgetBackground);
+  background: var(--widgetBackground);
   border: var(--borders) 2px solid;
   border-radius: .5vw;
   width: 17vw;

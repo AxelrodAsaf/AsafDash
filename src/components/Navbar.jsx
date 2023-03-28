@@ -75,8 +75,8 @@ function Navbar(props) {
 
 
     return (
-        <div className='all-css navbar-main' style={themeLight ? { backgroundColor: "white" } : {}}>
-            <div className='navbar-buttons' style={themeLight ? { backgroundColor: "white" } : {}}>
+        <div className='all-css navbar-main' style={themeLight ? { backgroundColor: "linear-gradient(lightblue, skyblue)" } : {}}>
+            <div className='navbar-buttons' style={themeLight ? { backgroundColor: "linear-gradient(lightblue, skyblue)" } : {}}>
                 <div className='navbar-pagebutton navbar-home cursorPointer' onClick={() => navigate(`/`)}>Home</div>
                 <div className='navbar-pagebutton navbar-news cursorPointer' onClick={() => navigate(`/News`)}>News</div>
                 <div className='navbar-pagebutton navbar-weather cursorPointer' onClick={() => navigate(`/Weather`)}>Weather</div>
@@ -93,7 +93,7 @@ function Navbar(props) {
             {/* If true, opens the login/signup box. Otherwise, do nothing. */}
             {openLogin ? <Login themeLight={themeLight} setOpenLogin={setOpenLogin} /> : <></>}
 
-            <div className="navbar-socials" style={themeLight ? { backgroundColor: "white" } : {}}>
+            <div className="navbar-socials" style={themeLight ? { backgroundColor: "linear-gradient(lightblue, skyblue) !important" } : {}}>
                 <a className="socialPic" href="https://www.facebook.com/AxelrodAsaf">
                     <img
                         alt="Social Media Logo"
@@ -143,7 +143,7 @@ function Navbar(props) {
             </div>
 
             <h4 className='navbar-loggedInUser' style={loggedInUser ? { textAlign: "center" } : { display: "none" }}>{loggedInUser ? `${loggedInUser} \n is currently logged in.` : null}</h4>
-            <div className='navbar-extras' style={openLogin ? { marginBottom: '30vh' } : themeLight? {backgroundColor: "white"} : null}>
+            <div className='navbar-extras' style={openLogin ? { marginBottom: '30vh' } : themeLight ? { backgroundColor: "linear-gradient(lightblue, skyblue)" } : null}>
                 {/* If a user is logged in, show a logout button. Otherwise, show a login/signup button. */}
                 {loggedInUser ?
                     <img src={logoutPic} alt="logout" className='navbar-logoutpic cursorPointer' onClick={() => logout()} />
