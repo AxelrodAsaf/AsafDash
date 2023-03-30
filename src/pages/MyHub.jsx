@@ -33,7 +33,7 @@ function MyHub(props) {
                     // userObject.externallinks
                 ]);
             } catch (error) {
-                console.error(error);
+                // console.error(error);
             }
         }
         getUserInfo();
@@ -88,7 +88,7 @@ function MyHub(props) {
             });
             console.log(`The data sent to the server: ${lists}`);
         } catch (error) {
-            console.error(error);
+            // console.error(error);
         }
         setInput('');
     };

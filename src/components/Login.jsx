@@ -71,7 +71,7 @@ function Login(props) {
                     window.location.reload();
                 })
                 .catch((error) => {
-                    console.error(error);
+                    // console.error(error);
                     if (error.response.status === 400) {
                         setErrorMessages("email");
                     } else if (error.response.status === 401) {
@@ -137,7 +137,7 @@ function Login(props) {
                     setErrorMessages("accountCreated");
                 })
                 .catch((error) => {
-                    console.error(error);
+                    // console.error(error);
                     if (error.response.status === 409) {
                         setErrorMessages("emailDuplicate");
                     }

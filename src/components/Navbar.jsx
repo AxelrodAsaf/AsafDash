@@ -152,7 +152,7 @@ function Navbar(props) {
                 }
 
                 {/* Show the theme swap icon, swap upon clicking. */}
-                <img src={themeswap} alt="theme swap" className='navbar-logoutpic cursorPointer' onClick={() => { setThemeLight(!themeLight); console.log(themeLight) }} />
+                <img src={themeswap} alt="theme swap" className='navbar-logoutpic cursorPointer' onClick={() => { setThemeLight(!themeLight) }} />
             </div>
         </div>
     );

@@ -4,12 +4,14 @@ import Navbar from '../components/Navbar';
 import WeatherItem from '../components/WeatherItem';
 import '../styles/App.css';
 import '../styles/Weather.css';
+import LoadingSpinner from '../components/LoadingSpinner.jsx';
 
 function Weather(props) {
     const themeLight = props.themeLight;
     const setThemeLight = props.setThemeLight;
     const [weatherCities, setWeatherCities] = useState([]);
     const userToken = localStorage.getItem('Dashboard-user-token');
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         async function getData() {
@@ -19,20 +21,25 @@ function Weather(props) {
             setWeatherCities(response.data.topicData);
         }
         getData();
+        setIsLoading(false);
     }, [userToken]);
 
     return (
-        <div className='weather-main'>
-            <Navbar themeLight={themeLight} setThemeLight={setThemeLight} />
-            <div className='weather-container'>
-                <h1 className='weather-h1'>Weather</h1>
-                <div className='weather-component-div'>
-                    {weatherCities.map(city => (
-                        <WeatherItem key={city} city={city} />
-                    ))}
+        <>
+            {isLoading ? <LoadingSpinner /> :
+                <div className='weather-main'>
+                    <Navbar themeLight={themeLight} setThemeLight={setThemeLight} />
+                    <div className='weather-container'>
+                        <h1 className='weather-h1'>Weather</h1>
+                        <div className='weather-component-div'>
+                            {weatherCities.map(city => (
+                                <WeatherItem key={city} city={city} />
+                            ))}
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            }
+        </>
     );
 }
 

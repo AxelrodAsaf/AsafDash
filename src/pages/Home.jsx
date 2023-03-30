@@ -4,6 +4,7 @@ import axios from "axios";
 import '../styles/App.css';
 import '../styles/Home.css';
 import NewsSection from '../components/NewsSection';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 function Home(props) {
     const themeLight = props.themeLight;
@@ -16,6 +17,7 @@ function Home(props) {
     const [temp, setTemp] = useState(true);
     const [convCurrency, setConvCurrency] = useState('');
     const [convCurrency2, setConvCurrency2] = useState('');
+    let isLoading = props.isLoading;
     var loggedInUser = localStorage.getItem('userLoggedIn');
     const currencyAPIURL = process.env.REACT_APP_CURRENCY_APIURL;
     const currencyAPIKEY = process.env.REACT_APP_CURRENCY_APIKEY;
@@ -92,7 +94,7 @@ function Home(props) {
                 const response = await axios.request(options);
                 setConvCurrency(response.data);
             } catch (error) {
-                console.error(error);
+                // console.error(error);
             }
         }
         fetchCurrencyData('USD', 'ILS', setConvCurrency);
@@ -101,69 +103,73 @@ function Home(props) {
 
 
     return (
-        <div className='all-css'>
-            {/* {loggedInUser? <Navbar themeLight={themeLight} setThemeLight={setThemeLight}/> : <Login/>} */}
-            <Navbar themeLight={themeLight} setThemeLight={setThemeLight} />
+        <>
+            {isLoading ? <LoadingSpinner /> :
+                <div className='all-css'>
+                    {/* {loggedInUser? <Navbar themeLight={themeLight} setThemeLight={setThemeLight}/> : <Login/>} */}
+                    <Navbar themeLight={themeLight} setThemeLight={setThemeLight} />
 
-            <div className="home-widgetgrid">
-                <div className="home-left">
-                    <div className="widget">
-                        {/* If there's a user signed in, print their first name that is saved in local storage */}
-                        <h1 className='home-namewidget'>Hey {loggedInUser ? userFirstName : "friend"}!</h1>
-                    </div>
-                    <div className="widget home-clock">
-                        <p>Current Date and Time: </p>
-                        <p><strong>{clock}</strong></p>
-                    </div>
-                    <div className="home-weather widget">
-                        <div className="home-weather-left">
-                            <p>City Name:</p>
-                            <p>Conditions:</p>
-                            <p>Temp:</p>
-                            <p>Feels Like:</p>
-                            <p>Humidity:</p>
-                        </div>
-                        <div className="home-weather-right">
-                            <p><strong>{localName ? localName : <></>}</strong></p>
-                            <p><strong>{localWeatherType ? localWeatherType : <></>}</strong></p>
-                            <p><strong>{localTemp ? localTemp : <></>}°C   /   {Math.round((localTemp * (9 / 5)) + 32)}°F</strong></p>
-                            <p><strong>{localFeelsLike ? localFeelsLike : <></>}°C   /   {Math.round((localFeelsLike * (9 / 5)) + 32)}°F</strong></p>
-                            <p><strong>{localHumidity ? localHumidity : <></>}%</strong></p>
-                        </div>
-                    </div>
-                    <div className="home-currency widget">
-                        <div className="home-currency-left">
-                            <div className="home-currency-left-sub">
-                                <strong>{convCurrency.new_amount}</strong>
-                                <strong>{convCurrency.new_currency}</strong>
+                    <div className="home-widgetgrid">
+                        <div className="home-left">
+                            <div className="widget">
+                                {/* If there's a user signed in, print their first name that is saved in local storage */}
+                                <h1 className='home-namewidget'>Hey {loggedInUser ? userFirstName : "friend"}!</h1>
                             </div>
-                            <strong>{equals}</strong>
-                            <div className="home-currency-left-sub">
-                                <p>{convCurrency.old_amount}</p>
-                                <p>{convCurrency.old_currency}</p>
+                            <div className="widget home-clock">
+                                <p>Current Date and Time: </p>
+                                <p><strong>{clock}</strong></p>
+                            </div>
+                            <div className="home-weather widget">
+                                <div className="home-weather-left">
+                                    <p>City Name:</p>
+                                    <p>Conditions:</p>
+                                    <p>Temp:</p>
+                                    <p>Feels Like:</p>
+                                    <p>Humidity:</p>
+                                </div>
+                                <div className="home-weather-right">
+                                    <p><strong>{localName ? localName : <></>}</strong></p>
+                                    <p><strong>{localWeatherType ? localWeatherType : <></>}</strong></p>
+                                    <p><strong>{localTemp ? localTemp : <></>}°C   /   {Math.round((localTemp * (9 / 5)) + 32)}°F</strong></p>
+                                    <p><strong>{localFeelsLike ? localFeelsLike : <></>}°C   /   {Math.round((localFeelsLike * (9 / 5)) + 32)}°F</strong></p>
+                                    <p><strong>{localHumidity ? localHumidity : <></>}%</strong></p>
+                                </div>
+                            </div>
+                            <div className="home-currency widget">
+                                <div className="home-currency-left">
+                                    <div className="home-currency-left-sub">
+                                        <strong>{convCurrency.new_amount}</strong>
+                                        <strong>{convCurrency.new_currency}</strong>
+                                    </div>
+                                    <strong>{equals}</strong>
+                                    <div className="home-currency-left-sub">
+                                        <p>{convCurrency.old_amount}</p>
+                                        <p>{convCurrency.old_currency}</p>
+                                    </div>
+                                </div>
+                                <div className="home-currency-vl" />
+                                <div className="home-currency-right">
+                                    <div className="home-currency-right-sub">
+                                        <strong>{convCurrency2.new_amount}</strong>
+                                        <strong>{convCurrency2.new_currency}</strong>
+                                    </div>
+                                    <strong>{equals}</strong>
+                                    <div className="home-currency-right-sub">
+                                        <p>{convCurrency2.old_amount}</p>
+                                        <p>{convCurrency2.old_currency}</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div className="home-currency-vl" />
-                        <div className="home-currency-right">
-                            <div className="home-currency-right-sub">
-                                <strong>{convCurrency2.new_amount}</strong>
-                                <strong>{convCurrency2.new_currency}</strong>
-                            </div>
-                            <strong>{equals}</strong>
-                            <div className="home-currency-right-sub">
-                                <p>{convCurrency2.old_amount}</p>
-                                <p>{convCurrency2.old_currency}</p>
+                        <div className="home-right">
+                            <div className='home-news'>
+                                <NewsSection searchInput={"News"} />
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="home-right">
-                    <div className='home-news'>
-                        <NewsSection searchInput={"News"} />
-                    </div>
-                </div>
-            </div>
-        </div>
+            }
+        </>
     );
 }
 

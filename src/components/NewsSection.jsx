@@ -7,6 +7,7 @@ import '../styles/News.css';
 
 function NewsSection(props) {
     const [articles, setArticles] = useState([]);
+    const setIsLoading = props.setIsLoading;
     // userSearch is a global variable that holds the user's search term.
     // This whole component is a search for one of the user's search terms.
     const userSearch = props.searchInput;
@@ -28,15 +29,13 @@ function NewsSection(props) {
             setArticles(response.data.articles);
         };
         fetchArticles();
-    }, [userSearch]);
-
-
+    }, [userSearch, setIsLoading]);
 
 
     return (
         <div className='news-margins' style={{ overflowX: "hidden" }} >
-            <h3 style={{...(userSearch=== 'News')? {display: "none"} : {}}} className='news-subject'>{userSearch}</h3>
-            <div  style={{ overflowX: "hidden" }} {...(userSearch === 'News') ? { className: "home-news-widget" } : { className: 'news-widget' }} >
+            <h3 style={{ ...(userSearch === 'News') ? { display: "none" } : {} }} className='news-subject'>{userSearch}</h3>
+            <div style={{ overflowX: "hidden" }} {...(userSearch === 'News') ? { className: "home-news-widget" } : { className: 'news-widget' }} >
                 {articles?.map((article, index) =>
                     <NewsItem
                         key={index}
