@@ -4,7 +4,7 @@
 
 button,
 input {
-  background: var(--borders)
+  background: var(--headers)
 }
 
 button {
