@@ -4,13 +4,11 @@ import NewsSection from '../components/NewsSection';
 import axios from 'axios';
 import '../styles/App.css';
 import '../styles/News.css';
-import LoadingSpinner from '../components/LoadingSpinner';
 
 function News(props) {
     const themeLight = props.themeLight;
     const setThemeLight = props.setThemeLight;
     const [displayData, setDisplayData] = useState();
-    const [isLoading, setIsLoading] = useState(true);
 
     // When the page renders, check to see if a user is logged in
     // Define the userLoggedIn variable from local storage
@@ -28,7 +26,6 @@ function News(props) {
                     headers: { Authorization: userToken }
                 });
                 setDisplayData(response.data.topicData);
-                setIsLoading(false);
             } catch (error) {
                 // console.error(error);
             }
@@ -37,8 +34,6 @@ function News(props) {
     }, [userToken]);
 
     return (
-        <>
-            {isLoading ? <LoadingSpinner /> :
                 <div className='news-main'>
                     <Navbar themeLight={themeLight} setThemeLight={setThemeLight} />
                     <div className="news-page-div">
@@ -50,8 +45,6 @@ function News(props) {
                         </div>
                     </div>
                 </div>
-            }
-        </>
     );
 }
 

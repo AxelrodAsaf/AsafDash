@@ -3,14 +3,13 @@ import React, { useEffect, useState } from 'react';
 import NewsItem from './NewsItem';
 import '../styles/App.css';
 import '../styles/News.css';
+import LoadingSpinner from './LoadingSpinner';
 
 
 function NewsSection(props) {
     const [articles, setArticles] = useState([]);
-    const setIsLoading = props.setIsLoading;
-    // userSearch is a global variable that holds the user's search term.
-    // This whole component is a search for one of the user's search terms.
     const userSearch = props.searchInput;
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchArticles = async () => {
@@ -27,6 +26,7 @@ function NewsSection(props) {
                 }
             );
             setArticles(response.data.articles);
+            setIsLoading(false);
         };
         fetchArticles();
     }, [userSearch, setIsLoading]);
@@ -36,15 +36,19 @@ function NewsSection(props) {
         <div className='news-margins' style={{ overflowX: "hidden" }} >
             <h3 style={{ ...(userSearch === 'News') ? { display: "none" } : {} }} className='news-subject'>{userSearch}</h3>
             <div style={{ overflowX: "hidden" }} {...(userSearch === 'News') ? { className: "home-news-widget" } : { className: 'news-widget' }} >
-                {articles?.map((article, index) =>
-                    <NewsItem
-                        key={index}
-                        title={article?.title}
-                        description={article?.description}
-                        url={article?.url}
-                        urlToImage={article?.urlToImage}
-                    />
-                )}
+                {isLoading ? <LoadingSpinner /> :
+                    <>
+                        {articles?.map((article, index) =>
+                            <NewsItem
+                                key={index}
+                                title={article?.title}
+                                description={article?.description}
+                                url={article?.url}
+                                urlToImage={article?.urlToImage}
+                            />
+                        )}
+                    </>
+                }
             </div>
         </div>
     );
