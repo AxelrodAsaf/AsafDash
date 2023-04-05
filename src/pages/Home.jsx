@@ -5,6 +5,7 @@ import '../styles/App.css';
 import '../styles/Home.css';
 import NewsSection from '../components/NewsSection';
 import LoadingSpinner from '../components/LoadingSpinner';
+import Map from '../components/Map';
 
 function Home(props) {
   const themeLight = props.themeLight;
@@ -118,6 +119,9 @@ function Home(props) {
               <div className="widget home-clock">
                 <p>Current Date and Time: </p>
                 <p><strong>{clock}</strong></p>
+              </div>
+              <div className="widget">
+                <Map themeLight={themeLight} setThemeLight={setThemeLight} lat={locLat} lng={locLong} />
               </div>
               <div className="home-weather widget">
                 <div className="home-weather-left">
