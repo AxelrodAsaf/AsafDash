@@ -121,7 +121,7 @@ function Home(props) {
                 <p><strong>{clock}</strong></p>
               </div>
               <div className="widget">
-                <Map themeLight={themeLight} setThemeLight={setThemeLight} lat={locLat} lng={locLong} />
+                <Map lat={locLat} lng={locLong} />
               </div>
               <div className="home-weather widget">
                 <div className="home-weather-left">

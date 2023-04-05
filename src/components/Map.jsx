@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import LoadingSpinner from './LoadingSpinner';
 
 export default function Map(props) {
-  const { themeLight, setThemeLight, lat, lng } = props;
+  const { lat, lng } = props;
   const [showMap, setShowMap] = useState(false);
 
   useEffect(() => {
