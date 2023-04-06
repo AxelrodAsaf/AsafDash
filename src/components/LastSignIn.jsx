@@ -1,0 +1,57 @@
+import axios from 'axios';
+import React, { useEffect, useRef } from 'react';
+import Chart from 'chart.js/auto';
+
+export default function LastSignIn(props) {
+  let themeLight = props.themeLight;
+  const chartRef = useRef(null);
+  const userToken = localStorage.getItem('Dashboard-user-token');
+  let userObject = null;
+
+  // Get the lastSignIn value from the database
+  useEffect(() => {
+    async function getUserInfo() {
+      try {
+        const response = await axios.get('http://localhost:8000/getInfo/news', {
+          headers: { Authorization: userToken ? userToken : undefined }
+        });
+          // eslint-disable-next-line react-hooks/exhaustive-deps
+          userObject = response.data.user;
+          // Create chart data
+          const labels = Object.keys(userObject.lastTokenVerif);
+          const data = Object.values(userObject.lastTokenVerif);
+          // Create chart
+          new Chart(chartRef.current, {
+            type: 'line',
+            data: {
+              labels,
+              datasets: [{
+                data,
+                label: 'Requests per Day',
+                borderColor: 'black',
+                fill: false
+              }]
+            },
+            options: {
+              // responsive: false,
+              maintainAspectRatio: false
+            }
+          });
+      }
+      catch (error) {
+        console.error(error);
+      }
+    }
+    getUserInfo();
+  }, [userToken]);
+
+  return (
+    <div className="widget" style={{ margin: ".5vw" }} >
+      {themeLight ?
+        <canvas ref={chartRef} />
+        :
+        <canvas ref={chartRef} style={{ background: "white" }} />
+      }
+    </div>
+  );
+}

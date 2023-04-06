@@ -211,9 +211,9 @@
   }
 
   .navbar-pagebutton {
-    background: rgba(255, 255, 255, .75);
-    font-size: medium;
+    background: var(--widgetBackground);
     color: var(--secondarytext);
+    font-size: medium;
     font-weight: bold;
   }
 
