@@ -18,11 +18,14 @@ import darkFacebook from '../assets/darkModeLogos/facebook.png';
 import darkTwitter from '../assets/darkModeLogos/twitter.png';
 import darkGithub from '../assets/darkModeLogos/github.png';
 import darkLinkedin from '../assets/darkModeLogos/linkedin.png';
+import axios from 'axios';
 
 
 
 function Navbar(props) {
   var loggedInUser = localStorage.getItem('userLoggedIn');
+  const userToken = localStorage.getItem('Dashboard-user-token');
+  const userFirstName = localStorage.getItem('Dashboard-user-firstName');
   const themeLight = props.themeLight;
   const setThemeLight = props.setThemeLight;
   const [logoutPic, setLogoutPic] = useState(lightLogoutPic);
@@ -34,7 +37,24 @@ function Navbar(props) {
   const [github, setGithub] = useState(lightGithub);
   const [linkedin, setLinkedin] = useState(lightLinkedin);
   const [openLogin, setOpenLogin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
+
+
+  useEffect(() => {
+    async function getUserInfo() {
+      try {
+        const response = await axios.get('https://asafdashserver.onrender.com/getInfo/news', {
+          headers: { Authorization: userToken ? userToken : undefined }
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        setIsAdmin(response.data.user.admin);
+        console.log(`The user is an admin: ${isAdmin}`);
+      } catch (error) {
+      }
+    }
+    getUserInfo();
+  }, [userToken, isAdmin]);
 
 
   // When called to logout the user:
@@ -76,15 +96,17 @@ function Navbar(props) {
 
   return (
     <div className='all-css navbar-main' >
+      {/* <div className={`all-css navbar-main`} style={{ background: `${isAdmin ? 'linear-gradient(to right, rgba(255,220,0,1) 0%, rgba(195,114,4,1) 80%, transparent 115%)' : ''}` }}> */}
+      {/* <div className={`all-css navbar-main`} style={{ background: `${isAdmin ? 'linear-gradient(rgba(255,220,0,1) 0%, rgba(195,114,4,1) 150%)' : ''}` }}> */}
       <div className='navbar-buttons' >
         <div className='navbar-pagebutton navbar-home cursorPointer' onClick={() => navigate(`/`)}>Home</div>
         <div className='navbar-pagebutton navbar-news cursorPointer' onClick={() => navigate(`/News`)}>News</div>
         <div className='navbar-pagebutton navbar-weather cursorPointer' onClick={() => navigate(`/Weather`)}>Weather</div>
-        {/* <div className='navbar-pagebutton navbar-externallinks' onClick={() => navigate(`/ExternalLinks`)}>External Links</div> */}
-        {/* <div className='navbar-pagebutton navbar-calendar' onClick={() => navigate(`/Calendar`)}>Calendar</div> */}
-        {/* <div className='navbar-pagebutton navbar-todolist' onClick={() => navigate(`/ToDoList`)}>To Do List</div> */}
-        {/* <div className='navbar-pagebutton navbar-dailytrackers' onClick={() => navigate(`/DailyTrackers`)}>Daily Trackers</div> */}
-        {/* <div className='navbar-pagebutton navbar-musicandmovies' onClick={() => navigate(`/MusicAndMovies`)}>Music and Movies</div> */}
+        {/* <div className='navbar-pagebutton navbar-music cursorPointer' onClick={() => navigate(`/Music`)}>Music</div> */}
+        {/* <div className='navbar-pagebutton navbar-externallinks cursorPointer' onClick={() => navigate(`/ExternalLinks`)}>External Links</div> */}
+        {/* <div className='navbar-pagebutton navbar-calendar cursorPointer' onClick={() => navigate(`/Calendar`)}>Calendar</div> */}
+        {/* <div className='navbar-pagebutton navbar-todolist cursorPointer' onClick={() => navigate(`/ToDoList`)}>To Do List</div> */}
+        {/* <div className='navbar-pagebutton navbar-dailytrackers cursorPointer' onClick={() => navigate(`/DailyTrackers`)}>Daily Trackers</div> */}
         {loggedInUser ?
           <div className='navbar-pagebutton navbar-myhub cursorPointer' onClick={() => navigate(`/MyHub`)}>myHub</div>
           : null}
@@ -93,56 +115,58 @@ function Navbar(props) {
       {/* If true, opens the login/signup box. Otherwise, do nothing. */}
       {openLogin ? <Login themeLight={themeLight} setOpenLogin={setOpenLogin} /> : <></>}
 
-      <div className="navbar-socials" style={themeLight ? { backgroundColor: "linear-gradient(skyblue, teal) !important" } : {}}>
-        <a className="socialPic" href="https://www.facebook.com/AxelrodAsaf">
-          <img
-            alt="Social Media Logo"
-            src={facebook}
-            width="30vw"
-            height="30vw"
-          />
-        </a>
-        <a className="socialPic" href="https://www.twitter.com/asafaxelrod">
-          <img
-            alt="Social Media Logo"
-            src={twitter}
-            width="30vw"
-            height="30vw"
-          />
-        </a>
-        <a
-          className="socialPic"
-          href="https://www.linkedin.com/in/asaf-axelrod-9353b1ba/"
-        >
-          <img
-            alt="Social Media Logo"
-            src={linkedin}
-            width="30vw"
-            height="30vw"
-          />
-        </a>
-        <a
-          className="socialPic"
-          href="https://github.com/AxelrodAsaf"
-        >
-          <img
-            alt="Social Media Logo"
-            src={github}
-            width="30vw"
-            height="30vw"
-          />
-        </a>
-        <a className="socialPic" href="https://www.instagram.com/asafaxelrod/">
-          <img
-            alt="Social Media Logo"
-            src={instagram}
-            width="30vw"
-            height="30vw"
-          />
-        </a>
-      </div>
+      {(!loggedInUser || !isAdmin) ?
+        <div className="navbar-socials" style={themeLight ? { backgroundColor: "linear-gradient(skyblue, teal) !important" } : {}}>
+          <a className="socialPic" href="https://www.facebook.com/AxelrodAsaf">
+            <img
+              alt="Social Media Logo"
+              src={facebook}
+              width="30vw"
+              height="30vw"
+            />
+          </a>
+          <a className="socialPic" href="https://www.twitter.com/asafaxelrod">
+            <img
+              alt="Social Media Logo"
+              src={twitter}
+              width="30vw"
+              height="30vw"
+            />
+          </a>
+          <a
+            className="socialPic"
+            href="https://www.linkedin.com/in/asaf-axelrod-9353b1ba/"
+          >
+            <img
+              alt="Social Media Logo"
+              src={linkedin}
+              width="30vw"
+              height="30vw"
+            />
+          </a>
+          <a
+            className="socialPic"
+            href="https://github.com/AxelrodAsaf"
+          >
+            <img
+              alt="Social Media Logo"
+              src={github}
+              width="30vw"
+              height="30vw"
+            />
+          </a>
+          <a className="socialPic" href="https://www.instagram.com/asafaxelrod/">
+            <img
+              alt="Social Media Logo"
+              src={instagram}
+              width="30vw"
+              height="30vw"
+            />
+          </a>
+        </div>
+        : <></>}
 
-      <h4 className='navbar-loggedInUser' style={loggedInUser ? { textAlign: "center" } : { display: "none" }}>{loggedInUser ? `${loggedInUser} \n is currently logged in.` : null}</h4>
+      <h4 className='navbar-loggedInUser' style={loggedInUser ? { textAlign: "center" } : { display: "none" }}>{loggedInUser ? `${userFirstName} \n is currently logged in.` : null}</h4>
       <div className='navbar-extras' style={openLogin ? { marginBottom: '30vh' } : themeLight ? { backgroundColor: "linear-gradient(skyblue, teal)" } : null}>
         {/* If a user is logged in, show a logout button. Otherwise, show a login/signup button. */}
         {loggedInUser ?

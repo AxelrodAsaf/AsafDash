@@ -45,7 +45,6 @@
 .navbar-todolist,
 .navbar-calendar,
 .navbar-dailytrackers,
-.navbar-musicandmovies,
 .navbar-externallinks {
   background-color: burlywood;
   color: red;
@@ -193,6 +192,7 @@
 @media screen and (max-width: 768px) {
   .navbar-main {
     z-index: 9 !important;
+    background: var(--background);
     position: fixed;
     top: 0;
     height: 5vh;
@@ -201,6 +201,11 @@
     justify-content: space-around;
     align-items: flex-end;
     flex-direction: row;
+  }
+
+  .navbar-loggedInUser {
+    margin-top: 2vh;
+    background: var(--widgetBackground);
   }
 
   .navbar-buttons {
@@ -232,7 +237,6 @@
   }
 
   .navbar-socials {
-
     border-top: 2px solid var(--borders);
     border-left: 2px solid var(--borders);
     border-right: 2px solid var(--borders);
@@ -340,8 +344,6 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    /* width: 50vw;
-  height: 50vh; */
   }
 
   .signup-form {
