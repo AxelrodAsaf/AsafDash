@@ -1,0 +1,30 @@
+.music-container {
+  padding-left: 16vw;
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  flex-direction: column;
+  width: 84vw;
+  min-height: 100vh;
+}
+
+.music-subcontainer {
+  width: 100%;
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.music-left,
+.music-right {
+  width: 50%;
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: black 2px solid;
+  background-color: red;
+}

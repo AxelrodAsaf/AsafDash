@@ -8,7 +8,7 @@ import Weather from './pages/Weather.jsx';
 import ToDoList from './pages/ToDoList.jsx';
 import News from './pages/News.jsx';
 import DailyTrackers from './pages/DailyTrackers.jsx';
-import MusicAndMovies from './pages/MusicAndMovies.jsx';
+import Music from './pages/Music.jsx';
 import ExternalLinks from './pages/ExternalLinks.jsx';
 import MyHub from './pages/MyHub.jsx';
 import CalendarWidget from './pages/CalendarWidget';
@@ -30,11 +30,12 @@ function App() {
         <Route path={"/ToDoList"} element={<ToDoList isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
         <Route path={"/News"} element={<News isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
         <Route path={"/DailyTrackers"} element={<DailyTrackers isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
-        <Route path={"/MusicAndMovies"} element={<MusicAndMovies isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
+        <Route path={"/Music"} element={<Music isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
         <Route path={"/ExternalLinks"} element={<ExternalLinks isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
         <Route path={"/MyHub"} element={<MyHub isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
         <Route path={"/LoadingSpinner"} element={<LoadingSpinner />} />
         <Route path="*" element={<Default />} />
+        <Route path={"/error"} element={<Default />} />
       </Routes>
     </div>
   );
