@@ -31,7 +31,7 @@ function Weather(props) {
                 <div className='weather-main'>
                     <Navbar serverURL={serverURL} themeLight={themeLight} setThemeLight={setThemeLight} />
                     <div className='weather-container'>
-                        <h1 className='weather-h1'>Weather</h1>
+                        <h1 className='weather-h1 widget' >Weather</h1>
                         <div className='weather-component-div'>
                             {weatherCities.map(city => (
                                 <WeatherItem key={city} city={city} />

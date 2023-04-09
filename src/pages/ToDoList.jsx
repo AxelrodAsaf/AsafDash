@@ -75,10 +75,9 @@ function ToDoList(props) {
 
   return (
     <>
-      {isLoading ? <LoadingSpinner /> : <>
+      {isLoading ? <LoadingSpinner /> : <div className='toDoListContainter' style={{ minHeight: "100vh" }}>
         <Navbar serverURL={serverURL} themeLight={themeLight} setThemeLight={setThemeLight} />
         <div className='toDoList-main'>
-          <div className='toDoList-submain'>
             <h1 className='toDoList-h1 widget'>To Do List</h1>
             <div className='toDoList-list-div'>
               <ul className='toDoList-list widget'>
@@ -105,7 +104,7 @@ function ToDoList(props) {
               <button className='toDoList-addItem widget' onClick={() => handleAddItem()}>Add Task</button>
             </div>
           </div>
-        </div></>
+        </div>
       }
     </>
   );

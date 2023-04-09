@@ -168,7 +168,7 @@ function Home(props) {
             </div>
             <div className="home-right">
               <div className='home-news'>
-                <NewsSection searchInput={"News"} />
+                <NewsSection serverURL={serverURL} searchInput={"News"} />
               </div>
             </div>
           </div>

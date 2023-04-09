@@ -2,6 +2,16 @@
   cursor: pointer;
 }
 
+.widget {
+  background-color: var(--widgetBackground);
+  width: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+}
+
 button,
 input {
   background: #FFFFFF;
@@ -63,4 +73,13 @@ html {
 }
 
 
-@media screen and (max-width: 768px) {}
+@media screen and (max-width: 768px) {
+
+  .widget {
+      background-color: var(--widgetBackground);
+      border: var(--borders) 2px solid;
+      border-radius: 1.5vw;
+      display: flex;
+      flex-wrap: wrap;
+    }
+}

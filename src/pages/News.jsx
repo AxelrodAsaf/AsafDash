@@ -38,7 +38,7 @@ function News(props) {
     <div className='news-main'>
       <Navbar serverURL={serverURL} themeLight={themeLight} setThemeLight={setThemeLight} />
       <div className="news-page-div">
-        <h1>News</h1>
+        <h1 className='widget'>News</h1>
         <div className="news-widgets">
           {displayData && displayData.length > 0 && displayData.map((item) => (
             <NewsSection serverURL={serverURL} key={item} searchInput={item} />

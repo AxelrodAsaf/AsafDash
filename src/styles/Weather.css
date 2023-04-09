@@ -7,15 +7,16 @@
   color: var(--maintext);
 }
 
-.weather-h1 {
+.weather-container {
+  width: 84vw;
+  margin-left: 16vw;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-left: 15vw;
 }
 
 .weather-component-div {
-  padding-left: 15vw;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -39,11 +40,6 @@
   margin: 15px;
 }
 
-.weather-containter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 @media screen and (max-width: 768px) {
   .weather-main {

@@ -13,16 +13,6 @@
   margin: 1vw;
 }
 
-.widget {
-  background-color: var(--widgetBackground);
-  width: 300px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  margin: 15px;
-}
-
 .home-left {
   display: flex;
   flex-direction: column;
@@ -143,14 +133,6 @@
   .home-right {
     margin-left: 0;
     margin-right: 0;
-  }
-
-  .widget {
-    background-color: var(--widgetBackground);
-    border: var(--borders) 2px solid;
-    border-radius: 1.5vw;
-    display: flex;
-    flex-wrap: wrap;
   }
 
   .home-currency {
