@@ -105,11 +105,11 @@ function Navbar(props) {
         {/* <div className='navbar-pagebutton navbar-music cursorPointer' onClick={() => navigate(`/Music`)}>Music</div> */}
         {/* <div className='navbar-pagebutton navbar-externallinks cursorPointer' onClick={() => navigate(`/ExternalLinks`)}>External Links</div> */}
         {/* <div className='navbar-pagebutton navbar-calendar cursorPointer' onClick={() => navigate(`/Calendar`)}>Calendar</div> */}
-        {/* <div className='navbar-pagebutton navbar-todolist cursorPointer' onClick={() => navigate(`/ToDoList`)}>To Do List</div> */}
-        {/* <div className='navbar-pagebutton navbar-dailytrackers cursorPointer' onClick={() => navigate(`/DailyTrackers`)}>Daily Trackers</div> */}
-        {loggedInUser ?
+        {/* <div className='navbar-pagebutton navbar-reminders cursorPointer' onClick={() => navigate(`/Reminders`)}>Reminders</div> */}
+        {loggedInUser ? <>
+          <div className='navbar-pagebutton navbar-todolist cursorPointer' onClick={() => navigate(`/ToDoList`)}>To Do List</div>
           <div className='navbar-pagebutton navbar-myhub cursorPointer' onClick={() => navigate(`/MyHub`)}>myHub</div>
-          : null}
+        </> : null}
       </div>
 
       {/* If true, opens the login/signup box. Otherwise, do nothing. */}

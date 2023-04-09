@@ -5,9 +5,9 @@ import React, { useState } from 'react';
 
 import Home from './pages/Home.jsx';
 import Weather from './pages/Weather.jsx';
-import ToDoList from './pages/ToDoList.jsx';
+import ToDoList from './pages/ToDoList';
 import News from './pages/News.jsx';
-import DailyTrackers from './pages/DailyTrackers.jsx';
+// import Reminders from './pages/Reminders.jsx';
 import Music from './pages/Music.jsx';
 import ExternalLinks from './pages/ExternalLinks.jsx';
 import MyHub from './pages/MyHub.jsx';
@@ -29,7 +29,7 @@ function App() {
         <Route path={"/Weather"} element={<Weather isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
         <Route path={"/ToDoList"} element={<ToDoList isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
         <Route path={"/News"} element={<News isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
-        <Route path={"/DailyTrackers"} element={<DailyTrackers isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
+        {/* <Route path={"/Reminders"} element={<Reminders isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} /> */}
         <Route path={"/Music"} element={<Music isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
         <Route path={"/ExternalLinks"} element={<ExternalLinks isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
         <Route path={"/MyHub"} element={<MyHub isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
