@@ -112,7 +112,16 @@
 
 @media screen and (max-width: 1300px) {
   .home-widgetgrid {
+    overflow-y: hidden;
+    padding-top: 7vh;
+    padding-bottom: 10vh;
+    margin-left: 15vw;
+    width: 85vw;
+    height: 90%;
+    display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
   }
 }
 
@@ -130,11 +139,7 @@
     align-items: center;
   }
 
-  .home-left {
-    margin-left: 0;
-    margin-right: 0;
-  }
-
+  .home-left,
   .home-right {
     margin-left: 0;
     margin-right: 0;

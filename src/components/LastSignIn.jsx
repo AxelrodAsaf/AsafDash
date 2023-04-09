@@ -3,7 +3,6 @@ import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
 
 export default function LastSignIn(props) {
-  let themeLight = props.themeLight;
   const chartRef = useRef(null);
   const userToken = localStorage.getItem('Dashboard-user-token');
   let userObject = null;
@@ -46,12 +45,8 @@ export default function LastSignIn(props) {
   }, [userToken]);
 
   return (
-    <div className="widget" style={{ margin: ".5vw" }} >
-      {themeLight ?
-        <canvas ref={chartRef} />
-        :
-        <canvas ref={chartRef} style={{ background: "white" }} />
-      }
+    <div className="widget" >
+      <canvas ref={chartRef} style={{ background: "white" }} />
     </div>
   );
 }

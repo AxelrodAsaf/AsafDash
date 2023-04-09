@@ -71,7 +71,6 @@
 }
 
 .news-title {
-  /* width: 30vw; */
   font-size: medium;
 }
 
@@ -90,16 +89,17 @@
 
 @media screen and (max-width: 768px) {
   .news-main {
+    display: flex;
+    flex-direction: column;
     padding-top: 7vh;
     padding-bottom: 7vh;
-
     border-color: var(--borders);
     color: var(--maintext);
   }
 
   .news-page-div {
     position: relative;
-    margin-left: 0vw;
+    padding-left: 0vw;
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -128,6 +128,7 @@
     border-radius: .5vw;
     background-color: var(--widgetBackground);
     width: 90vw;
+    height: 50vh;
     overflow-y: scroll;
   }
 

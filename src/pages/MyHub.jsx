@@ -159,7 +159,7 @@ function MyHub(props) {
                     <br />
                     <button onClick={() => handleUpdateDatabase()} style={{ textDecoration: "bold" }}>UPDATE</button>
                     {userLoggedIn === "a" &&
-                        <div className="right-side widget">
+                        <div className="right-side widget" style={{ padding: "0.5vw" }}>
                             <LastSignIn themeLight={themeLight} setThemeLight={setThemeLight} />
                         </div>
                     }
