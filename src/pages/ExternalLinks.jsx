@@ -18,7 +18,7 @@ function ExternalLinks(props) {
       setExternalLinks(response.data.topicData);
     }
     getData();
-  }, [userToken]);
+  }, [userToken, serverURL]);
 
   return (
     <div>

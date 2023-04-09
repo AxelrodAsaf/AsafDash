@@ -23,7 +23,7 @@ function Weather(props) {
         }
         getData();
         setIsLoading(false);
-    }, [userToken]);
+    }, [userToken, serverURL]);
 
     return (
         <>

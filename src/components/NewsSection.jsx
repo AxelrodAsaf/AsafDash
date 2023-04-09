@@ -30,7 +30,7 @@ function NewsSection(props) {
       setIsLoading(false);
     };
     fetchArticles();
-  }, [userSearch, setIsLoading]);
+  }, [userSearch, setIsLoading, serverURL]);
 
 
   return (

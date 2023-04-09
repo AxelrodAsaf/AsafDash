@@ -27,7 +27,7 @@ function ToDoList(props) {
       getData();
       setIsLoading(false);
     }
-  }, [userToken, listItems, isLoading]);
+  }, [userToken, listItems, isLoading, serverURL]);
 
   async function updateList(newList) {
     console.log("🚀🚀🚀🚀🚀🚀🚀🚀🚀 Updating List Items: ", listItems);

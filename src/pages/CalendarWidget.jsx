@@ -5,6 +5,7 @@ import '../styles/Calendar.css';
 
 
 function CalendarWidget(props) {
+  const serverURL = props.serverURL;
   const themeLight = props.themeLight;
   const setThemeLight = props.setThemeLight;
   // var userLoggedIn = JSON.parse(localStorage.getItem('userLoggedIn'));

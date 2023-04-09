@@ -4,6 +4,7 @@ import '../styles/App.css';
 import '../styles/Music.css';
 
 function Music(props) {
+  const serverURL = props.serverURL;
   const themeLight = props.themeLight;
   const setThemeLight = props.setThemeLight;
   // var userLoggedIn = JSON.parse(localStorage.getItem('userLoggedIn'));

@@ -55,7 +55,7 @@ function Navbar(props) {
       }
     }
     getUserInfo();
-  }, [userToken, isAdmin]);
+  }, [userToken, isAdmin, serverURL]);
 
 
   // When called to logout the user:

@@ -32,7 +32,7 @@ function News(props) {
       }
     }
     getUserInfo();
-  }, [userToken]);
+  }, [userToken, serverURL]);
 
   return (
     <div className='news-main'>

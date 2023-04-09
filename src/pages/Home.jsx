@@ -8,6 +8,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import Map from '../components/Map';
 
 function Home(props) {
+  const serverURL = props.serverURL;
   const themeLight = props.themeLight;
   const setThemeLight = props.setThemeLight;
   const [localName, setLocalName] = useState('');
