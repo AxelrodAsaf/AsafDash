@@ -7,6 +7,7 @@ import '../styles/Weather.css';
 import LoadingSpinner from '../components/LoadingSpinner.jsx';
 
 function Weather(props) {
+    const serverURL = props.serverURL;
     const themeLight = props.themeLight;
     const setThemeLight = props.setThemeLight;
     const [weatherCities, setWeatherCities] = useState([]);
@@ -15,7 +16,7 @@ function Weather(props) {
 
     useEffect(() => {
         async function getData() {
-            const response = await axios.get('https://asafdashserver.onrender.com/getInfo/weather', {
+            const response = await axios.get(`${serverURL}/getInfo/weather`, {
                 headers: { Authorization: userToken ? userToken : undefined }
             });
             setWeatherCities(response.data.topicData);
@@ -28,7 +29,7 @@ function Weather(props) {
         <>
             {isLoading ? <LoadingSpinner /> :
                 <div className='weather-main'>
-                    <Navbar themeLight={themeLight} setThemeLight={setThemeLight} />
+                    <Navbar serverURL={serverURL} themeLight={themeLight} setThemeLight={setThemeLight} />
                     <div className='weather-container'>
                         <h1 className='weather-h1'>Weather</h1>
                         <div className='weather-component-div'>

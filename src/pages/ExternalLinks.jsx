@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import '../styles/ExternalLinks.css';
 
 function ExternalLinks(props) {
+  const serverURL = props.serverURL;
   const themeLight = props.themeLight;
   const setThemeLight = props.setThemeLight;
   const [externalLinks, setExternalLinks] = useState([]);
@@ -11,7 +12,7 @@ function ExternalLinks(props) {
 
   useEffect(() => {
     async function getData() {
-      const response = await axios.get('https://asafdashserver.onrender.com/getInfo/externallinks', {
+      const response = await axios.get(`${serverURL}/getInfo/externallinks`, {
         headers: { Authorization: userToken ? userToken : undefined }
       });
       setExternalLinks(response.data.topicData);
@@ -21,7 +22,7 @@ function ExternalLinks(props) {
 
   return (
     <div>
-      <Navbar themeLight={themeLight} setThemeLight={setThemeLight} />
+      <Navbar serverURL={serverURL} themeLight={themeLight} setThemeLight={setThemeLight} />
       <div className='external-main'>
         <h1>External Links</h1>
 

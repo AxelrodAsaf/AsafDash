@@ -5,6 +5,7 @@ import LastSignIn from '../components/LastSignIn';
 import '../styles/MyHub.css';
 
 function MyHub(props) {
+    const serverURL = props.serverURL;
     const themeLight = props.themeLight;
     const setThemeLight = props.setThemeLight;
     const userToken = localStorage.getItem('Dashboard-user-token');
@@ -22,7 +23,7 @@ function MyHub(props) {
     useEffect(() => {
         async function getUserInfo() {
             try {
-                const response = await axios.get('https://asafdashserver.onrender.com/getInfo/news', {
+                const response = await axios.get(`${serverURL}/getInfo/news`, {
                     headers: { Authorization: userToken ? userToken : undefined }
                 });
                 // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -74,7 +75,7 @@ function MyHub(props) {
         const weatherList = lists[1];
         // const externallinksList = lists[2];
         try {
-            await axios.put('http://localhost:8000/updateInfo', {
+            await axios.put(`${serverURL}/updateInfo`, {
                 data: {
                     news: newsList,
                     weather: weatherList,
@@ -97,7 +98,7 @@ function MyHub(props) {
 
     return (
         <div className='myhub-main'>
-            <Navbar themeLight={themeLight} setThemeLight={setThemeLight} />
+            <Navbar serverURL={serverURL} themeLight={themeLight} setThemeLight={setThemeLight} />
             <div>
                 <div className="myhub-editPages">
                     <div style={{
@@ -160,7 +161,7 @@ function MyHub(props) {
                     <button onClick={() => handleUpdateDatabase()} style={{ textDecoration: "bold" }}>UPDATE</button>
                     {userLoggedIn === "a" &&
                         <div className="right-side widget" style={{ padding: "0.5vw" }}>
-                            <LastSignIn themeLight={themeLight} setThemeLight={setThemeLight} />
+                            <LastSignIn serverURL={serverURL} themeLight={themeLight} setThemeLight={setThemeLight} />
                         </div>
                     }
                 </div>

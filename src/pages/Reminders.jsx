@@ -9,7 +9,7 @@ function Reminders(props) {
     return (
         <div>
             {/* {userLoggedIn? <Navbar themeLight={themeLight} setThemeLight={setThemeLight}/> : <Login/>} */}
-            <Navbar themeLight={themeLight} setThemeLight={setThemeLight} />
+            <Navbar serverURL={serverURL} themeLight={themeLight} setThemeLight={setThemeLight} />
             <h1>Reminders</h1>
 
 

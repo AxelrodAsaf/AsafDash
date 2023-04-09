@@ -6,6 +6,7 @@ import '../styles/ToDoList.css';
 import LoadingSpinner from '../components/LoadingSpinner.jsx';
 
 function ToDoList(props) {
+  const serverURL = props.serverURL;
   const themeLight = props.themeLight;
   const setThemeLight = props.setThemeLight;
   const userToken = localStorage.getItem('Dashboard-user-token');
@@ -17,7 +18,7 @@ function ToDoList(props) {
   useEffect(() => {
     if (isLoading) {
       async function getData() {
-        const response = await axios.get('https://asafdashserver.onrender.com/getInfo/toDoList', {
+        const response = await axios.get(`${serverURL}/getInfo/toDoList`, {
           headers: { Authorization: userToken ? userToken : undefined }
         });
         setListItems(response.data.topicData);
@@ -31,11 +32,11 @@ function ToDoList(props) {
   async function updateList(newList) {
     console.log("🚀🚀🚀🚀🚀🚀🚀🚀🚀 Updating List Items: ", listItems);
 
-        newList = newList.filter(i => i!== '');
+    newList = newList.filter(i => i !== '');
 
     // Make an axios call to the server to update the list
-    const response = await axios.put('https://asafdashserver.onrender.com/updateInfo', {
-      data: {todolist: newList}
+    const response = await axios.put(`${serverURL}/updateInfo`, {
+      data: { todolist: newList }
     }, {
       headers: {
         Authorization: userToken ?? undefined,
@@ -75,13 +76,13 @@ function ToDoList(props) {
   return (
     <>
       {isLoading ? <LoadingSpinner /> : <>
-        <Navbar themeLight={themeLight} setThemeLight={setThemeLight} />
+        <Navbar serverURL={serverURL} themeLight={themeLight} setThemeLight={setThemeLight} />
         <div className='toDoList-main'>
           <div className='toDoList-submain'>
             <h1 className='toDoList-h1 widget'>To Do List</h1>
             <div className='toDoList-list-div'>
               <ul className='toDoList-list widget'>
-                {(listItems.length ===0) ? <>No items in list...</> : listItems.map((listItem, index) => (
+                {(listItems.length === 0) ? <>No items in list...</> : listItems.map((listItem, index) => (
                   <li className='toDoList-listItem' key={listItem}>
                     <input
                       className='toDoList-listItemInput'

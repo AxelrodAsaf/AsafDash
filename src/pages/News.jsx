@@ -6,6 +6,7 @@ import '../styles/App.css';
 import '../styles/News.css';
 
 function News(props) {
+  const serverURL = props.serverURL;
   const themeLight = props.themeLight;
   const setThemeLight = props.setThemeLight;
   const [displayData, setDisplayData] = useState();
@@ -22,7 +23,7 @@ function News(props) {
   useEffect(() => {
     async function getUserInfo() {
       try {
-        const response = await axios.get('https://asafdashserver.onrender.com/getInfo/news', {
+        const response = await axios.get(`${serverURL}/getInfo/news`, {
           headers: { Authorization: userToken }
         });
         setDisplayData(response.data.topicData);
@@ -35,12 +36,12 @@ function News(props) {
 
   return (
     <div className='news-main'>
-      <Navbar themeLight={themeLight} setThemeLight={setThemeLight} />
+      <Navbar serverURL={serverURL} themeLight={themeLight} setThemeLight={setThemeLight} />
       <div className="news-page-div">
         <h1>News</h1>
         <div className="news-widgets">
           {displayData && displayData.length > 0 && displayData.map((item) => (
-            <NewsSection key={item} searchInput={item} />
+            <NewsSection serverURL={serverURL} key={item} searchInput={item} />
           ))}
         </div>
       </div>

@@ -108,7 +108,7 @@ function Home(props) {
       {isLoading ? <LoadingSpinner /> :
         <div className='all-css'>
           {/* {loggedInUser? <Navbar themeLight={themeLight} setThemeLight={setThemeLight}/> : <Login/>} */}
-          <Navbar themeLight={themeLight} setThemeLight={setThemeLight} />
+          <Navbar serverURL={serverURL} themeLight={themeLight} setThemeLight={setThemeLight} />
 
           <div className="home-widgetgrid">
             <div className="home-left">

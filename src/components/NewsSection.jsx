@@ -7,6 +7,7 @@ import LoadingSpinner from './LoadingSpinner';
 
 
 function NewsSection(props) {
+  const serverURL = props.serverURL;
   const [articles, setArticles] = useState([]);
   const userSearch = props.searchInput;
   const [isLoading, setIsLoading] = useState(true);
@@ -19,7 +20,7 @@ function NewsSection(props) {
       const body = {
         'searchInput': userSearch
       }
-      const response = await axios.post('https://asafdashserver.onrender.com/getNews',
+      const response = await axios.post(`${serverURL}/getNews`,
         body,
         {
           headers

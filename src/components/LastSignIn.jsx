@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
 
 export default function LastSignIn(props) {
+  const serverURL = props.serverURL;
   const chartRef = useRef(null);
   const userToken = localStorage.getItem('Dashboard-user-token');
   let userObject = null;
@@ -11,7 +12,7 @@ export default function LastSignIn(props) {
   useEffect(() => {
     async function getUserInfo() {
       try {
-        const response = await axios.get('http://localhost:8000/getInfo/news', {
+        const response = await axios.get(`${serverURL}/getInfo/news`, {
           headers: { Authorization: userToken ? userToken : undefined }
         });
           // eslint-disable-next-line react-hooks/exhaustive-deps

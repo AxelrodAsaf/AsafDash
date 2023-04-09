@@ -19,20 +19,22 @@ import LoadingSpinner from './components/LoadingSpinner';
 function App() {
   const [themeLight, setThemeLight] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  // const serverURL = "http://localhost:8000";
+  const serverURL = "https://asafdashserver.onrender.com";
 
 
   return (
     <div className={`app-main theme${themeLight}`} style={{ width: "100%", height: "100%" }}>
       <Routes>
-        <Route path={"/"} element={<Home isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
-        <Route path={"/Calendar"} element={<CalendarWidget isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
-        <Route path={"/Weather"} element={<Weather isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
-        <Route path={"/ToDoList"} element={<ToDoList isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
-        <Route path={"/News"} element={<News isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
-        {/* <Route path={"/Reminders"} element={<Reminders isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} /> */}
-        <Route path={"/Music"} element={<Music isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
-        <Route path={"/ExternalLinks"} element={<ExternalLinks isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
-        <Route path={"/MyHub"} element={<MyHub isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
+        <Route path={"/"} element={<Home serverURL={serverURL} isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
+        <Route path={"/Calendar"} element={<CalendarWidget serverURL={serverURL} isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
+        <Route path={"/Weather"} element={<Weather serverURL={serverURL} isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
+        <Route path={"/ToDoList"} element={<ToDoList serverURL={serverURL} isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
+        <Route path={"/News"} element={<News serverURL={serverURL} isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
+        {/* <Route path={"/Reminders"} element={<Reminders serverURL={serverURL} isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} /> */}
+        <Route path={"/Music"} element={<Music serverURL={serverURL} isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
+        <Route path={"/ExternalLinks"} element={<ExternalLinks serverURL={serverURL} isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
+        <Route path={"/MyHub"} element={<MyHub serverURL={serverURL} isLoading={isLoading} setIsLoading={setIsLoading} themeLight={themeLight} setThemeLight={setThemeLight} />} />
         <Route path={"/LoadingSpinner"} element={<LoadingSpinner />} />
         <Route path="*" element={<Default />} />
         <Route path={"/error"} element={<Default />} />

@@ -23,6 +23,7 @@ import axios from 'axios';
 
 
 function Navbar(props) {
+  const serverURL = props.serverURL;
   var loggedInUser = localStorage.getItem('userLoggedIn');
   const userToken = localStorage.getItem('Dashboard-user-token');
   const userFirstName = localStorage.getItem('Dashboard-user-firstName');
@@ -44,7 +45,7 @@ function Navbar(props) {
   useEffect(() => {
     async function getUserInfo() {
       try {
-        const response = await axios.get('https://asafdashserver.onrender.com/getInfo/news', {
+        const response = await axios.get(`${serverURL}/getInfo/news`, {
           headers: { Authorization: userToken ? userToken : undefined }
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -113,7 +114,7 @@ function Navbar(props) {
       </div>
 
       {/* If true, opens the login/signup box. Otherwise, do nothing. */}
-      {openLogin ? <Login themeLight={themeLight} setOpenLogin={setOpenLogin} /> : <></>}
+      {openLogin ? <Login serverURL={serverURL} themeLight={themeLight} setOpenLogin={setOpenLogin} /> : <></>}
 
       {(!loggedInUser || !isAdmin) ?
         <div className="navbar-socials" style={themeLight ? { backgroundColor: "linear-gradient(skyblue, teal) !important" } : {}}>

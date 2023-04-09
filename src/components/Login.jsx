@@ -3,6 +3,7 @@ import axios from 'axios';
 import '../styles/App.css';
 
 function Login(props) {
+  const serverURL = props.serverURL;
   const themeLight = props.themeLight;
   const setOpenLogin = props.setOpenLogin;
   const [errorMessages, setErrorMessages] = useState();
@@ -57,7 +58,7 @@ function Login(props) {
 
     // Send the information to the server to check if login is valid
     try {
-      axios.post('https://asafdashserver.onrender.com/login', sendServerLogin)
+      axios.post(`${serverURL}/login`, sendServerLogin)
         .then((res) => {
           clearForms();
           // Save the token to local storage
@@ -131,7 +132,7 @@ function Login(props) {
     // Add user data to database
     try {
       // Send newUser to server to add to database
-      axios.post('https://asafdashserver.onrender.com/signup', newUser)
+      axios.post(`${serverURL}/signup`, newUser)
         .then(() => {
           clearForms();
           setErrorMessages("accountCreated");

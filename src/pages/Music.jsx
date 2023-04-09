@@ -27,7 +27,7 @@ function Music(props) {
 
   return (
     <div className='all-css'>
-      <Navbar themeLight={themeLight} setThemeLight={setThemeLight} />
+      <Navbar serverURL={serverURL} themeLight={themeLight} setThemeLight={setThemeLight} />
       <div className='music-container'>
         <h1 className='music-h1'>Music</h1>
         <div className='music-subcontainer'>
